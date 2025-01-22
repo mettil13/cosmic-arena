@@ -5,7 +5,9 @@ public class inputTest : MonoBehaviour
 {
     public Rigidbody myRigidbody;
     public float speedMultipier = 1;
-
+    public Transform cursor;
+    float lastTimeClicked = 0;
+    public float coolDown = 0.5f;
     private Vector2 direction;
 
     private void Update() {
@@ -19,10 +21,11 @@ public class inputTest : MonoBehaviour
             direction = new Vector2(horizontal, vertical).normalized;
         }
 
-        transform.eulerAngles = new Vector3(0, -Vector2.SignedAngle(Vector2.right, direction), 0);
+        cursor.eulerAngles = new Vector3(0, -Vector2.SignedAngle(Vector2.right, direction), 0);
 
-        if (Input.GetKeyDown(KeyCode.Return)) {
+        if (Input.GetKeyDown(KeyCode.Return) && Time.time - lastTimeClicked > coolDown) {
             myRigidbody.AddForce(new Vector3(direction.x, 0, direction.y) * speedMultipier, ForceMode.Impulse); //velocity o addforce?
+            lastTimeClicked = Time.time;
         }
     }
 }
