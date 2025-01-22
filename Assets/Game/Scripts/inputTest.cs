@@ -7,9 +7,7 @@ public class inputTest : MonoBehaviour
     public float speedMultipier = 1;
 
     private Vector2 direction;
-    private void Awake() {
-        myRigidbody = GetComponent<Rigidbody>();
-    }
+
     private void Update() {
         float horizontal;
         float vertical;
