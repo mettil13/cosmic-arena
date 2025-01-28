@@ -142,7 +142,7 @@ public class AudioManager : MonoBehaviour {
 
                 break;
             case "SFX":
-                genericAudioMixerGroup.audioMixer.SetFloat("SFXVolume", 20 * Mathf.Log10((slider.value) / 100);
+                genericAudioMixerGroup.audioMixer.SetFloat("SFXVolume", 20 * Mathf.Log10((slider.value) / 100));
 
                 break;
             case "Voice":
