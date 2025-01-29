@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace physics
@@ -38,7 +37,6 @@ namespace physics
         private void Update()
         {
             Vector2 currentDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
-
             if (currentDirection.x != 0 || currentDirection.y != 0)
             {
                 if (childTorqueInfo.graphicBody.Controlled && currentDirection != direction)
@@ -48,10 +46,8 @@ namespace physics
 
                 direction = currentDirection;
             }
-
             cursor.eulerAngles = new Vector3(0, -Vector2.SignedAngle(Vector2.right, direction), 0);
             childTorqueInfo.graphicBody.transform.localPosition = Vector3.zero;
-
             if (Input.GetKeyDown(KeyCode.Return) && Time.time - lastTimeClicked > coolDown)
             {
                 ApplyNonControl();
