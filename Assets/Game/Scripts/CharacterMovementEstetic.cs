@@ -1,12 +1,17 @@
 using DG.Tweening;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 namespace physics
 {
-    public class GraphicTest : MonoBehaviour
+    public class CharacterMovementEstetic : MonoBehaviour
     {
         [SerializeField] private Rigidbody body;
         [SerializeField] private bool controlled = true;
+        [SerializeField] private float goOnRotationSpeed = 2f;
+        [SerializeField] private float dragOnControlled = 1f;
+        [SerializeField] private float dragOnNonControlled = 0.5f;
+        [SerializeField] private float minMagnitudeToStartLerp = 1f;
 
         public bool Controlled
         {
@@ -16,12 +21,14 @@ namespace physics
 
                 if (value)
                 {
-                    body.constraints = RigidbodyConstraints.FreezeAll;
+                    //body.constraints = RigidbodyConstraints.FreezeAll;
+                    body.angularDamping = dragOnControlled;
                 }
                 else
                 {
-                    body.constraints = RigidbodyConstraints.FreezePosition;
-                    transform.DOKill();
+                    //body.constraints = RigidbodyConstraints.FreezePosition;
+                    body.angularDamping = dragOnNonControlled;
+                    body.DOKill();
                 }
 
                 controlled = value;
@@ -38,7 +45,7 @@ namespace physics
         {
             body.angularVelocity = Vector3.zero;
             //Debug.LogError("angular velocity : " + body.angularVelocity);
-            body.AddTorque(Random.insideUnitSphere * intensity);
+            body.AddTorque(Random.insideUnitSphere * intensity / 1000);
         }
         public void InvertTorque()
         {
@@ -51,8 +58,12 @@ namespace physics
         public void ApplyDirection(Vector2 direction)
         {
             Vector3 rotation = new Vector3(0, -Vector2.SignedAngle(Vector2.right, direction), 0);
-            transform.DOKill();
-            transform.DORotate(rotation, 2);
+            
+            if (body.angularVelocity.magnitude < minMagnitudeToStartLerp) 
+            { 
+                body.DOKill();
+                body.DORotate(rotation, goOnRotationSpeed);
+            }
         }
 
         private void OnCollisionEnter(Collision collision)

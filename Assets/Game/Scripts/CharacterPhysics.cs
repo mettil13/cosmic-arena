@@ -5,7 +5,7 @@ namespace physics
 {
     [System.Serializable] public struct ChildTorqueInfo
     {
-        [SerializeField] public GraphicTest graphicBody;
+        [SerializeField] public CharacterMovementEstetic graphicBody;
         [SerializeField] public float startTorqueIntensity;
         [SerializeField] public float collisionTorqueIntensity;
         [SerializeField] public float MoveTorqueIntensity;
@@ -17,7 +17,7 @@ namespace physics
         [SerializeField] public float movementIntensity;
     }
 
-    public class inputTest : MonoBehaviour
+    public class CharacterPhysics : MonoBehaviour
     {
         public Transform cursor;
         float lastTimeClicked = 0;
@@ -33,19 +33,22 @@ namespace physics
         {
             childTorqueInfo.graphicBody.Init();
             childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.startTorqueIntensity);
+            direction = Vector2.right;
         }
         private void Update()
         {
             Vector2 currentDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+
             if (currentDirection.x != 0 || currentDirection.y != 0)
             {
-                if (childTorqueInfo.graphicBody.Controlled && currentDirection != direction)
-                {
-                    childTorqueInfo.graphicBody.ApplyDirection(currentDirection);
-                }
-
                 direction = currentDirection;
             }
+
+            if (childTorqueInfo.graphicBody.Controlled)
+            {
+                childTorqueInfo.graphicBody.ApplyDirection(direction);
+            }
+
             cursor.eulerAngles = new Vector3(0, -Vector2.SignedAngle(Vector2.right, direction), 0);
             childTorqueInfo.graphicBody.transform.localPosition = Vector3.zero;
             if (Input.GetKeyDown(KeyCode.Return) && Time.time - lastTimeClicked > coolDown)

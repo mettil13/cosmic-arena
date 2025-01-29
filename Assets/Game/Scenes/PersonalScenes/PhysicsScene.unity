@@ -267,10 +267,10 @@ MonoBehaviour:
     movementIntensity: 20
   childTorqueInfo:
     graphicBody: {fileID: 936402870}
-    startTorqueIntensity: 1
+    startTorqueIntensity: 0
     collisionTorqueIntensity: 1
-    MoveTorqueIntensity: 1
-    nonControlTime: 1
+    MoveTorqueIntensity: 0.1
+    nonControlTime: 0.6
 --- !u!54 &76321252
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -865,6 +865,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 936402868}
   controlled: 0
+  goOnRotationSpeed: 1
+  dragOnControlled: 3
+  dragOnNonControlled: 0.1
+  minMagnitudeToStartLerp: 5
 --- !u!1 &1447730995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,9 +1676,9 @@ Transform:
   m_GameObject: {fileID: 2140961853}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.361, y: 0, z: 0}
+  m_LocalScale: {x: 0.73, y: 0.73, z: 0.73}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1533238322}
   - {fileID: 157555518}
