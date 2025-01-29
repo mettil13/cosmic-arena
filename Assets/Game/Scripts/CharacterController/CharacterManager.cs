@@ -9,13 +9,12 @@ using System.Collections.Generic;
 public class CharacterManager : SerializedMonoBehaviour
 {
     [OdinSerialize, NonSerialized]public StateMachine<Player_State, Player_Status> stateMachine;
-    [NonSerialized] public CharacterInputAdapter characterInputAdapter;
+    [SerializeField] public CharacterInputAdapter characterInputAdapter;
 
-    public Rigidbody rigidbody;
+    public new Rigidbody rigidbody;
 
     private void Awake()
     {
-        characterInputAdapter = new CharacterInputAdapter();
         Dictionary<Player_State, IState> newStates = new Dictionary<Player_State, IState>();
         foreach (var statePair in stateMachine.states)
         {

@@ -14,14 +14,12 @@ namespace CharacterLogic
         {
             base.OnEntry(stateMachine);
             stateMachine.AddStatusModifier(Name, ~removedStatus);
-            Debug.Log("start Cooldown Thrust");
         }
 
         public override void OnExit()
         {
             base.OnExit();
             stateMachine.RemoveStatusModifier(Name);
-            Debug.Log("elapsed Cooldown Thrust");
         }
 
     }  

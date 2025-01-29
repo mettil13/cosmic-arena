@@ -1,8 +1,9 @@
 using StateMachine;
-using System.Diagnostics;
 using UnityEngine;
+
 namespace CharacterLogic
 {
+    using CommonLogic;
     [System.Serializable]
     public abstract class APlayerTimedModifier : APlayerModifier
     {

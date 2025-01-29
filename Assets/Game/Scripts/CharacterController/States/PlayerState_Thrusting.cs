@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace CharacterLogic
 {
+    using CommonLogic;
     [CreateAssetMenu(fileName = "PlayerState_Thrusting", menuName = "Scriptable Objects/PlayerState/Thrusting")]
     public class PlayerState_Thrusting : APlayerState
     {
@@ -21,7 +22,7 @@ namespace CharacterLogic
         public override void OnEntry()
         {
             base.OnEntry();
-
+            AddForceInInputDirection(firstImpluse, firstImpulseMode);
             timer = new Timer(impulseDuration).AddCallBack(Stop);
         }
         public override void OnUpdate(ref float delta)
