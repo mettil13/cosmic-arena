@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 public class DynamicCamera : MonoBehaviour
 {
-    [SerializeField] private List<Transform> allPotentialTargets;
+    public static DynamicCamera Instance;
+
+    [SerializeField] private List<Transform> allPotentialTargets = new List<Transform>();
     [SerializeField] private TargetsList currentTargets;
     [SerializeField] private float minHeight = 10f;
     [SerializeField] private float padding = 2f;
@@ -14,18 +16,20 @@ public class DynamicCamera : MonoBehaviour
 
     [SerializeField] private string playerTag = string.Empty;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
-        var gos = GameObject.FindGameObjectsWithTag(playerTag);
-        foreach (GameObject t in gos)
-        {
-            allPotentialTargets.Add(t.transform);
-        }
+        UpdatePlayer();
     }
 
     private void Update()
     {
-        UpdateTargets();
+        CleanUpTargetsList(); // Rimuove eventuali riferimenti nulli
+        UpdatePlayer();
     }
 
     void LateUpdate()
@@ -58,7 +62,8 @@ public class DynamicCamera : MonoBehaviour
         var bounds = new Bounds(currentTargets.Targets[0].position, Vector3.zero);
         foreach (Transform target in currentTargets.Targets)
         {
-            bounds.Encapsulate(target.position);
+            if (target != null)
+                bounds.Encapsulate(target.position);
         }
 
         return bounds.center;
@@ -69,13 +74,27 @@ public class DynamicCamera : MonoBehaviour
         var bounds = new Bounds(currentTargets.Targets[0].position, Vector3.zero);
         foreach (Transform target in currentTargets.Targets)
         {
-            bounds.Encapsulate(target.position);
+            if (target != null)
+                bounds.Encapsulate(target.position);
         }
 
         return Mathf.Max(bounds.size.x, bounds.size.z);
     }
 
-    void UpdateTargets()
+    void UpdatePlayer()
+    {
+        var gos = GameObject.FindGameObjectsWithTag(playerTag);
+        foreach (GameObject t in gos)
+        {
+            if (t != null && !allPotentialTargets.Contains(t.transform))
+            {
+                allPotentialTargets.Add(t.transform);
+            }
+        }
+        UpdateTargets();
+    }
+
+    public void UpdateTargets()
     {
         Vector3 massCenter = GetCenterPoint();
 
@@ -88,5 +107,10 @@ public class DynamicCamera : MonoBehaviour
                 currentTargets.Add(t);
             }
         }
+    }
+
+    private void CleanUpTargetsList()
+    {
+        allPotentialTargets.RemoveAll(target => target == null);
     }
 }
