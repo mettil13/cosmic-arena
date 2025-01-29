@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class DamageAtContact : MonoBehaviour
 {
-    public bool disappearAfterContact;
+    [SerializeField] private bool disappearAfterContact;
+
+    private void Awake() {
+        
+    }
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Player")) {
