@@ -11,6 +11,7 @@ namespace CharacterLogic
         Braking = 3,
         SpecialAbility = 4,
         MeleeAttack = 5,
+        Dead = 6,
     }
 
 
@@ -25,6 +26,7 @@ namespace CharacterLogic
         CanBrake = 1 << Player_State.Braking,
         CanSpecialAbility = 1 << Player_State.SpecialAbility,
         CanMeleeAttack = 1 << Player_State.MeleeAttack,
+        CanDie = 1 << Player_State.Dead,
     }
 
 
