@@ -10,11 +10,14 @@ namespace physics
         [SerializeField] public float collisionTorqueIntensity;
         [SerializeField] public float MoveTorqueIntensity;
         [SerializeField] public float nonControlTime;
+        [SerializeField] public float swerveTime;
     }
     [System.Serializable] public struct MovementInfo
     {
         [SerializeField] public Rigidbody body;
         [SerializeField] public float movementIntensity;
+        [SerializeField] public float dynamicDragThresholdImpulse;
+        [SerializeField] public float dynamicDragThresholdExplosion;
     }
 
     public class CharacterPhysics : MonoBehaviour
@@ -28,6 +31,8 @@ namespace physics
         [SerializeField] ChildTorqueInfo childTorqueInfo;
 
         private Coroutine nonControlCR;
+        private Coroutine swerveCR;
+        private bool isSwerving = false;
 
         private void Awake()
         {
@@ -51,12 +56,26 @@ namespace physics
 
             cursor.eulerAngles = new Vector3(0, -Vector2.SignedAngle(Vector2.right, direction), 0);
             childTorqueInfo.graphicBody.transform.localPosition = Vector3.zero;
-            if (Input.GetKeyDown(KeyCode.Return) && Time.time - lastTimeClicked > coolDown)
+            if (Input.GetKeyDown(KeyCode.Return) && Time.time - lastTimeClicked > coolDown && isSwerving == false)
             {
                 ApplyNonControl();
                 MoveWithVector(direction);
                 lastTimeClicked = Time.time;
             }
+
+            if (movementInfo.body.linearVelocity.magnitude < movementInfo.dynamicDragThresholdImpulse) {
+                movementInfo.body.linearDamping = 0.2f;
+                movementInfo.body.angularDamping = 0.05f;
+            } else if (movementInfo.body.linearVelocity.magnitude > movementInfo.dynamicDragThresholdImpulse &&
+                    movementInfo.body.linearVelocity.magnitude < movementInfo.dynamicDragThresholdExplosion) {
+                        movementInfo.body.linearDamping = 0.2f + movementInfo.body.linearVelocity.magnitude / 50.0f;
+                        movementInfo.body.angularDamping = 0.05f + movementInfo.body.linearVelocity.magnitude / 500.0f;
+            } else {
+                movementInfo.body.linearDamping = 0.2f + movementInfo.body.linearVelocity.magnitude / 25.0f;
+                movementInfo.body.angularDamping = 0.05f + movementInfo.body.linearVelocity.magnitude / 250.0f;
+            }
+
+            Debug.Log("velocità: " + movementInfo.body.linearVelocity.magnitude);
         }
 
         public void MoveWithVector(Vector2 movementDirection)
@@ -87,6 +106,16 @@ namespace physics
             }
         }
 
+        public void ExplosionKick(Transform propPosition) {
+            float explosionIntensity = 100;
+            Vector3 kickDirection = (transform.position - propPosition.position).normalized * explosionIntensity;
+            movementInfo.body.linearVelocity = Vector3.zero;
+            isSwerving = true;
+            movementInfo.body.AddForce(kickDirection, ForceMode.Impulse);
+            childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.collisionTorqueIntensity * explosionIntensity);
+            Swerve();
+        }
+
         public void ApplyNonControl()
         {
             if (nonControlCR != null) StopCoroutine(nonControlCR);
@@ -97,6 +126,16 @@ namespace physics
             childTorqueInfo.graphicBody.Controlled = false;
             yield return new WaitForSeconds(childTorqueInfo.nonControlTime);
             childTorqueInfo.graphicBody.Controlled = true;
+        }
+
+        public void Swerve() {
+            if (swerveCR != null) StopCoroutine(swerveCR);
+            swerveCR = StartCoroutine(SwerveCR());
+        }
+
+        public IEnumerator SwerveCR() {
+            yield return new WaitForSeconds(childTorqueInfo.swerveTime);
+            isSwerving = false;
         }
     }
 }

@@ -4,10 +4,6 @@ public class DamageAtContact : MonoBehaviour
 {
     [SerializeField] private bool disappearAfterContact;
 
-    private void Awake() {
-        
-    }
-
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Player")) {
             Debug.Log("danno al player");
@@ -18,4 +14,6 @@ public class DamageAtContact : MonoBehaviour
     private void Disappear() {
         gameObject.SetActive(false);
     }
+
+    
 }
