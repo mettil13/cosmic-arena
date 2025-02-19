@@ -10,6 +10,7 @@ namespace CharacterLogic
         Thrusting = 2,
         Braking = 3,
         SpecialAbility = 4,
+        MeleeAttack = 5,
     }
 
 
@@ -18,11 +19,12 @@ namespace CharacterLogic
     {
         None = 0,
         CanAll= -1,
-        CanPause = 1 << 0,
-        CanIdle = 1 << 1,
-        CanThrust = 1 << 2,
-        CanBrake = 1 << 3,
-        CanSpecialAbility = 1 << 4,
+        CanPause = 1 << Player_State.Pause,
+        CanIdle = 1 << Player_State.Idle,
+        CanThrust = 1 << Player_State.Thrusting,
+        CanBrake = 1 << Player_State.Braking,
+        CanSpecialAbility = 1 << Player_State.SpecialAbility,
+        CanMeleeAttack = 1 << Player_State.MeleeAttack,
     }
 
 

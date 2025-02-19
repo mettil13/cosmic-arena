@@ -10,6 +10,7 @@ public class CharacterManager : SerializedMonoBehaviour
 {
     [OdinSerialize, NonSerialized]public StateMachine<Player_State, Player_Status> stateMachine;
     [SerializeField] public CharacterInputAdapter characterInputAdapter;
+    
 
     public new Rigidbody rigidbody;
 

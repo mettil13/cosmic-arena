@@ -17,10 +17,10 @@ MonoBehaviour:
   canStopEarly: 0
   continiousForce: 2
   continiousForceMode: 5
-  firstImpluse: 10
+  firstImpluse: 5
   firstImpulseMode: 1
   hasCooldown: 1
   cooldown:
     stackBehaviour: 0
-    duration: 5
+    duration: 1
     removedStatus: 4
