@@ -38,6 +38,13 @@ public class CharacterInputAdapter : MonoBehaviour
         set => specialAbility = value; 
     }
 
+    protected Vector2 lastValidDirection = Vector2.zero;
+    public Vector2 LastValidDirection {
+        get => lastValidDirection;
+        set => lastValidDirection = value.normalized;
+    }
+
+
     //public CharacterInputAdapter()
     //{
     //    inputs = new InputSystem_Actions();
@@ -71,6 +78,9 @@ public class CharacterInputAdapter : MonoBehaviour
     public void OnDirectionInput(InputAction.CallbackContext context)
     {
         direction = context.action.ReadValue<Vector2>();
+        if(direction != Vector2.zero) {
+            lastValidDirection = direction.normalized;
+        }
     }
 
     public void OnAttackInput(InputAction.CallbackContext context)

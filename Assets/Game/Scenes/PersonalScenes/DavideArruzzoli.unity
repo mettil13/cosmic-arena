@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 750875090}
   - component: {fileID: 750875089}
   - component: {fileID: 750875088}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -605,7 +605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 895755152}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,6 +629,116 @@ Transform:
   - {fileID: 1525865065}
   m_Father: {fileID: 1494228586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1124759131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1124759135}
+  - component: {fileID: 1124759134}
+  - component: {fileID: 1124759133}
+  - component: {fileID: 1124759132}
+  m_Layer: 6
+  m_Name: Nemico
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!136 &1124759132
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124759131}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1124759133
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124759131}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1124759134
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124759131}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1124759135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124759131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.63, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1494228584
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +752,7 @@ GameObject:
   - component: {fileID: 1494228585}
   - component: {fileID: 1494228589}
   - component: {fileID: 1494228588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -667,6 +777,7 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 81113a9417a3f694e893a866aea2920f, type: 2}
     - {fileID: 11400000, guid: d94399a6784e52e45ad57aa68e88bfa2, type: 2}
+    - {fileID: 11400000, guid: 09b6224a486dc904899e2d8c4fa2b9cb, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -695,7 +806,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 
@@ -717,6 +828,18 @@ MonoBehaviour:
     - Name: $v
       Entry: 10
       Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 5
+    - Name: $v
+      Entry: 10
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -818,7 +941,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
 --- !u!114 &1494228588
 MonoBehaviour:
@@ -866,7 +989,19 @@ MonoBehaviour:
     m_ActionId: 6b444451-8a00-4d00-a97e-f47457f736a8
     m_ActionName: 'Player/Look[/Mouse/delta,/Pen/delta]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1494228589}
+        m_TargetAssemblyTypeName: CharacterInputAdapter, Assembly-CSharp
+        m_MethodName: OnAttackInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
@@ -957,6 +1092,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9bdcc412-819d-42bd-9aba-be6ef249d16d
+    m_ActionName: 'Player/SpecialAbility[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -986,7 +1125,7 @@ GameObject:
   - component: {fileID: 1525865068}
   - component: {fileID: 1525865067}
   - component: {fileID: 1525865066}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1090,3 +1229,4 @@ SceneRoots:
   - {fileID: 837369720}
   - {fileID: 1494228586}
   - {fileID: 655331872}
+  - {fileID: 1124759135}
