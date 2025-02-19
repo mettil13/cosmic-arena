@@ -17,7 +17,7 @@ namespace CharacterLogic
         [SerializeField] PlayerThrustCooldown cooldown;
 
 
-        Timer timer;
+        CommonLogic.Timer timer;
         public override void OnEntry()
         {
             base.OnEntry();

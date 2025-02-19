@@ -12,6 +12,7 @@ namespace CharacterLogic
         SpecialAbility = 4,
         MeleeAttack = 5,
         Dead = 6,
+        Stunned = 7,
     }
 
 
@@ -27,6 +28,7 @@ namespace CharacterLogic
         CanSpecialAbility = 1 << Player_State.SpecialAbility,
         CanMeleeAttack = 1 << Player_State.MeleeAttack,
         CanDie = 1 << Player_State.Dead,
+        CanBeStunnde = 1 << Player_State.Stunned,
     }
 
 
