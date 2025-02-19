@@ -61,14 +61,15 @@ namespace physics
 
         public void MoveWithVector(Vector2 movementDirection)
         {
-            Vector2 velocityDirection = movementInfo.body.linearVelocity.normalized;
-            float velocityAppliedFactor  = (movementDirection - velocityDirection).magnitude;
-            Vector2 velocityDifference = new Vector2(movementDirection.x * velocityDirection.x, movementDirection.y * velocityDirection.y);
-            
+            Vector2 velocityDirection = new Vector2(movementInfo.body.linearVelocity.x, movementInfo.body.linearVelocity.z).normalized;
+            float dot = Vector2.Dot(movementDirection, velocityDirection);
+            //Debug.LogWarning("DOT value : " + dot + " of movement direction : " + movementDirection + " and velocity direction : " + velocityDirection + 
+            //    " in rigidbody of : " + movementInfo.body + " " + movementInfo.body.name);
+            if (dot < 0) dot = 0;
+            movementInfo.body.linearVelocity *= dot;
             movementInfo.body.AddForce(
                 new Vector3(movementDirection.x, 0, movementDirection.y) * movementInfo.movementIntensity, 
                 ForceMode.Impulse);
-
             childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.MoveTorqueIntensity);
         }
         public void MoveWithVectorReset(Vector2 movementDirection)

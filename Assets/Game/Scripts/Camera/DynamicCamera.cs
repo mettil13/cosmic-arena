@@ -56,6 +56,11 @@ public class DynamicCamera : MonoBehaviour
 
     Vector3 GetCenterPoint()
     {
+        if (currentTargets == null || currentTargets.Targets.Count == 0)
+        {
+            return transform.position;
+        }
+
         if (currentTargets.Targets.Count == 1)
             return currentTargets.Targets[0].position;
 
@@ -69,8 +74,14 @@ public class DynamicCamera : MonoBehaviour
         return bounds.center;
     }
 
+
     float GetGreatestDistance()
     {
+        if (currentTargets == null || currentTargets.Targets.Count == 0)
+        {
+            return 0f;
+        }
+
         var bounds = new Bounds(currentTargets.Targets[0].position, Vector3.zero);
         foreach (Transform target in currentTargets.Targets)
         {
@@ -80,6 +91,7 @@ public class DynamicCamera : MonoBehaviour
 
         return Mathf.Max(bounds.size.x, bounds.size.z);
     }
+
 
     void UpdatePlayer()
     {
