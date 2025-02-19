@@ -6,6 +6,9 @@ public class CharacterInputAdapter : MonoBehaviour
     private Vector2 direction;
     private float brake;
     private float thrust;
+    private float attack;
+    private float specialAbility;
+
     //InputSystem_Actions inputs;
 
 
@@ -23,6 +26,16 @@ public class CharacterInputAdapter : MonoBehaviour
     {
         get => thrust;
         set => thrust = value;
+    }
+    public float Attack 
+    { 
+        get => attack; 
+        set => attack = value; 
+    }
+    public float SpecialAbility 
+    { 
+        get => specialAbility; 
+        set => specialAbility = value; 
     }
 
     //public CharacterInputAdapter()
@@ -58,6 +71,15 @@ public class CharacterInputAdapter : MonoBehaviour
     public void OnDirectionInput(InputAction.CallbackContext context)
     {
         direction = context.action.ReadValue<Vector2>();
+    }
+
+    public void OnAttackInput(InputAction.CallbackContext context)
+    {
+        attack = context.action.ReadValue<float>();
+    }
+    public void OnSpecialAbility(InputAction.CallbackContext context)
+    {
+        attack = context.action.ReadValue<float>();
     }
 
 

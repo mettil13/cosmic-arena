@@ -17,6 +17,18 @@ namespace CharacterLogic
             {
                 stateMachine.ChangeState(Player_State.Braking);
             }
+
+            if(Input.Attack > 0)
+            {
+                stateMachine.ChangeState(Player_State.MeleeAttack);
+            }
+
+            if (Input.SpecialAbility > 0)
+            {
+                stateMachine.ChangeState(Player_State.SpecialAbility);
+
+            }
+
         }
     }
 }
