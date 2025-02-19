@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 465561070}
   - component: {fileID: 465561069}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: DeviceManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 6
   m_AllowJoining: 1
   m_JoinBehavior: 2
   m_PlayerJoinedEvent:
@@ -330,9 +330,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d268b37f5ce28f24d8a08c0e89beae88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 1564959259917154913}
   playerList: []
+  playerArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  characterList: []
   joinAction:
     m_Name: Join
     m_Type: 0
