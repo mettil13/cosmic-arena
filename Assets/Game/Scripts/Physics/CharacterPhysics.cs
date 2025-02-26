@@ -61,7 +61,6 @@ namespace physics
             {
                 direction = currentDirection;
             }
-
             if (childTorqueInfo.graphicBody.Controlled)
             {
                 childTorqueInfo.graphicBody.ApplyDirection(direction);
