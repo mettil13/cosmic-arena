@@ -44,6 +44,11 @@ namespace CommonLogic
             }
         }
 
+        public void EndTimer() {
+            OnEnd.Invoke();
+            isRunning = false;
+        }
+
         public void Reset()
         {
             elapsedTime = 0;
