@@ -6,7 +6,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Voice
+  m_Name: Dialogue
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: e44b25359e9f5fb4a96917b7497960cb
   m_Children: []
@@ -75,7 +75,7 @@ AudioMixerController:
   - guid: 9ba4ae821c5a45e4a9925cce09a723d1
     name: SoundtrackVolume
   - guid: 34ca197f691ec7c499cb5583b366d27c
-    name: VoiceVolume
+    name: DialogueVolume
   m_AudioMixerGroupViews:
   - guids:
     - 3476b5f593cad644bbb10bf0f67bb594

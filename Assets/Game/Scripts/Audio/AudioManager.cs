@@ -21,12 +21,26 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioSource dialogueSource;
 
+
     [SerializeField] private float fadeInTime, fadeOutTime;
     [SerializeField] private float minPitchChange, maxPitchChange;
     //List of default volumes for all audiosources, to set after balancing the audios
     [SerializeField] private float mainSoundtrackDefaultVolume, secondarySoundtrackDefaultVolume, sfxDefaultVolume, dialogueDefaultVolume;
 
     private List<AudioSource> audioSources = new List<AudioSource>();
+
+    private AudioSource genericAudioSource;
+
+    [SerializeField] private AudioMixerGroup soundtrackOutput;
+    [SerializeField] private AudioMixerGroup sfxOutput;
+    [SerializeField] private AudioMixerGroup dialogueOutput;
+
+    Coroutine musicCoroutine;
+    private enum TypeOfSound {
+        Soundtrack,
+        SFX,
+        Dialogue
+    }
 
     //RENAME
     private AudioMixerGroup genericAudioMixerGroup;
@@ -45,12 +59,21 @@ public class AudioManager : MonoBehaviour {
     #region Base Play Methods
     //Play a soundtrack clip
     public void PlaySoundtrack(AudioClip soundtrackClip) {
-        StopAudioPlaying(mainSoundtrackSource);
-        UnsetAudioLoop(mainSoundtrackSource);
+        //StopAudioPlaying(mainSoundtrackSource);
+        //UnsetAudioLoop(mainSoundtrackSource);
 
-        //mainSoundtrackSource.PlayOneShot(soundtrackClip);
-        mainSoundtrackSource.resource = soundtrackClip;
-        mainSoundtrackSource.Play();
+        ////mainSoundtrackSource.PlayOneShot(soundtrackClip);
+        //mainSoundtrackSource.resource = soundtrackClip;
+        //mainSoundtrackSource.Play();
+
+        //If there's an audio source playing, stop it and the coroutine associated
+        StopAudioSourcePlaying(soundtrackOutput);
+
+        genericAudioSource = AudioSourcePoolManager.Instance.CheckPoolForAvailableAudioSource();
+        genericAudioSource.outputAudioMixerGroup = soundtrackOutput;
+        genericAudioSource.resource = soundtrackClip;
+        genericAudioSource.Play();
+        musicCoroutine = StartCoroutine(AudioSourcePoolManager.Instance.StopWhenFinished(genericAudioSource));
     }
     //Play an SFX clip
     public void PlaySFX(AudioClip sfxClip) {
@@ -206,7 +229,7 @@ public class AudioManager : MonoBehaviour {
         audioSource.Stop();
         audioSource.volume = startVolume;
     }
-    
+
     public static IEnumerator FadeIn(AudioSource audioSource, AudioClip audioClip, float FadeTime) {
         //Reduce or increase this value to slow down or speed up the fade in effect
         float timeDiluation = 1;
@@ -219,6 +242,20 @@ public class AudioManager : MonoBehaviour {
 
             yield return null;
         }
+    }
+    private bool StopAudioSourcePlaying(AudioMixerGroup audioMixerGroup) {
+        foreach (AudioSource audioSource in AudioSourcePoolManager.Instance.activePool.sources) {
+            if (audioSource.outputAudioMixerGroup == audioMixerGroup) {
+                if (audioSource.isPlaying) {
+                    audioSource.Stop();
+                    AudioSourcePoolManager.Instance.activePool.sources.Remove(audioSource);
+                    AudioSourcePoolManager.Instance.inactivePool.sources.Add(audioSource);
+                    audioSource.enabled = false;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     #endregion
 
@@ -247,5 +284,4 @@ public class AudioManager : MonoBehaviour {
                 break;
         }
     }
-
 }
