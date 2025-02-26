@@ -3,7 +3,7 @@ using UnityEngine;
 public class MainMenuManager : MonoBehaviour
 {
     //Object della UI
-    public GameObject settingsMenu;
+    public GameObject settingsMenu, mainMenu;
 
     public void Awake()
     {
@@ -12,7 +12,13 @@ public class MainMenuManager : MonoBehaviour
     public void ActivateSettingsMenu()
     {
         settingsMenu.SetActive(true);
-        this.gameObject.SetActive(false);
+        mainMenu.SetActive(false);
+    }
+
+    public void DeactivateSettingMenu()
+    {
+        settingsMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
     public void QuitGame()
