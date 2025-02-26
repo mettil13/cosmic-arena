@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60.55
+  m_fontSize: 62.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -174,7 +174,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 225, y: -150}
-  m_SizeDelta: {x: 175, y: 250}
+  m_SizeDelta: {x: 300, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &110154501536628479
 CanvasRenderer:
@@ -226,8 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a961e500782e104b98ad7c7a03fe1a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: {fileID: 1956114096572233029}
-  cardRank: {fileID: 7749535284674687178}
+  nameText: {fileID: 1956114096572233029}
+  dieHourText: {fileID: 7749535284674687178}
 --- !u!1 &7268962073807205005
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,37 +1,47 @@
 using System.Collections.Generic;
+using System.Linq; // Para usar métodos como OrderBy
 using UnityEngine;
 
 public class Ranking : MonoBehaviour
 {
-    public static Ranking Instance {  get; private set; }
+    public static Ranking Instance { get; private set; }
 
-    [SerializeField] private List<string> ranking = new();
+    [SerializeField] private List<(int dieHour, string name)> rankingByTime = new();
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private RankingCard card;
 
-
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
-    }
-    private void OnEnable()
-    {
-        InstantiateCards();
     }
 
     public void InstantiateCards()
     {
-        foreach (var player in ranking)
+        foreach (Transform child in spawnPoint)
         {
-            string index = ranking.IndexOf(player).ToString();
+            Destroy(child.gameObject);
+        }
+
+        foreach (var player in rankingByTime)
+        {
             RankingCard rc = Instantiate(card, spawnPoint);
-            rc.SetParam(player, index);
+            rc.SetValues(player.name, player.dieHour);
         }
     }
 
-    public void AddToRanking(string name)
+    public void AddToRanking(int dieHour, string name)
     {
-        ranking.Add(name);
+        rankingByTime.Add((dieHour, name));
+        SortRankList();
     }
 
+    void SortRankList()
+    {
+        rankingByTime = rankingByTime.OrderBy(player => player.dieHour).ToList();
+    }
 }

@@ -6,7 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 using CharacterLogic;
 using UnityEngine.Events;
-using DG.Tweening; // Importa DOTween!
+using DG.Tweening;
+using UnityEngine.UI; // Importa DOTween!
 
 public class GameManager : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class GameManager : MonoBehaviour
     public float gameTimer = 300f; // 5 minuti
     public TextMeshProUGUI timerText;
     public GameObject victoryPanel;
-    public TextMeshProUGUI victoryText;
     public GameObject pausePanel;
+    public Button pauseButton;
     public string sceneToLoad = "MainMenu";
 
     [SerializeField] private List<GameObject> playerObjects;
@@ -31,9 +32,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        pauseButton.enabled = false;
         PopulatePlayersAndHealth();
         StartCoroutine(StartCountdown()); // Avvia il countdown all'inizio
-        dieEvent.AddListener(() => OnCharacterDeathOrDisappear(playerObjects[0]));
+        dieEvent.AddListener(() =>
+        {
+            if (playerObjects.Count > 0 && playerObjects[0] != null)
+                OnCharacterDeathOrDisappear(playerObjects[0]);
+        });
+
     }
 
     void Update()
@@ -78,15 +85,15 @@ public class GameManager : MonoBehaviour
             timerText.text = text;
             timerText.transform.localScale = Vector3.zero;
 
-            // Effetto Bouncy con DOTween
             timerText.transform.DOScale(Vector3.one, 0.5f)
                       .SetEase(Ease.OutBounce);
 
-            yield return new WaitForSeconds(1f); // Pausa tra i numeri
+            yield return new WaitForSeconds(1f);
         }
 
-        gameStarted = true; // Avvia il timer
-        UpdateTimerDisplay(); // Mostra il tempo normale
+        gameStarted = true;
+        pauseButton.enabled = true;
+        UpdateTimerDisplay();
     }
 
     int RemainingCharacters() =>
@@ -103,25 +110,30 @@ public class GameManager : MonoBehaviour
     void EndGame(CharacterHealth winner)
     {
         gameEnded = true;
-        PauseGame();
         ShowVictoryPanel(winner);
+
+        RefreshLists();
 
         foreach (var player in playerObjects)
         {
-            var characterManager = player.GetComponent<CharacterManager>();
+            var characterManager = player?.GetComponent<CharacterManager>();
             characterManager?.stateMachine.ChangeState(Player_State.Pause);
         }
     }
 
+
     void ShowVictoryPanel(CharacterHealth winner)
     {
+        Time.timeScale = 0;
         victoryPanel.SetActive(true);
-        timerText.gameObject.SetActive(false);
-        victoryText.text = winner != null ? $"{winner.gameObject.name} ha vinto!" : "Pareggio!";
     }
 
     public void OnCharacterDeathOrDisappear(GameObject character)
     {
+        characterHealthList[0].TakeDamage(1000,new());
+
+        if (character == null) return;
+
         var health = character.GetComponent<CharacterHealth>();
         if (health != null) health.HP = 0;
 
@@ -131,6 +143,7 @@ public class GameManager : MonoBehaviour
             if (RemainingCharacters() == 1) EndGame(DetermineLastStanding());
         }
     }
+
 
     void ReduceTimer(float amount)
     {

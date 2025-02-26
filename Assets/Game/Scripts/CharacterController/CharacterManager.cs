@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 public class CharacterManager : SerializedMonoBehaviour
 {
-    [OdinSerialize, NonSerialized]public StateMachine<Player_State, Player_Status> stateMachine;
+    [OdinSerialize, NonSerialized] public StateMachine<Player_State, Player_Status> stateMachine;
     [SerializeField] public CharacterInputAdapter characterInputAdapter;
 
     public new Rigidbody rigidbody;
@@ -52,6 +52,6 @@ public class CharacterManager : SerializedMonoBehaviour
     {
         stateMachine.ChangeState(Player_State.Dead);
 
-        Ranking.Instance.AddToRanking(gameObject.name);
+        Ranking.Instance.AddToRanking((int)GameManager.Instance.gameTimer, gameObject.name);
     }
 }

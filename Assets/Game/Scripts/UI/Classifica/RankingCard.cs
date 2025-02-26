@@ -1,14 +1,15 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RankingCard : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI cardName;
-    [SerializeField] private TextMeshProUGUI cardRank;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI dieHourText;
 
-    public void SetParam(string name, string rank)
+    public void SetValues(string playerName, int dieHour)
     {
-        cardName.text = name;
-        cardRank.text = rank;
+        nameText.text = playerName;
+        dieHourText.text = dieHour.ToString();
     }
 }
