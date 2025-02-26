@@ -14,27 +14,31 @@ public class ButtonMethodsForAudioTests : MonoBehaviour {
         AudioManager.Instance.PlayDialogue(audioClip);
     }
 
-    public void PlayLoopedSoundtrack(AudioClip audioClip) {
-        AudioManager.Instance.PlayLoopedSoundtrack(audioClip);
-    }
+    //public void PlayLoopedSoundtrack(AudioClip audioClip) {
+    //    AudioManager.Instance.PlayLoopedSoundtrack(audioClip);
+    //}
 
-    public void PlayLoopedSFX(AudioClip audioClip) {
-        AudioManager.Instance.PlayLoopedSFX(audioClip);
-    }
+    //public void PlayLoopedSFX(AudioClip audioClip) {
+    //    AudioManager.Instance.PlayLoopedSFX(audioClip);
+    //}
 
-    public void PlayLoopedDialogue(AudioClip audioClip) {
-        AudioManager.Instance.PlayLoopedDialogue(audioClip);
-    }
+    //public void PlayLoopedDialogue(AudioClip audioClip) {
+    //    AudioManager.Instance.PlayLoopedDialogue(audioClip);
+    //}
 
-    public void PlayFadedSoundtrack(AudioClip audioClip) {
-        AudioManager.Instance.PlayFadedSoundtrack(audioClip);
-    }
+    //public void PlayFadedSoundtrack(AudioClip audioClip) {
+    //    AudioManager.Instance.PlayFadedSoundtrack(audioClip);
+    //}
 
-    public void PlaySFXVariablePitch(AudioClip audioClip) {
-        AudioManager.Instance.PlaySFXVariablePitch(audioClip);
-    }
+    //public void PlaySFXVariablePitch(AudioClip audioClip) {
+    //    AudioManager.Instance.PlaySFXVariablePitch(audioClip);
+    //}
 
     public void StopAllSounds() {
-        foreach (AudioSource audioSource in AudioManager.Instance.AudioSources) { audioSource.Stop(); }
+        foreach (AudioSource audioSource in AudioManager.Instance.AudioSources) {
+            if (audioSource.isActiveAndEnabled) {
+                audioSource.Stop();
+            }
+        }
     }
 }

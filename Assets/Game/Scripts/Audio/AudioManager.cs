@@ -17,9 +17,9 @@ public class AudioManager : MonoBehaviour {
 
     //Mixers and audio sources
     [SerializeField] private AudioMixer master;
-    [SerializeField] private AudioSource mainSoundtrackSource, secondarySoundtrackSource;
-    [SerializeField] private AudioSource sfxSource;
-    [SerializeField] private AudioSource dialogueSource;
+    //[SerializeField] private AudioSource mainSoundtrackSource, secondarySoundtrackSource;
+    //[SerializeField] private AudioSource sfxSource;
+    //[SerializeField] private AudioSource dialogueSource;
 
 
     [SerializeField] private float fadeInTime, fadeOutTime;
@@ -51,8 +51,8 @@ public class AudioManager : MonoBehaviour {
 
     #region LifeCycle
     private void Start() {
-        FillAudioSources();
-        SetDefaultVolumes();
+        //FillAudioSources();
+        //SetDefaultVolumes();
     }
     #endregion
 
@@ -77,136 +77,152 @@ public class AudioManager : MonoBehaviour {
     }
     //Play an SFX clip
     public void PlaySFX(AudioClip sfxClip) {
-        StopAudioPlaying(sfxSource);
-        UnsetAudioLoop(sfxSource);
+        //StopAudioPlaying(sfxSource);
+        //UnsetAudioLoop(sfxSource);
 
-        sfxSource.resource = sfxClip;
-        sfxSource.Play();
+        //sfxSource.resource = sfxClip;
+        //sfxSource.Play();
+
+        StopAudioSourcePlaying(sfxOutput);
+
+        genericAudioSource = AudioSourcePoolManager.Instance.CheckPoolForAvailableAudioSource();
+        genericAudioSource.outputAudioMixerGroup = sfxOutput;
+        genericAudioSource.resource = sfxClip;
+        genericAudioSource.Play();
+        musicCoroutine = StartCoroutine(AudioSourcePoolManager.Instance.StopWhenFinished(genericAudioSource));
     }
     //Play a voice clip
     public void PlayDialogue(AudioClip dialogueClip /*, string voiceId*/) {
         //search voiceline based on voiceId
-        StopAudioPlaying(dialogueSource);
-        UnsetAudioLoop(dialogueSource);
+        //StopAudioPlaying(dialogueSource);
+        //UnsetAudioLoop(dialogueSource);
 
-        dialogueSource.resource = dialogueClip;
-        dialogueSource.Play();
+        //dialogueSource.resource = dialogueClip;
+        //dialogueSource.Play();
+
+        StopAudioSourcePlaying(dialogueOutput);
+
+        genericAudioSource = AudioSourcePoolManager.Instance.CheckPoolForAvailableAudioSource();
+        genericAudioSource.outputAudioMixerGroup = dialogueOutput;
+        genericAudioSource.resource = dialogueClip;
+        genericAudioSource.Play();
+        musicCoroutine = StartCoroutine(AudioSourcePoolManager.Instance.StopWhenFinished(genericAudioSource));
     }
     #endregion
 
     #region Play Methods Overrides
-    //Play soundtrack with audio source of choice
-    public void PlaySoundtrack(AudioClip soundtrackClip, AudioSource audioSource) {
-        StopAudioPlaying(audioSource);
-        UnsetAudioLoop(audioSource);
+    ////Play soundtrack with audio source of choice
+    //public void PlaySoundtrack(AudioClip soundtrackClip, AudioSource audioSource) {
+    //    StopAudioPlaying(audioSource);
+    //    UnsetAudioLoop(audioSource);
 
-        audioSource.resource = soundtrackClip;
-        audioSource.Play();
-    }
+    //    audioSource.resource = soundtrackClip;
+    //    audioSource.Play();
+    //}
 
-    //Loop audio methods
-    public void PlayLoopedSoundtrack(AudioClip soundtrackClip) {
-        if (mainSoundtrackSource.isPlaying) {
-            mainSoundtrackSource.Stop();
-            mainSoundtrackSource.resource = null;
+    ////Loop audio methods
+    //public void PlayLoopedSoundtrack(AudioClip soundtrackClip) {
+    //    if (mainSoundtrackSource.isPlaying) {
+    //        mainSoundtrackSource.Stop();
+    //        mainSoundtrackSource.resource = null;
 
-            StopAudioPlaying(secondarySoundtrackSource);
-            SetAudioLoop(secondarySoundtrackSource);
+    //        StopAudioPlaying(secondarySoundtrackSource);
+    //        SetAudioLoop(secondarySoundtrackSource);
 
-            secondarySoundtrackSource.resource = soundtrackClip;
-            secondarySoundtrackSource.Play();
-        }
-        else if (secondarySoundtrackSource.isPlaying) {
-            secondarySoundtrackSource.Stop();
-            secondarySoundtrackSource.resource = null;
+    //        secondarySoundtrackSource.resource = soundtrackClip;
+    //        secondarySoundtrackSource.Play();
+    //    }
+    //    else if (secondarySoundtrackSource.isPlaying) {
+    //        secondarySoundtrackSource.Stop();
+    //        secondarySoundtrackSource.resource = null;
 
-            StopAudioPlaying(mainSoundtrackSource);
-            SetAudioLoop(mainSoundtrackSource);
+    //        StopAudioPlaying(mainSoundtrackSource);
+    //        SetAudioLoop(mainSoundtrackSource);
 
-            mainSoundtrackSource.resource = soundtrackClip;
-            mainSoundtrackSource.Play();
-        }
-        else {
-            StopAudioPlaying(mainSoundtrackSource);
-            SetAudioLoop(mainSoundtrackSource);
+    //        mainSoundtrackSource.resource = soundtrackClip;
+    //        mainSoundtrackSource.Play();
+    //    }
+    //    else {
+    //        StopAudioPlaying(mainSoundtrackSource);
+    //        SetAudioLoop(mainSoundtrackSource);
 
-            mainSoundtrackSource.resource = soundtrackClip;
-            mainSoundtrackSource.Play();
-        }
-    }
-    public void PlayLoopedSFX(AudioClip sfxClip) {
-        StopAudioPlaying(sfxSource);
-        SetAudioLoop(sfxSource);
+    //        mainSoundtrackSource.resource = soundtrackClip;
+    //        mainSoundtrackSource.Play();
+    //    }
+    //}
+    //public void PlayLoopedSFX(AudioClip sfxClip) {
+    //    StopAudioPlaying(sfxSource);
+    //    SetAudioLoop(sfxSource);
 
-        sfxSource.resource = sfxClip;
-        sfxSource.Play();
-    }
-    public void PlayLoopedDialogue(AudioClip dialogueClip) {
-        StopAudioPlaying(dialogueSource);
-        SetAudioLoop(dialogueSource);
+    //    sfxSource.resource = sfxClip;
+    //    sfxSource.Play();
+    //}
+    //public void PlayLoopedDialogue(AudioClip dialogueClip) {
+    //    StopAudioPlaying(dialogueSource);
+    //    SetAudioLoop(dialogueSource);
 
-        dialogueSource.resource = dialogueClip;
-        dialogueSource.Play();
-    }
+    //    dialogueSource.resource = dialogueClip;
+    //    dialogueSource.Play();
+    //}
 
-    //Fade in and out methods
-    public void PlayFadedSoundtrack(AudioClip soundtrackClip) {
-        if (mainSoundtrackSource.isPlaying) {
-            StopAllCoroutines();
-            SetDefaultVolumes();
+    ////Fade in and out methods
+    //public void PlayFadedSoundtrack(AudioClip soundtrackClip) {
+    //    if (mainSoundtrackSource.isPlaying) {
+    //        StopAllCoroutines();
+    //        SetDefaultVolumes();
 
-            IEnumerator fadeOut = FadeOut(mainSoundtrackSource, fadeOutTime);
-            IEnumerator fadeIn = FadeIn(secondarySoundtrackSource, soundtrackClip, fadeInTime);
+    //        IEnumerator fadeOut = FadeOut(mainSoundtrackSource, fadeOutTime);
+    //        IEnumerator fadeIn = FadeIn(secondarySoundtrackSource, soundtrackClip, fadeInTime);
 
-            StartCoroutine(fadeOut);
-            StartCoroutine(fadeIn);
-        }
-        else if (secondarySoundtrackSource.isPlaying) {
-            StopAllCoroutines();
-            SetDefaultVolumes();
+    //        StartCoroutine(fadeOut);
+    //        StartCoroutine(fadeIn);
+    //    }
+    //    else if (secondarySoundtrackSource.isPlaying) {
+    //        StopAllCoroutines();
+    //        SetDefaultVolumes();
 
-            IEnumerator fadeOut = FadeOut(secondarySoundtrackSource, fadeOutTime);
-            IEnumerator fadeIn = FadeIn(mainSoundtrackSource, soundtrackClip, fadeInTime);
+    //        IEnumerator fadeOut = FadeOut(secondarySoundtrackSource, fadeOutTime);
+    //        IEnumerator fadeIn = FadeIn(mainSoundtrackSource, soundtrackClip, fadeInTime);
 
-            StartCoroutine(fadeOut);
-            StartCoroutine(fadeIn);
-        }
-        else {
-            StopAllCoroutines();
-            SetDefaultVolumes();
+    //        StartCoroutine(fadeOut);
+    //        StartCoroutine(fadeIn);
+    //    }
+    //    else {
+    //        StopAllCoroutines();
+    //        SetDefaultVolumes();
 
-            IEnumerator fadeIn = FadeIn(mainSoundtrackSource, soundtrackClip, fadeInTime);
+    //        IEnumerator fadeIn = FadeIn(mainSoundtrackSource, soundtrackClip, fadeInTime);
 
-            StartCoroutine(fadeIn);
-        }
-    }
+    //        StartCoroutine(fadeIn);
+    //    }
+    //}
 
-    //Random pitch methods
-    public void PlaySFXVariablePitch(AudioClip sfxClip) {
-        StopAudioPlaying(sfxSource);
+    ////Random pitch methods
+    //public void PlaySFXVariablePitch(AudioClip sfxClip) {
+    //    StopAudioPlaying(sfxSource);
 
-        float pitchChange = Random.Range(minPitchChange, maxPitchChange);
-        sfxSource.pitch += pitchChange;
-        sfxSource.resource = sfxClip;
-        sfxSource.Play();
-        sfxSource.pitch = 1;    //set back to default
-    }
+    //    float pitchChange = Random.Range(minPitchChange, maxPitchChange);
+    //    sfxSource.pitch += pitchChange;
+    //    sfxSource.resource = sfxClip;
+    //    sfxSource.Play();
+    //    sfxSource.pitch = 1;    //set back to default
+    //}
 
     #endregion
 
     #region Utils
-    private void SetDefaultVolumes() {
-        mainSoundtrackSource.volume = mainSoundtrackDefaultVolume;
-        secondarySoundtrackSource.volume = secondarySoundtrackDefaultVolume;
-        sfxSource.volume = sfxDefaultVolume;
-        dialogueSource.volume = dialogueDefaultVolume;
-    }
-    private void FillAudioSources() {
-        audioSources.Add(mainSoundtrackSource);
-        audioSources.Add(secondarySoundtrackSource);
-        audioSources.Add(sfxSource);
-        audioSources.Add(dialogueSource);
-    }
+    //private void SetDefaultVolumes() {
+    //    mainSoundtrackSource.volume = mainSoundtrackDefaultVolume;
+    //    secondarySoundtrackSource.volume = secondarySoundtrackDefaultVolume;
+    //    sfxSource.volume = sfxDefaultVolume;
+    //    dialogueSource.volume = dialogueDefaultVolume;
+    //}
+    //private void FillAudioSources() {
+    //    audioSources.Add(mainSoundtrackSource);
+    //    audioSources.Add(secondarySoundtrackSource);
+    //    audioSources.Add(sfxSource);
+    //    audioSources.Add(dialogueSource);
+    //}
     private void SetAudioLoop(AudioSource source) {
         source.loop = true;
     }

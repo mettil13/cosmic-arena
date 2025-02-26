@@ -20,13 +20,19 @@ public class AudioSourcePoolManager : MonoBehaviour {
     //pool management
     public AudioSource CheckPoolForAvailableAudioSource() {
         AudioSource source = null;
+        bool sourceRemoved = false;
         foreach (AudioSource tempSource in inactivePool.sources) {
             if (tempSource != null) {
                 source = tempSource;
                 source.enabled = true;
-                inactivePool.sources.Remove(source);
+                sourceRemoved = true;
             }
         }
+
+        if (sourceRemoved) {
+            inactivePool.sources.Remove(source);
+        }
+
         if (source == null) {
             source = activePool.GenerateAudioSource();
         }
