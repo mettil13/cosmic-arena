@@ -12,7 +12,8 @@ public class AudioSourcePool : MonoBehaviour{
     [SerializeField] private Transform audioSourcesParent;
 
     public AudioSource GenerateAudioSource() {
-        AudioSource audioSource = InstantiateNewAudioSource(); ;
+        AudioSource audioSource = InstantiateNewAudioSource();
+        AudioManager.Instance.AudioSources.Add(audioSource);
         return audioSource;
     }
     public void SetAudioSourceDefaultValues(AudioSource source) {

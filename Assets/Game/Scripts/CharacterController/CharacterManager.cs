@@ -5,11 +5,13 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System;
 using System.Collections.Generic;
+using physics;
 
 public class CharacterManager : SerializedMonoBehaviour
 {
     [OdinSerialize, NonSerialized] public StateMachine<Player_State, Player_Status> stateMachine;
     [SerializeField] public CharacterInputAdapter characterInputAdapter;
+    [SerializeField] public CharacterPhysics characterPhysics;
 
     public new Rigidbody rigidbody;
 
@@ -36,6 +38,7 @@ public class CharacterManager : SerializedMonoBehaviour
     void Update()
     {
         stateMachine.Execute(Time.deltaTime);
+        characterPhysics.SetDirection(characterInputAdapter.Direction);
     }
 
     private void LateUpdate()
