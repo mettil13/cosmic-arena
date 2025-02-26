@@ -548,8 +548,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b084fb409a857f54e98a65dc98a65057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPhysics: {fileID: 76321258}
   vfxGO: {fileID: 0}
+  intensity: 100
 --- !u!135 &100244640
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2145,8 +2145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b084fb409a857f54e98a65dc98a65057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPhysics: {fileID: 76321258}
   vfxGO: {fileID: 287093690}
+  intensity: 100
 --- !u!4 &1679273143
 Transform:
   m_ObjectHideFlags: 0
@@ -2685,14 +2685,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2942688515782995441, guid: 2a534088e67906245ac1d29f0d212f50, type: 3}
-      propertyPath: vfxGO
-      value: 
-      objectReference: {fileID: 287093690}
-    - target: {fileID: 2942688515782995441, guid: 2a534088e67906245ac1d29f0d212f50, type: 3}
-      propertyPath: characterPhysics
-      value: 
-      objectReference: {fileID: 76321258}
     - target: {fileID: 6917729791801518236, guid: 2a534088e67906245ac1d29f0d212f50, type: 3}
       propertyPath: m_Name
       value: Meteorite

@@ -4,8 +4,8 @@ using UnityEngine.VFX;
 
 public class TriggerDamager : MonoBehaviour
 {
-    [SerializeField] private CharacterPhysics characterPhysics;
     public VisualEffect vfxGO;
+    [SerializeField] private float intensity = 100;
 
     private void OnEnable() {
         vfxGO.Play();
@@ -14,7 +14,7 @@ public class TriggerDamager : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
             Debug.Log("danno");
-            characterPhysics.Kick(transform.parent.transform, 100);
+            other.GetComponent<CharacterPhysics>().Kick(transform.parent.transform, intensity);
         }
     }
 }
