@@ -39,6 +39,7 @@ namespace physics
         public void Init()
         {
             body = GetComponent<Rigidbody>();
+            Controlled = false;
             Controlled = true;
         }
         public void ApplyRandomTorque(float intensity)
@@ -60,7 +61,8 @@ namespace physics
             Vector3 rotation = new Vector3(0, -Vector2.SignedAngle(Vector2.right, direction), 0);
             
             if (body.angularVelocity.magnitude < minMagnitudeToStartLerp) 
-            { 
+            {
+                body.angularVelocity = Vector3.zero;
                 body.DOKill();
                 body.DORotate(rotation, goOnRotationSpeed);
             }
@@ -68,7 +70,6 @@ namespace physics
 
         private void OnCollisionEnter(Collision collision)
         {
-            //Debug.Log("a");
         }
     }
 }
