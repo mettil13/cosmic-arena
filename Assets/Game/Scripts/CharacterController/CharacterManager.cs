@@ -51,5 +51,7 @@ public class CharacterManager : SerializedMonoBehaviour
     internal void Die()
     {
         stateMachine.ChangeState(Player_State.Dead);
+
+        Ranking.Instance.AddToRanking(gameObject.name);
     }
 }
