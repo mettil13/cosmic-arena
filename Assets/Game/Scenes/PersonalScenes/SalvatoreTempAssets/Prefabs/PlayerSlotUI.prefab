@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6962336876723212570}
   - component: {fileID: 7586661367786479774}
   m_Layer: 5
-  m_Name: Character
+  m_Name: CharacterDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -339,17 +339,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
-  navigateAction:
-    m_Name: Navigate
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 395fbcac-e9ee-49bb-bbde-6d426d093d22
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   panelON: {fileID: 7877359649647492422}
   panelOFF: {fileID: 5418697388988756647}
+  characterDisplay: {fileID: 7586661367786479774}
 --- !u!1 &7877359649647492422
 GameObject:
   m_ObjectHideFlags: 0

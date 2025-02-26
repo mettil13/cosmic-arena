@@ -1,18 +1,23 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerSlotUI : MonoBehaviour
 {
+    [SerializeField] PlayerLobbyUI playerLobbyUI;
+
     public PlayerInput playerInput;
     private PlayerManager playerManager;
     private int chosenCharacterIndex = 0;
 
     InputAction navigateAction;
 
-    //[SerializeField] int playerNumber;
     [SerializeField] GameObject panelON, panelOFF;
 
+    [SerializeField] Image characterDisplay;
+
     public void Awake() {
+        playerLobbyUI = GetComponentInParent<PlayerLobbyUI>();
         navigateAction.Enable();
     }
     public void PlayerON(PlayerInput playerInput) {
@@ -22,6 +27,7 @@ public class PlayerSlotUI : MonoBehaviour
         navigateAction = playerInput.actions["Navigate"];
         navigateAction.performed += context => OnNavigateAction(context);
 
+        characterDisplay.sprite = playerLobbyUI.charactersDatas.Sprite(chosenCharacterIndex);
         panelON.SetActive(true);
         panelOFF.SetActive(false);
     }
@@ -39,19 +45,29 @@ public class PlayerSlotUI : MonoBehaviour
 
     public void ResetPanel() {
         chosenCharacterIndex = 0;
+        characterDisplay.sprite = playerLobbyUI.charactersDatas.Sprite(chosenCharacterIndex);
     }
 
     void OnNavigateAction(InputAction.CallbackContext context) {
         if (playerManager == null) return;
         Vector2 input = context.ReadValue<Vector2>();
         int xAxis = (int)input.x;
+        if (xAxis == 0) return;
+        int characters = playerLobbyUI.charactersDatas.CharactersNumber();
+
         if (xAxis > 0) {
             chosenCharacterIndex++;
-            playerManager.chosenCharacterIndex++;
+            if (chosenCharacterIndex >= characters)
+                chosenCharacterIndex -= characters;
+            playerManager.chosenCharacterIndex = chosenCharacterIndex;
+            characterDisplay.sprite = playerLobbyUI.charactersDatas.Sprite(chosenCharacterIndex);
         }
         if (xAxis < 0) {
             chosenCharacterIndex--;
-            playerManager.chosenCharacterIndex--;
+            if (chosenCharacterIndex < 0)
+                chosenCharacterIndex += characters;
+            playerManager.chosenCharacterIndex = chosenCharacterIndex;
+            characterDisplay.sprite = playerLobbyUI.charactersDatas.Sprite(chosenCharacterIndex);
         }
     }
 }

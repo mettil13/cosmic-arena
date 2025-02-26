@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerLobbyUI : MonoBehaviour
 {
     [SerializeField] PlayerSlotUI[] slotArray = new PlayerSlotUI[6];
+    public CharactersSO charactersDatas;
 
     private void Awake() {
         DevicesManager.instance.OnPlayerJoinedGame += PlayerRegister;
