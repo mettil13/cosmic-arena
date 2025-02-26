@@ -15,6 +15,11 @@ namespace CharacterLogic
             timer = new Timer(duration).AddCallBack(Expire);
         }
 
+        public override void OnUpdate(ref float delta) {
+            base.OnUpdate(ref delta);
+            timer.Update(ref delta);
+        }
+
         public void Expire()
         {
             stateMachine.ChangeState(Player_State.Idle);

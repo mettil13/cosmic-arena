@@ -21,11 +21,13 @@ namespace CharacterLogic
             if(Input.Attack > 0)
             {
                 stateMachine.ChangeState(Player_State.MeleeAttack);
+                Input.Attack = 0;
             }
 
             if (Input.SpecialAbility > 0)
             {
                 stateMachine.ChangeState(Player_State.SpecialAbility);
+                Input.SpecialAbility = 0;
 
             }
 

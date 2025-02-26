@@ -35,7 +35,7 @@ namespace CharacterLogic
             //Debug.Log(capsuleCheckHead + " " +  capsuleCheckTail + " " + characterManager.transform.position);
             Collider[] overlappingColliders = Physics.OverlapCapsule(capsuleCheckHead, capsuleCheckTail, attackAreaX / 2, LayerMask.GetMask("Player"));
             if(overlappingColliders.Length > 0) {
-                Debug.Log(overlappingColliders[0].name);
+                //Debug.Log(overlappingColliders[0].name);
                 CharacterManager character = overlappingColliders[0].GetComponent<CharacterManager>();
                 CharacterHealth characterHealth = overlappingColliders[0].GetComponent<CharacterHealth>();
                 if(characterHealth != null) {

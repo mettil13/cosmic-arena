@@ -53,6 +53,7 @@ namespace CommonLogic
         public void Reset(float newDuration)
         {
             Duration = newDuration;
+            Reset();
         }
 
         public void Stop()
