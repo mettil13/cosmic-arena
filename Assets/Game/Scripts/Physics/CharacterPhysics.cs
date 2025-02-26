@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace physics
@@ -29,6 +31,8 @@ namespace physics
 
         [SerializeField] MovementInfo movementInfo;
         [SerializeField] ChildTorqueInfo childTorqueInfo;
+        [SerializeField] Dictionary<GameObject, float> modifiers;
+        
 
         private Coroutine nonControlCR;
         private Coroutine swerveCR;
@@ -87,7 +91,7 @@ namespace physics
             if (dot < 0) dot = 0;
             movementInfo.body.linearVelocity *= dot;
             movementInfo.body.AddForce(
-                new Vector3(movementDirection.x, 0, movementDirection.y) * movementInfo.movementIntensity, 
+                new Vector3(movementDirection.x, 0, movementDirection.y) * movementInfo.movementIntensity * modifiers.Values.ToList()[0], 
                 ForceMode.Impulse);
             childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.MoveTorqueIntensity);
         }
@@ -131,10 +135,18 @@ namespace physics
             if (swerveCR != null) StopCoroutine(swerveCR);
             swerveCR = StartCoroutine(SwerveCR());
         }
-
         public IEnumerator SwerveCR() {
             yield return new WaitForSeconds(childTorqueInfo.swerveTime);
             isSwerving = false;
+        }
+
+        public void GenerateMovementModifier(GameObject applier, float modifier)
+        {
+            modifiers.Add(applier, modifier);
+        }
+        public void ClearMovementModifier(GameObject applier)
+        {
+            modifiers.Remove(applier);
         }
     }
 }
