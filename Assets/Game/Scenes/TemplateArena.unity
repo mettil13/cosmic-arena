@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 325874957}
   m_Layer: 0
   m_Name: Muro (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 693112388}
   m_Layer: 0
   m_Name: Muro (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -335,43 +335,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693112386}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &736291093 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3715488958190498300, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
-  m_PrefabInstance: {fileID: 1616003611}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &736291094 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6135063441109964059, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
-  m_PrefabInstance: {fileID: 1616003611}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 736291093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 358e22e02abf51f449b8f9521404ad84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!135 &736291102
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 736291093}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1123283988
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +349,7 @@ GameObject:
   - component: {fileID: 1123283990}
   m_Layer: 0
   m_Name: Muro
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -615,7 +578,7 @@ GameObject:
   - component: {fileID: 1430666465}
   m_Layer: 0
   m_Name: Muro (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -796,7 +759,7 @@ Transform:
   m_GameObject: {fileID: 1554229459}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 29.61, z: -4.13}
+  m_LocalPosition: {x: 0, y: 40.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -855,25 +818,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1995637203436162018, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
-      propertyPath: characterPhysics
-      value: 
-      objectReference: {fileID: 736291094}
-    - target: {fileID: 1995637203436162018, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 1995637203436162018, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
-    - target: {fileID: 2617174110154735965, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746109371036005957, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3225431129859637730, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3499406317978869831, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -914,31 +861,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3628466723093943461, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 3715488958190498300, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5440821368114154783, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 9033874143882150146, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3225431129859637730, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
-    m_RemovedGameObjects:
-    - {fileID: 5492824545994373670, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3715488958190498300, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
-      insertIndex: 6
-      addedObject: {fileID: 736291102}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
 --- !u!1 &1803075606
 GameObject:

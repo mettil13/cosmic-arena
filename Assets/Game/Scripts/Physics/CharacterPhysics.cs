@@ -77,17 +77,17 @@ namespace physics
             
             
 
-            if (movementInfo.body.linearVelocity.magnitude < movementInfo.dynamicDragThresholdImpulse) {
-                movementInfo.body.linearDamping = 0.2f;
-                movementInfo.body.angularDamping = 0.05f;
-            } else if (movementInfo.body.linearVelocity.magnitude > movementInfo.dynamicDragThresholdImpulse &&
-                    movementInfo.body.linearVelocity.magnitude < movementInfo.dynamicDragThresholdExplosion) {
-                        movementInfo.body.linearDamping = 0.2f + movementInfo.body.linearVelocity.magnitude / 50.0f;
-                        movementInfo.body.angularDamping = 0.05f + movementInfo.body.linearVelocity.magnitude / 500.0f;
-            } else {
-                movementInfo.body.linearDamping = 0.2f + movementInfo.body.linearVelocity.magnitude / 25.0f;
-                movementInfo.body.angularDamping = 0.05f + movementInfo.body.linearVelocity.magnitude / 250.0f;
-            }
+            //if (movementInfo.body.linearVelocity.magnitude < movementInfo.dynamicDragThresholdImpulse) {
+            //    movementInfo.body.linearDamping = 0.2f;
+            //    movementInfo.body.angularDamping = 0.05f;
+            //} else if (movementInfo.body.linearVelocity.magnitude > movementInfo.dynamicDragThresholdImpulse &&
+            //        movementInfo.body.linearVelocity.magnitude < movementInfo.dynamicDragThresholdExplosion) {
+            //            movementInfo.body.linearDamping = 0.2f + movementInfo.body.linearVelocity.magnitude / 50.0f;
+            //            movementInfo.body.angularDamping = 0.05f + movementInfo.body.linearVelocity.magnitude / 500.0f;
+            //} else {
+            //    movementInfo.body.linearDamping = 0.2f + movementInfo.body.linearVelocity.magnitude / 25.0f;
+            //    movementInfo.body.angularDamping = 0.05f + movementInfo.body.linearVelocity.magnitude / 250.0f;
+            //}
 
             //Debug.Log("velocità: " + movementInfo.body.linearVelocity.magnitude);
         }
