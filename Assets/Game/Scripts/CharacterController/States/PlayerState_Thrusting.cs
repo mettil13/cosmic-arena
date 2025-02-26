@@ -43,7 +43,7 @@ namespace CharacterLogic
 
         void AddForceInInputDirection(float magnitude, ForceMode forceMode)
         {
-            Vector3 force = (Vector3.up * Input.Direction.y + Vector3.left * Input.Direction.x).normalized;
+            Vector3 force = (Vector3.forward * Input.Direction.y + Vector3.right * Input.Direction.x).normalized;
             force *= magnitude;
             characterManager.rigidbody.AddForce(force, forceMode);
         }
