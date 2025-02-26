@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
+
 [RequireComponent(typeof(CharacterManager))]
 public class CharacterHealth : MonoBehaviour, IDamageable
 {
-    private float hp;
-    public event Action<float> HPChanged;
-    readonly float maxHP;
+    [SerializeField]private float hp;
+    public UnityEvent<float> HPChanged = new UnityEvent<float>();
+    [SerializeField]private float maxHP;
     CharacterManager characterManager;
     public float HP 
     {

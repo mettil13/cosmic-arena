@@ -12,6 +12,7 @@ namespace CharacterLogic
         [SerializeField] float attackDuration = 0.5f;
         [SerializeField] float attackAreaX = 0.5f, attackAreaY = 0.5f;
         [SerializeField] float attackOffsetX = 0.5f, attackOffsetY = 0f;
+        [SerializeField] float damage = 1;
 
         Timer timer;
         public override void OnEntry()
@@ -35,18 +36,17 @@ namespace CharacterLogic
             Collider[] overlappingColliders = Physics.OverlapCapsule(capsuleCheckHead, capsuleCheckTail, attackAreaX / 2, LayerMask.GetMask("Player"));
             if(overlappingColliders.Length > 0) {
                 Debug.Log(overlappingColliders[0].name);
+                CharacterManager character = overlappingColliders[0].GetComponent<CharacterManager>();
+                CharacterHealth characterHealth = overlappingColliders[0].GetComponent<CharacterHealth>();
+                if(characterHealth != null) {
+                    characterHealth.TakeDamage(damage, characterManager.gameObject);
+                }
+                if(character != null) {
+                    character.stateMachine.ChangeState(Player_State.Stunned);
+                }
+                Stop();
             }
 
-
-            /*
-            RaycastHit hit;
-            if (Physics.CapsuleCast(capsuleCheckHead, capsuleCheckTail, attackAreaX/2, inputDirection, out hit, 0.1f, LayerMask.NameToLayer("Player"))) {
-                Debug.Log("Capsule: " + hit.transform.name);
-            }
-            if (Physics.Raycast(capsuleCheckHead, capsuleCheckTail - capsuleCheckHead, out hit, attackAreaY)) {
-                Debug.Log("Raycast: " + hit.transform.name);
-            }
-            */
         }
 
         void Stop() {
