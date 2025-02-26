@@ -11,6 +11,10 @@ public class TriggerDamager : MonoBehaviour
         vfxGO.Play();
     }
 
+    private void OnDisable() {
+        vfxGO.Stop();
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
             Debug.Log("danno");

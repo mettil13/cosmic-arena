@@ -8,10 +8,8 @@ public class Explosion : MonoBehaviour
     public float timeToDisappear = 1f;
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.CompareTag("Player")) { // anche "oggetti"
+        if (collision.gameObject.CompareTag("Player")) {
             trigger.SetActive(true);
-            //triggerCollider.enabled = true;
-
             Destroy(gameObject, timeToDisappear);
         }
     }
