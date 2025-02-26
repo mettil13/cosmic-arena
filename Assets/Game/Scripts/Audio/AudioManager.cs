@@ -121,35 +121,43 @@ public class AudioManager : MonoBehaviour {
     //}
 
     ////Loop audio methods
-    //public void PlayLoopedSoundtrack(AudioClip soundtrackClip) {
-    //    if (mainSoundtrackSource.isPlaying) {
-    //        mainSoundtrackSource.Stop();
-    //        mainSoundtrackSource.resource = null;
+    public void PlayLoopedSoundtrack(AudioClip soundtrackClip) {
+        //    if (mainSoundtrackSource.isPlaying) {
+        //        mainSoundtrackSource.Stop();
+        //        mainSoundtrackSource.resource = null;
 
-    //        StopAudioPlaying(secondarySoundtrackSource);
-    //        SetAudioLoop(secondarySoundtrackSource);
+        //        StopAudioPlaying(secondarySoundtrackSource);
+        //        SetAudioLoop(secondarySoundtrackSource);
 
-    //        secondarySoundtrackSource.resource = soundtrackClip;
-    //        secondarySoundtrackSource.Play();
-    //    }
-    //    else if (secondarySoundtrackSource.isPlaying) {
-    //        secondarySoundtrackSource.Stop();
-    //        secondarySoundtrackSource.resource = null;
+        //        secondarySoundtrackSource.resource = soundtrackClip;
+        //        secondarySoundtrackSource.Play();
+        //    }
+        //    else if (secondarySoundtrackSource.isPlaying) {
+        //        secondarySoundtrackSource.Stop();
+        //        secondarySoundtrackSource.resource = null;
 
-    //        StopAudioPlaying(mainSoundtrackSource);
-    //        SetAudioLoop(mainSoundtrackSource);
+        //        StopAudioPlaying(mainSoundtrackSource);
+        //        SetAudioLoop(mainSoundtrackSource);
 
-    //        mainSoundtrackSource.resource = soundtrackClip;
-    //        mainSoundtrackSource.Play();
-    //    }
-    //    else {
-    //        StopAudioPlaying(mainSoundtrackSource);
-    //        SetAudioLoop(mainSoundtrackSource);
+        //        mainSoundtrackSource.resource = soundtrackClip;
+        //        mainSoundtrackSource.Play();
+        //    }
+        //    else {
+        //        StopAudioPlaying(mainSoundtrackSource);
+        //        SetAudioLoop(mainSoundtrackSource);
 
-    //        mainSoundtrackSource.resource = soundtrackClip;
-    //        mainSoundtrackSource.Play();
-    //    }
-    //}
+        //        mainSoundtrackSource.resource = soundtrackClip;
+        //        mainSoundtrackSource.Play();
+        //    }
+        StopAudioSourcePlaying(soundtrackOutput);
+
+        genericAudioSource = AudioSourcePoolManager.Instance.CheckPoolForAvailableAudioSource();
+        genericAudioSource.outputAudioMixerGroup = soundtrackOutput;
+        genericAudioSource.resource = soundtrackClip;
+        SetAudioLoop(genericAudioSource);
+        genericAudioSource.Play();
+        musicCoroutine = StartCoroutine(AudioSourcePoolManager.Instance.StopWhenFinished(genericAudioSource));
+    }
     //public void PlayLoopedSFX(AudioClip sfxClip) {
     //    StopAudioPlaying(sfxSource);
     //    SetAudioLoop(sfxSource);

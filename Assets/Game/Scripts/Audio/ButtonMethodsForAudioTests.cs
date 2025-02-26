@@ -14,9 +14,9 @@ public class ButtonMethodsForAudioTests : MonoBehaviour {
         AudioManager.Instance.PlayDialogue(audioClip);
     }
 
-    //public void PlayLoopedSoundtrack(AudioClip audioClip) {
-    //    AudioManager.Instance.PlayLoopedSoundtrack(audioClip);
-    //}
+    public void PlayLoopedSoundtrack(AudioClip audioClip) {
+        AudioManager.Instance.PlayLoopedSoundtrack(audioClip);
+    }
 
     //public void PlayLoopedSFX(AudioClip audioClip) {
     //    AudioManager.Instance.PlayLoopedSFX(audioClip);

@@ -274,7 +274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &389851104
 RectTransform:
   m_ObjectHideFlags: 0
@@ -420,7 +420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &471823246
 RectTransform:
   m_ObjectHideFlags: 0
@@ -772,7 +772,7 @@ MonoBehaviour:
         m_MethodName: PlaySFX
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 6641e694f8744b94c8406ecc723d2776, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: a6cf1e353a37a3f4e9b8675bea958170, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1175,7 +1175,7 @@ MonoBehaviour:
         m_MethodName: PlaySoundtrack
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 8943fd954b770084abfe55bfbf030d9c, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 847cdefb5dfdec64fa2e15c5af419f25, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1321,7 +1321,7 @@ MonoBehaviour:
         m_MethodName: PlayDialogue
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 6641e694f8744b94c8406ecc723d2776, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: dbb350085f3e58141805b43e94539544, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1977,7 +1977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1173787201
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2824,7 +2824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1711054849
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3125,10 +3125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   master: {fileID: 24100000, guid: 9bd976b0f602b9a4fb38285eefd0dd30, type: 2}
-  mainSoundtrackSource: {fileID: 1002659057}
-  secondarySoundtrackSource: {fileID: 890063741}
-  sfxSource: {fileID: 1342400586}
-  dialogueSource: {fileID: 1740433608}
   fadeInTime: 0.5
   fadeOutTime: 0.5
   minPitchChange: 0
@@ -3279,7 +3275,7 @@ MonoBehaviour:
         m_MethodName: PlayLoopedSoundtrack
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 6641e694f8744b94c8406ecc723d2776, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 6df64c0888c89b84cb30f2d9739517f2, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
