@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 6135063441109964059}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -696,6 +696,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   characterInputAdapter: {fileID: 6313938682468925596}
+  characterPhysics: {fileID: 0}
   rigidbody: {fileID: 6398568916899940659}
 --- !u!114 &6313938682468925596
 MonoBehaviour:

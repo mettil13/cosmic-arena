@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
     public void OnCharacterDeathOrDisappear(GameObject character)
     {
         characterHealthList[0].TakeDamage(1000,new());
+        characterHealthList.RemoveAt(0);
 
         if (character == null) return;
 

@@ -48,7 +48,6 @@ GameObject:
   - component: {fileID: 3913400543376526057}
   - component: {fileID: 3147498215867491440}
   - component: {fileID: 3494131166094831916}
-  - component: {fileID: 6433046263110270311}
   m_Layer: 5
   m_Name: Classifica
   m_TagString: Untagged
@@ -144,20 +143,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6433046263110270311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041761482936277135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a24c29fbb0a79b642af28b777e7c3b77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 7680089988363536166}
-  card: {fileID: 6383201173077028824, guid: f9a5fd3238ff84d4dbf0517dc2254bf7, type: 3}
 --- !u!1 &1605983383814510011
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +498,7 @@ GameObject:
   - component: {fileID: 8357283011217407358}
   - component: {fileID: 7494077840741452823}
   - component: {fileID: 7750980150738894240}
+  - component: {fileID: 6754017113450556771}
   m_Layer: 5
   m_Name: InGameUI
   m_TagString: Untagged
@@ -629,6 +615,20 @@ MonoBehaviour:
   dieEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6754017113450556771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537224841308233131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24c29fbb0a79b642af28b777e7c3b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 7680089988363536166}
+  card: {fileID: 6383201173077028824, guid: f9a5fd3238ff84d4dbf0517dc2254bf7, type: 3}
 --- !u!1 &3165276565286763243
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,7 +909,6 @@ GameObject:
   - component: {fileID: 4073993362959290380}
   - component: {fileID: 8672049380864073832}
   - component: {fileID: 5776795687924599723}
-  - component: {fileID: 8421128161807448673}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -975,19 +974,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8421128161807448673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3677019057540239853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 0
 --- !u!1 &4342926212139955488
 GameObject:
   m_ObjectHideFlags: 0
