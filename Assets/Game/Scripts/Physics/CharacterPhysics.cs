@@ -75,7 +75,7 @@ namespace physics
                 movementInfo.body.angularDamping = 0.05f + movementInfo.body.linearVelocity.magnitude / 250.0f;
             }
 
-            Debug.Log("velocità: " + movementInfo.body.linearVelocity.magnitude);
+            //Debug.Log("velocità: " + movementInfo.body.linearVelocity.magnitude);
         }
 
         public void MoveWithVector(Vector2 movementDirection)
@@ -106,13 +106,12 @@ namespace physics
             }
         }
 
-        public void ExplosionKick(Transform propPosition) {
-            float explosionIntensity = 100;
-            Vector3 kickDirection = (transform.position - propPosition.position).normalized * explosionIntensity;
+        public void Kick(Transform propPosition, float intensity) {
+            Vector3 kickDirection = (transform.position - propPosition.position).normalized * intensity;
             movementInfo.body.linearVelocity = Vector3.zero;
             isSwerving = true;
             movementInfo.body.AddForce(kickDirection, ForceMode.Impulse);
-            childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.collisionTorqueIntensity * explosionIntensity);
+            childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.collisionTorqueIntensity * intensity);
             Swerve();
         }
 
