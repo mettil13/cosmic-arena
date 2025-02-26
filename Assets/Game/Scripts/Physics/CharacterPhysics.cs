@@ -39,16 +39,10 @@ namespace physics
         private Coroutine swerveCR;
         private bool isSwerving = false;
 
-        public bool Controlled
-        {
-            get => childTorqueInfo.graphicBody.Controlled;
-            set => childTorqueInfo.graphicBody.Controlled = value;
-        }
-
         private void Awake()
         {
             childTorqueInfo.graphicBody.Init();
-            //childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.startTorqueIntensity);
+            childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.startTorqueIntensity);
             direction = Vector2.right;
             modifiers = new Dictionary<GameObject, float>();
         }
@@ -93,13 +87,13 @@ namespace physics
         }
 
         public void SetDirection(Vector2 currentDirection) => this.currentDirection = currentDirection.normalized;
-        //public void MoveTowardDirection()
-        //{
-        //    if (!(Time.time - lastTimeClicked > coolDown && isSwerving == false)) return;
-        //    ApplyNonControl();
-        //    MoveWithVector(direction);
-        //    lastTimeClicked = Time.time;
-        //}
+        public void MoveTowardDirection()
+        {
+            if (!(Time.time - lastTimeClicked > coolDown && isSwerving == false)) return;
+            ApplyNonControl();
+            MoveWithVector(direction);
+            lastTimeClicked = Time.time;
+        }
 
         public void MoveWithVector(Vector2 movementDirection)
         {
@@ -144,6 +138,17 @@ namespace physics
             movementInfo.body.AddForce(kickDirection, ForceMode.Impulse);
             childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.collisionTorqueIntensity * intensity);
             Swerve();
+        }
+        private void ApplyNonControl()
+        {
+            if (nonControlCR != null) StopCoroutine(nonControlCR);
+            nonControlCR = StartCoroutine(NonControlCR());
+        }
+        private IEnumerator NonControlCR()
+        {
+            childTorqueInfo.graphicBody.Controlled = false;
+            yield return new WaitForSeconds(childTorqueInfo.nonControlTime);
+            childTorqueInfo.graphicBody.Controlled = true;
         }
         private void Swerve() {
             if (swerveCR != null) StopCoroutine(swerveCR);
