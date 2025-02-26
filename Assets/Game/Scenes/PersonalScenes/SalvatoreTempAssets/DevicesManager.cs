@@ -9,6 +9,8 @@ namespace SalvatoreTempClasses
 {
     public class DevicesManager : MonoBehaviour
     {
+        public static DevicesManager instance = null;
+
         public PlayerInput[] playerArray = new PlayerInput[6];
 
         public List<PlayerCharacter> characterList = new List<PlayerCharacter>();
@@ -16,8 +18,6 @@ namespace SalvatoreTempClasses
         [SerializeField] InputAction joinAction;
         [SerializeField] InputAction leaveAction;
 
-        //INSTANCES
-        public static DevicesManager instance = null;
 
         //EVENTS
         public event System.Action<PlayerInput> OnPlayerJoinedGame;

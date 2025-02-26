@@ -5,7 +5,6 @@ namespace SalvatoreTempClasses
 {
     public class PlayerManager : MonoBehaviour
     {
-        public GameObject playerPrefab;
         public PlayerCharacter character;
         public int playerNumber;
         public int chosenCharacterNumber;
@@ -17,9 +16,5 @@ namespace SalvatoreTempClasses
             Destroy(this.gameObject); return;
         }
 
-        //public void OnMove(InputAction.CallbackContext context)
-        //{
-        //    character.OnMove(context);
-        //}
     }
 }
