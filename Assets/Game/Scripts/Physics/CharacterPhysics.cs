@@ -43,6 +43,7 @@ namespace physics
             childTorqueInfo.graphicBody.Init();
             childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.startTorqueIntensity);
             direction = Vector2.right;
+            modifiers = new Dictionary<GameObject, float>();
         }
         private void Update()
         {
@@ -88,11 +89,21 @@ namespace physics
             float dot = Vector2.Dot(movementDirection, velocityDirection);
             //Debug.LogWarning("DOT value : " + dot + " of movement direction : " + movementDirection + " and velocity direction : " + velocityDirection + 
             //    " in rigidbody of : " + movementInfo.body + " " + movementInfo.body.name);
-            if (dot < 0) dot = 0;
-            movementInfo.body.linearVelocity *= dot;
-            movementInfo.body.AddForce(
-                new Vector3(movementDirection.x, 0, movementDirection.y) * movementInfo.movementIntensity * modifiers.Values.ToList()[0], 
-                ForceMode.Impulse);
+
+            if (modifiers.Count != 0)
+            {
+                movementInfo.body.AddForce(
+                    new Vector3(movementDirection.x, 0, movementDirection.y) * movementInfo.movementIntensity * modifiers.Values.ToList()[0],
+                    ForceMode.Impulse);
+            }
+            else
+            {
+                if (dot < 0) dot = 0;
+                    movementInfo.body.linearVelocity *= dot;
+                movementInfo.body.AddForce(
+                    new Vector3(movementDirection.x, 0, movementDirection.y) * movementInfo.movementIntensity,
+                    ForceMode.Impulse);
+            }
             childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.MoveTorqueIntensity);
         }
         public void MoveWithVectorReset(Vector2 movementDirection)
@@ -142,7 +153,8 @@ namespace physics
 
         public void GenerateMovementModifier(GameObject applier, float modifier)
         {
-            modifiers.Add(applier, modifier);
+            if (modifiers.ContainsKey(applier)) modifiers[applier] = modifier;
+            else modifiers.Add(applier, modifier);
         }
         public void ClearMovementModifier(GameObject applier)
         {
