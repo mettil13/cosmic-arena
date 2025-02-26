@@ -28,6 +28,7 @@ namespace physics
         float lastTimeClicked = 0;
         public float coolDown = 0.5f;
         private Vector2 direction;
+        private Vector2 currentDirection;
 
         [SerializeField] MovementInfo movementInfo;
         [SerializeField] ChildTorqueInfo childTorqueInfo;
@@ -47,7 +48,14 @@ namespace physics
         }
         private void Update()
         {
-            Vector2 currentDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+            //Vector2 currentDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+            //if (Input.GetKeyDown(KeyCode.Return) && Time.time - lastTimeClicked > coolDown && isSwerving == false)
+            //{
+            //    ApplyNonControl();
+            //    MoveWithVector(direction);
+            //    lastTimeClicked = Time.time;
+            //}
+            
 
             if (currentDirection.x != 0 || currentDirection.y != 0)
             {
@@ -61,12 +69,8 @@ namespace physics
 
             cursor.eulerAngles = new Vector3(0, -Vector2.SignedAngle(Vector2.right, direction), 0);
             childTorqueInfo.graphicBody.transform.localPosition = Vector3.zero;
-            if (Input.GetKeyDown(KeyCode.Return) && Time.time - lastTimeClicked > coolDown && isSwerving == false)
-            {
-                ApplyNonControl();
-                MoveWithVector(direction);
-                lastTimeClicked = Time.time;
-            }
+            
+            
 
             if (movementInfo.body.linearVelocity.magnitude < movementInfo.dynamicDragThresholdImpulse) {
                 movementInfo.body.linearDamping = 0.2f;
@@ -81,6 +85,15 @@ namespace physics
             }
 
             //Debug.Log("velocità: " + movementInfo.body.linearVelocity.magnitude);
+        }
+
+        public void SetDirection(Vector2 currentDirection) => this.currentDirection = currentDirection.normalized;
+        public void MoveTowardDirection()
+        {
+            if (!(Time.time - lastTimeClicked > coolDown && isSwerving == false)) return;
+            ApplyNonControl();
+            MoveWithVector(direction);
+            lastTimeClicked = Time.time;
         }
 
         public void MoveWithVector(Vector2 movementDirection)
@@ -106,12 +119,11 @@ namespace physics
             }
             childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.MoveTorqueIntensity);
         }
-        public void MoveWithVectorReset(Vector2 movementDirection)
+        private void MoveWithVectorReset(Vector2 movementDirection)
         {
             movementInfo.body.linearVelocity = Vector3.zero;
             MoveWithVector(movementDirection);
         }
-
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.transform.tag == "Wall")
@@ -120,7 +132,6 @@ namespace physics
                 childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.collisionTorqueIntensity);
             }
         }
-
         public void Kick(Transform propPosition, float intensity) {
             Vector3 kickDirection = (transform.position - propPosition.position).normalized * intensity;
             movementInfo.body.linearVelocity = Vector3.zero;
@@ -129,28 +140,25 @@ namespace physics
             childTorqueInfo.graphicBody.ApplyRandomTorque(childTorqueInfo.collisionTorqueIntensity * intensity);
             Swerve();
         }
-
-        public void ApplyNonControl()
+        private void ApplyNonControl()
         {
             if (nonControlCR != null) StopCoroutine(nonControlCR);
             nonControlCR = StartCoroutine(NonControlCR());
         }
-        public IEnumerator NonControlCR()
+        private IEnumerator NonControlCR()
         {
             childTorqueInfo.graphicBody.Controlled = false;
             yield return new WaitForSeconds(childTorqueInfo.nonControlTime);
             childTorqueInfo.graphicBody.Controlled = true;
         }
-
-        public void Swerve() {
+        private void Swerve() {
             if (swerveCR != null) StopCoroutine(swerveCR);
             swerveCR = StartCoroutine(SwerveCR());
         }
-        public IEnumerator SwerveCR() {
+        private IEnumerator SwerveCR() {
             yield return new WaitForSeconds(childTorqueInfo.swerveTime);
             isSwerving = false;
         }
-
         public void GenerateMovementModifier(GameObject applier, float modifier)
         {
             if (modifiers.ContainsKey(applier)) modifiers[applier] = modifier;
