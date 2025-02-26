@@ -6,7 +6,7 @@ public class PlayerLobbyUI : MonoBehaviour
 {
     [SerializeField] PlayerSlotUI[] slotArray = new PlayerSlotUI[6];
 
-    private void Start() {
+    private void Awake() {
         DevicesManager.instance.OnPlayerJoinedGame += PlayerRegister;
         DevicesManager.instance.OnPlayerLeftGame += PlayerUnregister;
     }

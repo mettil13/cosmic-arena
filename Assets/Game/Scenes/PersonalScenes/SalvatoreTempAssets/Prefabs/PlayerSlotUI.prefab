@@ -339,7 +339,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
-  playerNumber: 0
+  navigateAction:
+    m_Name: Navigate
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 395fbcac-e9ee-49bb-bbde-6d426d093d22
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   panelON: {fileID: 7877359649647492422}
   panelOFF: {fileID: 5418697388988756647}
 --- !u!1 &7877359649647492422

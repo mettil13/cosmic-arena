@@ -7,7 +7,7 @@ namespace SalvatoreTempClasses
     {
         public PlayerCharacter character;
         public int playerNumber;
-        public int chosenCharacterNumber;
+        public int chosenCharacterIndex;
 
 
         public void OnControllerDisconnected() {
