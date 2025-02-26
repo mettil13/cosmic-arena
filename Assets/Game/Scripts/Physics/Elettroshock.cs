@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Elettroshock : MonoBehaviour
 {
-    public Collider triggerCollider;
+    public GameObject trigger;
     public float onTime = 1.0f;
     public float offTime = 3.0f;
 
@@ -13,9 +13,9 @@ public class Elettroshock : MonoBehaviour
 
     private IEnumerator Intermittence() {
         while (true) {
-            triggerCollider.enabled = true;
+            trigger.SetActive(true);
             yield return new WaitForSeconds(onTime);
-            triggerCollider.enabled = false;
+            trigger.SetActive(false);
             yield return new WaitForSeconds(offTime);
         }
     }
