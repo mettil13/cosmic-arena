@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6889dde1ddd664fa6bedbd4206e2b3, type: 3}
   m_Name: CharactersArray
   m_EditorClassIdentifier: 
-  characterArray: []
+  characterArray:
+  - sprite: {fileID: 0}
+    characterPrefab: {fileID: 2567424272737521296, guid: 02abd0a96f529da43898df3086207273, type: 3}

@@ -5,8 +5,6 @@ public class PlayerManager : MonoBehaviour
 {
     public PlayerCharacterTemp character;
     public int playerNumber;
-    public int chosenCharacterIndex;
-
 
     public void OnControllerDisconnected() {
         if (character != null)

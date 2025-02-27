@@ -99,7 +99,7 @@ public class DevicesManager : MonoBehaviour
 
     }
 
-    void RearrangePlayers() {
+    public void RearrangePlayers() {
         for (int i = 0; i < playerArray.Length; i++) {
 
             if (playerArray[i] == null) {

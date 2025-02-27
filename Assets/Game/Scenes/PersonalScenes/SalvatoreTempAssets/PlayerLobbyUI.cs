@@ -23,8 +23,33 @@ public class PlayerLobbyUI : MonoBehaviour
         for (int i = 0; i < slotArray.Length; i++) {
             if (slotArray[i].playerInput == playerInput) {
                 slotArray[i].PlayerOFF();
+                RearrangePlayers(i);
                 return;
             }
         }
+    }
+
+    public void RearrangePlayers(int number)
+    {
+        DevicesManager.instance.RearrangePlayers();
+        for (int i = number; i < slotArray.Length; i++) {
+            for (int j = 1; i + j < slotArray.Length; j++) {
+                if (slotArray[i + j].playerInput == null) continue;
+                //Modifica dopo
+            }
+        }
+    }
+
+    public void isReadyCheck()
+    {
+        for (int i = 0; i < slotArray.Length; i++)
+        {
+            if (slotArray[i].playerInput != null)
+            {
+                if (!slotArray[i].isReady)
+                    return;
+            }
+        }
+        Debug.Log("CARICAMENTO SCENA");
     }
 }
