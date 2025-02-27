@@ -44,7 +44,7 @@ public class DevicesManager : MonoBehaviour
 
                 PlayerManager manager = playerInput.gameObject.GetComponent<PlayerManager>();
                 manager.playerNumber = i;
-                manager.character = CharacterWithoutManagerFound();
+                manager.PossessCharacter(CharacterWithoutManagerFound());
 
                 break;
             }
@@ -55,9 +55,11 @@ public class DevicesManager : MonoBehaviour
         }
     }
 
-    void OnPlayerLeft(PlayerInput playerInput) {
+    void OnPlayerLeft(PlayerInput playerInput)
+    {
         Debug.Log("Player left");
-        if (OnPlayerLeftGame != null) {
+        if (OnPlayerLeftGame != null)
+        {
             OnPlayerLeftGame(playerInput);
         }
     }
@@ -93,20 +95,23 @@ public class DevicesManager : MonoBehaviour
             }
         }
 
-        if (OnPlayerLeftGame != null) {
-            OnPlayerLeftGame(playerInput);
-        }
+        RearrangePlayers();
 
     }
 
-    public void RearrangePlayers() {
-        for (int i = 0; i < playerArray.Length; i++) {
+    public void RearrangePlayers()
+    {
+        for (int i = 0; i < playerArray.Length; i++)
+        {
 
-            if (playerArray[i] == null) {
-                for (int j = 1; i + j < playerArray.Length; j++) {
-                    if (playerArray[i + j] != null) {
+            if (playerArray[i] == null)
+            {
+                for (int j = 1; i + j < playerArray.Length; j++)
+                {
+                    if (playerArray[i + j] != null)
+                    {
                         playerArray[i] = playerArray[i + j];
-                        playerArray[i].GetComponent<PlayerManager>().playerNumber = i;
+                        //playerArray[i].GetComponent<PlayerManager>().playerNumber = i;
                         playerArray[i + j] = null;
                         break;
                     }

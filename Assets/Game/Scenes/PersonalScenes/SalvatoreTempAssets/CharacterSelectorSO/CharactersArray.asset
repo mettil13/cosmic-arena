@@ -15,3 +15,7 @@ MonoBehaviour:
   characterArray:
   - sprite: {fileID: 0}
     characterPrefab: {fileID: 2567424272737521296, guid: 02abd0a96f529da43898df3086207273, type: 3}
+  - sprite: {fileID: 0}
+    characterPrefab: {fileID: 0}
+  - sprite: {fileID: 0}
+    characterPrefab: {fileID: 0}

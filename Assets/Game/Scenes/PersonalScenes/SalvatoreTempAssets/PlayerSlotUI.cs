@@ -1,33 +1,30 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerSlotUI : MonoBehaviour
 {
-    [SerializeField] PlayerLobbyUI playerLobbyUI;
 
     public PlayerInput playerInput;
-    private PlayerManager playerManager;
+    public PlayerManager playerManager;
+    public PlayerLobbyUI playerLobbyUI;
+    private RectTransform rectTransform;
+
     private int chosenCharacterIndex = 0;
     public bool isReady = false;
+
+    public Image characterDisplay;
+    [SerializeField] TextMeshProUGUI playerName;
     [SerializeField] GameObject isReadyUI;
 
     InputAction navigateAction;
     InputAction readyAction;
 
-    [SerializeField] GameObject panelON, panelOFF;
-
-    [SerializeField] Image characterDisplay;
-
-    public void Awake()
+    public void Start()
     {
-        playerLobbyUI = GetComponentInParent<PlayerLobbyUI>();
-    }
-    public void PlayerON(PlayerInput playerInput)
-    {
-        this.playerInput = playerInput;
-        playerManager = playerInput.GetComponent<PlayerManager>();
-        playerManager.character = playerLobbyUI.charactersDatas.PlayerCharacter(chosenCharacterIndex);
+        rectTransform = GetComponent<RectTransform>();
+        ResetNumber();
 
         navigateAction = playerInput.actions["Navigate"];
         navigateAction.Enable();
@@ -36,29 +33,6 @@ public class PlayerSlotUI : MonoBehaviour
         readyAction = playerInput.actions["Submit"];
         readyAction.Enable();
         readyAction.performed += context => OnReadyAction(context);
-
-        characterDisplay.sprite = playerLobbyUI.charactersDatas.Sprite(chosenCharacterIndex);
-        panelON.SetActive(true);
-        panelOFF.SetActive(false);
-    }
-    public void PlayerOFF()
-    {
-        playerInput = null;
-        playerManager = null;
-
-        //navigateAction.performed -= context => OnNavigateAction(context);
-        navigateAction = null;
-        readyAction = null;
-        ResetPanel();
-
-        panelON.SetActive(false);
-        panelOFF.SetActive(true);
-    }
-
-    public void ResetPanel()
-    {
-        chosenCharacterIndex = 0;
-        characterDisplay.sprite = playerLobbyUI.charactersDatas.Sprite(chosenCharacterIndex);
     }
 
     void OnNavigateAction(InputAction.CallbackContext context)
@@ -76,6 +50,7 @@ public class PlayerSlotUI : MonoBehaviour
                 chosenCharacterIndex -= characters;
             playerManager.character = playerLobbyUI.charactersDatas.PlayerCharacter(chosenCharacterIndex);
             characterDisplay.sprite = playerLobbyUI.charactersDatas.Sprite(chosenCharacterIndex);
+            Debug.Log(chosenCharacterIndex);
         }
         if (xAxis < 0)
         {
@@ -84,19 +59,44 @@ public class PlayerSlotUI : MonoBehaviour
                 chosenCharacterIndex += characters;
             playerManager.character = playerLobbyUI.charactersDatas.PlayerCharacter(chosenCharacterIndex);
             characterDisplay.sprite = playerLobbyUI.charactersDatas.Sprite(chosenCharacterIndex);
+            Debug.Log(chosenCharacterIndex);
         }
     }
 
-    void OnReadyAction(InputAction.CallbackContext context){
+    void OnReadyAction(InputAction.CallbackContext context) {
         isReady = !isReady;
         isReadyUI.SetActive(isReady);
         if (isReady) {
-            navigateAction.Disable();
+            navigateAction?.Disable();
             playerLobbyUI.isReadyCheck();
         } else
         {
-            navigateAction.Enable();
+            navigateAction?.Enable();
         }
-        
+
+    }
+
+    public void ResetNumber()
+    {
+        int index = rectTransform.GetSiblingIndex() + 1;
+        playerName.text = "Player " + index.ToString();
+        playerManager.playerNumber = index;
+    }
+
+    public void ResetNumber(int index)
+    {
+        playerName.text = "Player " + index.ToString();
+        playerManager.playerNumber = index;
+    }
+
+    public void DeleteSlot()
+    {
+        navigateAction.performed -= context => OnNavigateAction(context);
+        readyAction.performed -= context => OnReadyAction(context);
+        navigateAction.Disable();
+        readyAction.Disable();
+        navigateAction = null;
+        readyAction = null;
+        Destroy(this.gameObject);
     }
 }

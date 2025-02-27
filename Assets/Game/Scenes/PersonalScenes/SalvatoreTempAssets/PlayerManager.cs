@@ -12,4 +12,11 @@ public class PlayerManager : MonoBehaviour
         Destroy(this.gameObject); return;
     }
 
+    public void PossessCharacter(PlayerCharacterTemp character)
+    {
+        if (character == null) return;
+        character.manager = this;
+        playerNumber = character.playerNumber;
+    }
+
 }
