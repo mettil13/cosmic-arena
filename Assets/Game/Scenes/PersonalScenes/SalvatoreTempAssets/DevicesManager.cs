@@ -9,7 +9,7 @@ public class DevicesManager : MonoBehaviour
 
     public PlayerInput[] playerArray = new PlayerInput[6];
 
-    public List<PlayerCharacterTemp> characterList = new List<PlayerCharacterTemp>();
+    public List<CharacterInputAdapter> characterList = new List<CharacterInputAdapter>();
 
     [SerializeField] InputAction joinAction;
     [SerializeField] InputAction leaveAction;
@@ -129,7 +129,7 @@ public class DevicesManager : MonoBehaviour
         return number;
     }
 
-    PlayerCharacterTemp CharacterWithoutManagerFound() {
+    CharacterInputAdapter CharacterWithoutManagerFound() {
         foreach (var character in characterList) {
             if (character.manager == null)
                 return character;

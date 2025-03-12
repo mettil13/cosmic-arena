@@ -10,6 +10,8 @@ public class CharacterInputAdapter : MonoBehaviour
     private float specialAbility;
 
     //InputSystem_Actions inputs;
+    public int playerNumber;
+    public PlayerManager manager;
 
 
     public Vector2 Direction 
@@ -45,23 +47,23 @@ public class CharacterInputAdapter : MonoBehaviour
     }
 
 
-    //public CharacterInputAdapter()
+    //public characterinputadapter()
     //{
-    //    inputs = new InputSystem_Actions();
-    //    inputs.Enable();
-    //    inputs.Player.Enable();
+    //    inputs = new inputsystem_actions();
+    //    inputs.enable();
+    //    inputs.player.enable();
 
-    //    inputs.Player.Direction.started += OnDirectionInput;
-    //    inputs.Player.Direction.performed += OnDirectionInput;
-    //    inputs.Player.Direction.canceled += OnDirectionInput;
+    //    inputs.player.direction.started += ondirectioninput;
+    //    inputs.player.direction.performed += ondirectioninput;
+    //    inputs.player.direction.canceled += ondirectioninput;
 
-    //    inputs.Player.Thrust.started += OnThrustInput;
-    //    inputs.Player.Thrust.performed += OnThrustInput;
-    //    inputs.Player.Thrust.canceled += OnThrustInput;
+    //    inputs.player.thrust.started += onthrustinput;
+    //    inputs.player.thrust.performed += onthrustinput;
+    //    inputs.player.thrust.canceled += onthrustinput;
 
-    //    inputs.Player.Brake.started += OnBrakeInput;
-    //    inputs.Player.Brake.performed += OnBrakeInput;
-    //    inputs.Player.Brake.canceled += OnBrakeInput;
+    //    inputs.player.brake.started += onbrakeinput;
+    //    inputs.player.brake.performed += onbrakeinput;
+    //    inputs.player.brake.canceled += onbrakeinput;
 
     //}
 

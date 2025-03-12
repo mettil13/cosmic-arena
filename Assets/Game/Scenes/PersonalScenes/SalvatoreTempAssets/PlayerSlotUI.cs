@@ -48,7 +48,7 @@ public class PlayerSlotUI : MonoBehaviour
             chosenCharacterIndex++;
             if (chosenCharacterIndex >= characters)
                 chosenCharacterIndex -= characters;
-            playerManager.character = playerLobbyUI.charactersDatas.PlayerCharacter(chosenCharacterIndex);
+            playerManager.characterPrefab = playerLobbyUI.charactersDatas.PlayerCharacter(chosenCharacterIndex);
             characterDisplay.sprite = playerLobbyUI.charactersDatas.Sprite(chosenCharacterIndex);
             Debug.Log(chosenCharacterIndex);
         }
@@ -57,7 +57,7 @@ public class PlayerSlotUI : MonoBehaviour
             chosenCharacterIndex--;
             if (chosenCharacterIndex < 0)
                 chosenCharacterIndex += characters;
-            playerManager.character = playerLobbyUI.charactersDatas.PlayerCharacter(chosenCharacterIndex);
+            playerManager.characterPrefab = playerLobbyUI.charactersDatas.PlayerCharacter(chosenCharacterIndex);
             characterDisplay.sprite = playerLobbyUI.charactersDatas.Sprite(chosenCharacterIndex);
             Debug.Log(chosenCharacterIndex);
         }

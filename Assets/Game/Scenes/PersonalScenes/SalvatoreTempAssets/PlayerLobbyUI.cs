@@ -8,7 +8,7 @@ public class PlayerLobbyUI : MonoBehaviour
 
     [SerializeField] PlayerSlotUI slotTemplate;
     [SerializeField] List<PlayerSlotUI> slotList = new List<PlayerSlotUI>();
-    public CharactersSO charactersDatas;
+    public CharactersListSO charactersDatas;
 
     private void Awake() {
         DevicesManager.instance.OnPlayerJoinedGame += PlayerRegister;
@@ -20,7 +20,7 @@ public class PlayerLobbyUI : MonoBehaviour
         newSlotUI.playerManager = playerInput.GetComponent<PlayerManager>();
         newSlotUI.playerLobbyUI = this;
 
-        newSlotUI.playerManager.character = charactersDatas.PlayerCharacter(0);
+        newSlotUI.playerManager.characterPrefab = charactersDatas.PlayerCharacter(0);
         newSlotUI.characterDisplay.sprite = charactersDatas.Sprite(0);
         slotList.Add(newSlotUI);
 
