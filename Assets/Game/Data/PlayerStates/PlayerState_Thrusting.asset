@@ -15,7 +15,7 @@ MonoBehaviour:
   inputThreshold: 0.1
   impulseDuration: 0.1
   canStopEarly: 0
-  torqueIntensity: 0
+  torqueIntensity: 0.5
   continiousForce: 0
   continiousForceMode: 5
   firstImpluse: 20

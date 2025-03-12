@@ -28,6 +28,7 @@ namespace CharacterLogic
             base.OnEntry();
             AddForceInInputDirection(firstImpluse, firstImpulseMode);
             timer = new Timer(impulseDuration).AddCallBack(Stop);
+            characterManager.characterMovementAesthetic.Controlled = false;
         }
         public override void OnUpdate(ref float delta)
         {
@@ -88,6 +89,7 @@ namespace CharacterLogic
 
         public override void OnExit()
         {
+            characterManager.characterMovementAesthetic.Controlled = true;
             base.OnExit();
             timer.Stop();
             if (hasCooldown) stateMachine.AddModifier(cooldown);

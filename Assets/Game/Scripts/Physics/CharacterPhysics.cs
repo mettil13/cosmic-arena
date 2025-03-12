@@ -73,9 +73,9 @@ namespace physics
             }
 
             cursor.eulerAngles = new Vector3(0, -Vector2.SignedAngle(Vector2.right, direction), 0);
+            
+            
             childTorqueInfo.graphicBody.transform.localPosition = Vector3.zero;
-            
-            
 
             //if (movementInfo.body.linearVelocity.magnitude < movementInfo.dynamicDragThresholdImpulse) {
             //    movementInfo.body.linearDamping = 0.2f;

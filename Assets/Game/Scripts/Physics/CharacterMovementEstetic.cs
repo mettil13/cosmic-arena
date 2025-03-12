@@ -42,11 +42,13 @@ namespace physics
             Controlled = false;
             Controlled = true;
         }
+
         public void ApplyRandomTorque(float intensity)
         {
             body.angularVelocity = Vector3.zero;
-            //Debug.LogError("angular velocity : " + body.angularVelocity);
-            body.AddTorque(Random.insideUnitSphere * intensity / 1000);
+            Vector3 random = Random.insideUnitSphere * intensity / 1000;
+            body.AddTorque(random);
+            Debug.LogError("random velocity : " + random + " intensity : " + intensity);
         }
         public void InvertTorque()
         {
@@ -55,6 +57,11 @@ namespace physics
         public void ResetTorque()
         {
             body.angularVelocity = Vector3.zero;
+        }
+
+        public void ApplyDirectionIfControlled(Vector2 direction)
+        {
+            if (controlled) { ApplyDirection(direction); }
         }
         public void ApplyDirection(Vector2 direction)
         {

@@ -11,9 +11,9 @@ public class CharacterManager : SerializedMonoBehaviour
 {
     [OdinSerialize, NonSerialized] public StateMachine<Player_State, Player_Status> stateMachine;
     [SerializeField] public CharacterInputAdapter characterInputAdapter;
-    [SerializeField] public CharacterPhysics characterPhysics;
     [SerializeField] public Dictionary<GameObject, float> modifiers;
     [SerializeField] public CharacterMovementEstetic characterMovementAesthetic;
+    [SerializeField] public Transform cursor;
 
     public new Rigidbody rigidbody;
 
@@ -39,6 +39,10 @@ public class CharacterManager : SerializedMonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        cursor.eulerAngles = new Vector3(0, -Vector2.SignedAngle(Vector2.right, characterInputAdapter.LastValidDirection), 0);
+        characterMovementAesthetic.transform.localPosition = Vector3.zero;
+        characterMovementAesthetic.ApplyDirectionIfControlled(characterInputAdapter.LastValidDirection);
+
         stateMachine.Execute(Time.deltaTime);
         //characterPhysics.SetDirection(characterInputAdapter.Direction);
     }
