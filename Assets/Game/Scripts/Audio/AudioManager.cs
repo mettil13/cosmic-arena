@@ -15,12 +15,7 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
-    //Mixers and audio sources
     [SerializeField] private AudioMixer master;
-    //[SerializeField] private AudioSource mainSoundtrackSource, secondarySoundtrackSource;
-    //[SerializeField] private AudioSource sfxSource;
-    //[SerializeField] private AudioSource dialogueSource;
-
 
     [SerializeField] private float fadeInTime, fadeOutTime;
     [SerializeField] private float minPitchChange, maxPitchChange;
@@ -35,7 +30,9 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioMixerGroup sfxOutput;
     [SerializeField] private AudioMixerGroup dialogueOutput;
 
-    Coroutine musicCoroutine;
+    private Coroutine soundtrackCoroutine;
+    private Coroutine sfxCoroutine;
+    private Coroutine dialogueCoroutine;
     private enum TypeOfSound {
         Soundtrack,
         SFX,
@@ -59,119 +56,62 @@ public class AudioManager : MonoBehaviour {
     #region Base Play Methods
     //Play a soundtrack clip
     public void PlaySoundtrack(AudioClip soundtrackClip) {
-        //StopAudioPlaying(mainSoundtrackSource);
-        //UnsetAudioLoop(mainSoundtrackSource);
-
-        ////mainSoundtrackSource.PlayOneShot(soundtrackClip);
-        //mainSoundtrackSource.resource = soundtrackClip;
-        //mainSoundtrackSource.Play();
-
         //If there's an audio source playing, stop it and the coroutine associated
         StopAudioSourcePlaying(soundtrackOutput);
+        if(soundtrackCoroutine != null) {
+            StopCoroutine(soundtrackCoroutine);
+        }
 
         genericAudioSource = AudioSourcePoolManager.Instance.CheckPoolForAvailableAudioSource();
         genericAudioSource.outputAudioMixerGroup = soundtrackOutput;
         genericAudioSource.resource = soundtrackClip;
         genericAudioSource.Play();
-        musicCoroutine = StartCoroutine(AudioSourcePoolManager.Instance.StopWhenFinished(genericAudioSource));
+        soundtrackCoroutine = StartCoroutine(AudioSourcePoolManager.Instance.StopWhenFinished(genericAudioSource));
     }
     //Play an SFX clip
     public void PlaySFX(AudioClip sfxClip) {
-        //StopAudioPlaying(sfxSource);
-        //UnsetAudioLoop(sfxSource);
-
-        //sfxSource.resource = sfxClip;
-        //sfxSource.Play();
-
         StopAudioSourcePlaying(sfxOutput);
+        if(sfxCoroutine != null) {
+            StopCoroutine(sfxCoroutine);
+        }
 
         genericAudioSource = AudioSourcePoolManager.Instance.CheckPoolForAvailableAudioSource();
         genericAudioSource.outputAudioMixerGroup = sfxOutput;
         genericAudioSource.resource = sfxClip;
         genericAudioSource.Play();
-        musicCoroutine = StartCoroutine(AudioSourcePoolManager.Instance.StopWhenFinished(genericAudioSource));
+        sfxCoroutine = StartCoroutine(AudioSourcePoolManager.Instance.StopWhenFinished(genericAudioSource));
     }
     //Play a voice clip
     public void PlayDialogue(AudioClip dialogueClip /*, string voiceId*/) {
-        //search voiceline based on voiceId
-        //StopAudioPlaying(dialogueSource);
-        //UnsetAudioLoop(dialogueSource);
-
-        //dialogueSource.resource = dialogueClip;
-        //dialogueSource.Play();
-
         StopAudioSourcePlaying(dialogueOutput);
+        if(dialogueCoroutine != null) {
+            StopCoroutine(dialogueCoroutine);
+        }
 
         genericAudioSource = AudioSourcePoolManager.Instance.CheckPoolForAvailableAudioSource();
         genericAudioSource.outputAudioMixerGroup = dialogueOutput;
         genericAudioSource.resource = dialogueClip;
         genericAudioSource.Play();
-        musicCoroutine = StartCoroutine(AudioSourcePoolManager.Instance.StopWhenFinished(genericAudioSource));
+        dialogueCoroutine = StartCoroutine(AudioSourcePoolManager.Instance.StopWhenFinished(genericAudioSource));
     }
     #endregion
 
     #region Play Methods Overrides
-    ////Play soundtrack with audio source of choice
-    //public void PlaySoundtrack(AudioClip soundtrackClip, AudioSource audioSource) {
-    //    StopAudioPlaying(audioSource);
-    //    UnsetAudioLoop(audioSource);
-
-    //    audioSource.resource = soundtrackClip;
-    //    audioSource.Play();
-    //}
 
     ////Loop audio methods
     public void PlayLoopedSoundtrack(AudioClip soundtrackClip) {
-        //    if (mainSoundtrackSource.isPlaying) {
-        //        mainSoundtrackSource.Stop();
-        //        mainSoundtrackSource.resource = null;
-
-        //        StopAudioPlaying(secondarySoundtrackSource);
-        //        SetAudioLoop(secondarySoundtrackSource);
-
-        //        secondarySoundtrackSource.resource = soundtrackClip;
-        //        secondarySoundtrackSource.Play();
-        //    }
-        //    else if (secondarySoundtrackSource.isPlaying) {
-        //        secondarySoundtrackSource.Stop();
-        //        secondarySoundtrackSource.resource = null;
-
-        //        StopAudioPlaying(mainSoundtrackSource);
-        //        SetAudioLoop(mainSoundtrackSource);
-
-        //        mainSoundtrackSource.resource = soundtrackClip;
-        //        mainSoundtrackSource.Play();
-        //    }
-        //    else {
-        //        StopAudioPlaying(mainSoundtrackSource);
-        //        SetAudioLoop(mainSoundtrackSource);
-
-        //        mainSoundtrackSource.resource = soundtrackClip;
-        //        mainSoundtrackSource.Play();
-        //    }
         StopAudioSourcePlaying(soundtrackOutput);
+        if(soundtrackCoroutine != null) {
+            StopCoroutine(soundtrackCoroutine);
+        }
 
         genericAudioSource = AudioSourcePoolManager.Instance.CheckPoolForAvailableAudioSource();
         genericAudioSource.outputAudioMixerGroup = soundtrackOutput;
         genericAudioSource.resource = soundtrackClip;
         SetAudioLoop(genericAudioSource);
         genericAudioSource.Play();
-        musicCoroutine = StartCoroutine(AudioSourcePoolManager.Instance.StopWhenFinished(genericAudioSource));
+        soundtrackCoroutine = StartCoroutine(AudioSourcePoolManager.Instance.StopWhenFinished(genericAudioSource));
     }
-    //public void PlayLoopedSFX(AudioClip sfxClip) {
-    //    StopAudioPlaying(sfxSource);
-    //    SetAudioLoop(sfxSource);
-
-    //    sfxSource.resource = sfxClip;
-    //    sfxSource.Play();
-    //}
-    //public void PlayLoopedDialogue(AudioClip dialogueClip) {
-    //    StopAudioPlaying(dialogueSource);
-    //    SetAudioLoop(dialogueSource);
-
-    //    dialogueSource.resource = dialogueClip;
-    //    dialogueSource.Play();
-    //}
 
     ////Fade in and out methods
     //public void PlayFadedSoundtrack(AudioClip soundtrackClip) {
