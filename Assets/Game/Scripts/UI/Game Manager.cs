@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public float gameTimer = 300f; // 5 minuti
+    public float reduceTime = 30f;
+    public float thresholdReduceTime = 30f; // la threshold non sarebbe nel GDD!
+    private bool changeModeFirstTime = false; // per ridurre il tempo solo una volta
     public TextMeshProUGUI timerText;
     public GameObject victoryPanel;
     public GameObject pausePanel;
@@ -130,24 +133,33 @@ public class GameManager : MonoBehaviour
 
     public void OnCharacterDeathOrDisappear(GameObject character)
     {
-        characterHealthList[0].TakeDamage(1000,new());
-        characterHealthList.RemoveAt(0);
-
         if (character == null) return;
-
         var health = character.GetComponent<CharacterHealth>();
         if (health != null) health.HP = 0;
 
-        if (!gameEnded)
-        {
-            ReduceTimer(30f);
-            if (RemainingCharacters() == 1) EndGame(DetermineLastStanding());
-        }
+        characterHealthList[0].TakeDamage(1000,new());
+        characterHealthList.RemoveAt(0);
+
+        if (!gameEnded && 
+            characterHealthList.Count() <= 4 && 
+            changeModeFirstTime == false && 
+            gameTimer > thresholdReduceTime)
+
+            ReduceTimer(reduceTime);
+
+        if (!gameEnded && RemainingCharacters() == 1) EndGame(DetermineLastStanding());
+
+        //if (!gameEnded)
+        //{
+        //    ReduceTimer(30f);
+        //    if (RemainingCharacters() == 1) EndGame(DetermineLastStanding());
+        //}
     }
 
 
     void ReduceTimer(float amount)
     {
+        changeModeFirstTime = true;
         gameTimer = Mathf.Max(0, gameTimer - amount);
         UpdateTimerDisplay();
     }
