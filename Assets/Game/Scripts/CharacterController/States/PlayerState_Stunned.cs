@@ -13,7 +13,7 @@ namespace CharacterLogic
         {
             base.OnEntry();
             timer = new Timer(duration).AddCallBack(Expire);
-            characterManager.characterPhysics.Controlled = false;
+            //characterManager.characterPhysics.Controlled = false;
         }
 
         public override void OnUpdate(ref float delta) {
@@ -23,7 +23,7 @@ namespace CharacterLogic
 
         public void Expire()
         {
-            characterManager.characterPhysics.Controlled = true;
+            //characterManager.characterPhysics.Controlled = true;
             stateMachine.ChangeState(Player_State.Idle);
         }
 

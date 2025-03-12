@@ -12,6 +12,8 @@ public class CharacterManager : SerializedMonoBehaviour
     [OdinSerialize, NonSerialized] public StateMachine<Player_State, Player_Status> stateMachine;
     [SerializeField] public CharacterInputAdapter characterInputAdapter;
     [SerializeField] public CharacterPhysics characterPhysics;
+    [SerializeField] public Dictionary<GameObject, float> modifiers;
+    [SerializeField] public CharacterMovementEstetic characterMovementAesthetic;
 
     public new Rigidbody rigidbody;
 
@@ -38,7 +40,7 @@ public class CharacterManager : SerializedMonoBehaviour
     void Update()
     {
         stateMachine.Execute(Time.deltaTime);
-        characterPhysics.SetDirection(characterInputAdapter.Direction);
+        //characterPhysics.SetDirection(characterInputAdapter.Direction);
     }
 
     private void LateUpdate()
@@ -55,5 +57,15 @@ public class CharacterManager : SerializedMonoBehaviour
     {
         Ranking.Instance.AddToRanking((int)GameManager.Instance.gameTimer, gameObject.name);
         stateMachine.ChangeState(Player_State.Dead);
+    }
+
+    public void GenerateMovementModifier(GameObject applier, float modifier)
+    {
+        if (modifiers.ContainsKey(applier)) modifiers[applier] = modifier;
+        else modifiers.Add(applier, modifier);
+    }
+    public void ClearMovementModifier(GameObject applier)
+    {
+        modifiers.Remove(applier);
     }
 }

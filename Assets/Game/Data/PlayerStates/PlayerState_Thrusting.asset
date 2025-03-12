@@ -15,12 +15,13 @@ MonoBehaviour:
   inputThreshold: 0.1
   impulseDuration: 0.1
   canStopEarly: 0
-  continiousForce: 2
+  torqueIntensity: 0
+  continiousForce: 0
   continiousForceMode: 5
-  firstImpluse: 5
+  firstImpluse: 20
   firstImpulseMode: 1
   hasCooldown: 1
   cooldown:
     stackBehaviour: 0
-    duration: 1
+    duration: 0.5
     removedStatus: 4

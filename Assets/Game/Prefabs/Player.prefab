@@ -374,7 +374,6 @@ GameObject:
   - component: {fileID: 6313938682468925596}
   - component: {fileID: 8855777202140732439}
   - component: {fileID: 27476025370947376}
-  - component: {fileID: 6135063441109964059}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -608,8 +607,29 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: modifiers
+      Entry: 7
+      Data: 6|System.Collections.Generic.Dictionary`2[[UnityEngine.GameObject, UnityEngine.CoreModule],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 7|System.Collections.Generic.ObjectEqualityComparer`1[[UnityEngine.GameObject,
+        UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   characterInputAdapter: {fileID: 6313938682468925596}
-  characterPhysics: {fileID: 6135063441109964059}
+  characterPhysics: {fileID: 0}
+  characterMovementAesthetic: {fileID: 3131548115277091032}
   rigidbody: {fileID: 6398568916899940659}
 --- !u!114 &6313938682468925596
 MonoBehaviour:
@@ -802,32 +822,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6135063441109964059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3715488958190498300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 358e22e02abf51f449b8f9521404ad84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursor: {fileID: 7887555330523908592}
-  coolDown: 0.5
-  movementInfo:
-    body: {fileID: 6398568916899940659}
-    movementIntensity: 20
-    dynamicDragThresholdImpulse: 30
-    dynamicDragThresholdExplosion: 70
-  childTorqueInfo:
-    graphicBody: {fileID: 3131548115277091032}
-    startTorqueIntensity: 0
-    collisionTorqueIntensity: 1
-    MoveTorqueIntensity: 0.1
-    nonControlTime: 0.6
-    swerveTime: 1
 --- !u!1 &5440821368114154783
 GameObject:
   m_ObjectHideFlags: 0
