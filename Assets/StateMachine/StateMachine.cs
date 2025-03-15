@@ -175,7 +175,10 @@ namespace StateMachine
             status = (StatusEnum)(object)tempStatus;
         }
 
-        
+        public bool IsInState(StateEnum stateEnum)
+        {
+            return (Convert.ToInt32(currentStateEnum)) == Convert.ToInt32(stateEnum);
+        }
 
         public bool TryGetState(StateEnum stateEnum, out IState state)
         {

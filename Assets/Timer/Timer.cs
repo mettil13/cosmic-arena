@@ -6,6 +6,7 @@ namespace CommonLogic
     public class Timer
     {
         public event Action OnEnd;
+        public event Action OnStart;
 
         float duration;
         float elapsedTime;
@@ -36,6 +37,7 @@ namespace CommonLogic
         public void Update(ref float dt)
         {
             if (!isRunning) return;
+            if (elapsedTime == 0) OnStart.Invoke();
             elapsedTime += dt;
             if (elapsedTime > duration) 
             { 
