@@ -31,12 +31,12 @@ namespace GOAP
                     Stack<AgentAction> actionStack = new();
                     while(goalNode.Leaves.Count > 0)
                     {
-                        var cheapestLeafNode = goalNode.Leaves.OrderBy(leaf => )
+                        var cheapestLeafNode = goalNode.Leaves.OrderBy(leaf => leaf.Cost);
                     }
                 }
             }
 
-            
+            return null;
         }
 
         private bool FindPath(Node parent, HashSet<AgentAction> actions)
