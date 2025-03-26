@@ -15,6 +15,7 @@ public class CharacterManager : SerializedMonoBehaviour
     [SerializeField] public CharacterMovementEstetic characterMovementAesthetic;
     [SerializeField] public Transform cursor;
     [SerializeField] public CharacterSO characterStats;
+    [SerializeField] public CharacterHealth characterHealth;
 
     [SerializeField] public Animator animator;
     [SerializeField] public float fadeTime;
@@ -35,6 +36,7 @@ public class CharacterManager : SerializedMonoBehaviour
             newState.Init(this);
         }
         stateMachine.states = newStates;
+        characterHealth.HP = characterStats.health;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
