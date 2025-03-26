@@ -18,6 +18,10 @@ public class CharacterManager : SerializedMonoBehaviour
 
     public new Rigidbody rigidbody;
 
+    public int playerNumber;
+    public PlayerManager manager;
+
+
     private void Awake()
     {
         Dictionary<Player_State, IState> newStates = new Dictionary<Player_State, IState>();

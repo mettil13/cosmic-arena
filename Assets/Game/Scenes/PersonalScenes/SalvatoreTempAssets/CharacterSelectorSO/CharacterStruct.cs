@@ -4,5 +4,5 @@ using UnityEngine;
 public struct CharacterStruct
 {
     public Sprite sprite;
-    public CharacterInputAdapter characterPrefab;
+    public CharacterManager characterPrefab;
 }

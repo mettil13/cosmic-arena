@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerLobbyUI : MonoBehaviour
 {
@@ -51,5 +52,6 @@ public class PlayerLobbyUI : MonoBehaviour
         }
 
         Debug.Log("CARICAMENTO SCENA");
+        SceneManager.LoadScene("TemplateArena");
     }
 }

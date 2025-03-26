@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    public CharacterInputAdapter characterPrefab;
-    public CharacterInputAdapter playerCharacter;
+    public CharacterManager characterPrefab;
+    public CharacterManager playerCharacter;
     public PlayerInput playerInput;
     public int playerNumber;
 
@@ -19,25 +19,25 @@ public class PlayerManager : MonoBehaviour
         Destroy(this.gameObject); return;
     }
 
-    public void PossessCharacter(CharacterInputAdapter character)
+    public void PossessCharacter(CharacterManager character)
     {
         if (character == null) return;
         character.manager = this;
         playerNumber = character.playerNumber;
 
         playerCharacter = character;
-        SetPlayerInputEvent();
+        playerCharacter.characterInputAdapter = this.GetComponent<CharacterInputAdapter>();
         
     }
 
-    public void SetPlayerInputEvent() {
-        //playerInput.actions["Direction"].performed += 
-    }
-    public void SpawnCharacter() {
-        //da capire la transform
+    public void SpawnCharacter(Transform spawnPoint) {
 
-        //istanzia il prefab e assegna a playerCharacter
-        //ricorda di aggiungerlo alla lista in devicemanager
+        Debug.Log("SpawnCharacter");
+        playerCharacter = Instantiate(characterPrefab, spawnPoint);
+        DevicesManager.instance.characterList.Add(playerCharacter);
+        playerCharacter.manager = this;
+        playerCharacter.characterInputAdapter = this.GetComponent<CharacterInputAdapter>();
+        playerCharacter.playerNumber = playerNumber;
     }
 
 }

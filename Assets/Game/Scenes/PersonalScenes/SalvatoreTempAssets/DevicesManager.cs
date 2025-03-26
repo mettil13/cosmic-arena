@@ -9,7 +9,7 @@ public class DevicesManager : MonoBehaviour
 
     public PlayerInput[] playerArray = new PlayerInput[6];
 
-    public List<CharacterInputAdapter> characterList = new List<CharacterInputAdapter>();
+    public List<CharacterManager> characterList = new List<CharacterManager>();
 
     [SerializeField] InputAction joinAction;
     [SerializeField] InputAction leaveAction;
@@ -30,6 +30,8 @@ public class DevicesManager : MonoBehaviour
         joinAction.performed += context => JoinAction(context);
         leaveAction.Enable();
         leaveAction.performed += context => LeaveAction(context);
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start() {
@@ -129,12 +131,21 @@ public class DevicesManager : MonoBehaviour
         return number;
     }
 
-    CharacterInputAdapter CharacterWithoutManagerFound() {
+    CharacterManager CharacterWithoutManagerFound() {
         foreach (var character in characterList) {
             if (character.manager == null)
                 return character;
         }
         return null;
+    }
+
+    public void SpawnPlayers(Transform[] spawnPoints) {
+        for (int i = 0;i < playerArray.Length;i++) {
+            if (playerArray[i] == null) continue;
+            PlayerManager player = playerArray[i].GetComponent<PlayerManager>();
+            player.SpawnCharacter(spawnPoints[i]);
+
+        }
     }
 
 }

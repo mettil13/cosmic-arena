@@ -7,7 +7,7 @@ public class CharactersListSO : ScriptableObject
     public int CharactersNumber() { 
     return characterArray.Length;
     }
-    public CharacterInputAdapter PlayerCharacter(int index) {
+    public CharacterManager PlayerCharacter(int index) {
         index = Mathf.Clamp(index, 0, characterArray.Length - 1);
         return characterArray[index].characterPrefab;
     }

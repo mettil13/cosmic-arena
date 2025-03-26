@@ -10,8 +10,8 @@ public class CharacterInputAdapter : MonoBehaviour
     private float specialAbility;
 
     //InputSystem_Actions inputs;
-    public int playerNumber;
-    public PlayerManager manager;
+    //public int playerNumber;
+    //public PlayerManager manager;
 
 
     public Vector2 Direction 

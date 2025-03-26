@@ -632,6 +632,8 @@ MonoBehaviour:
   cursor: {fileID: 7887555330523908592}
   characterStats: {fileID: 11400000, guid: 56c501e4b97b4344296bb1796f5f8558, type: 2}
   rigidbody: {fileID: 6398568916899940659}
+  playerNumber: 0
+  manager: {fileID: 0}
 --- !u!114 &6313938682468925596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,13 +641,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3715488958190498300}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07818382b10c79c4bbcadf5e3df42fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumber: 0
-  manager: {fileID: 0}
 --- !u!114 &8855777202140732439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,7 +653,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3715488958190498300}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 

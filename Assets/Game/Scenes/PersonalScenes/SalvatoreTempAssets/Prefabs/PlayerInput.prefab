@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1681659641549062811}
   - component: {fileID: 2259336159531369092}
   - component: {fileID: 7297744660362771059}
+  - component: {fileID: 7151543667854638911}
   m_Layer: 0
   m_Name: PlayerInput
   m_TagString: Untagged
@@ -60,7 +61,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7151543667854638911}
         m_TargetAssemblyTypeName: CharacterInputAdapter, Assembly-CSharp
         m_MethodName: OnDirectionInput
         m_Mode: 0
@@ -80,7 +81,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Look[/Mouse/delta,/Pen/delta]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7151543667854638911}
         m_TargetAssemblyTypeName: CharacterInputAdapter, Assembly-CSharp
         m_MethodName: OnAttackInput
         m_Mode: 0
@@ -100,7 +101,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Interact[/Keyboard/e]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7151543667854638911}
         m_TargetAssemblyTypeName: CharacterInputAdapter, Assembly-CSharp
         m_MethodName: OnBrakeInput
         m_Mode: 0
@@ -116,7 +117,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Brake[/Keyboard/c]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7151543667854638911}
         m_TargetAssemblyTypeName: CharacterInputAdapter, Assembly-CSharp
         m_MethodName: OnThrustInput
         m_Mode: 0
@@ -203,6 +204,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2342adada0ef799439421e6e69292ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  characterPrefab: {fileID: 0}
+  playerCharacter: {fileID: 0}
   playerInput: {fileID: 0}
   playerNumber: 0
+--- !u!114 &7151543667854638911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4410076983582458728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07818382b10c79c4bbcadf5e3df42fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

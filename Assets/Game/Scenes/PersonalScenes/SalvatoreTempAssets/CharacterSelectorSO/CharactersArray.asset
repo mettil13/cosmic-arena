@@ -14,8 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterArray:
   - sprite: {fileID: 0}
-    characterPrefab: {fileID: 2567424272737521296, guid: 02abd0a96f529da43898df3086207273, type: 3}
-  - sprite: {fileID: 0}
-    characterPrefab: {fileID: 0}
-  - sprite: {fileID: 0}
-    characterPrefab: {fileID: 0}
+    characterPrefab: {fileID: 1995637203436162018, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
