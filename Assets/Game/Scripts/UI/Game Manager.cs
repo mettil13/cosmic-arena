@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using CharacterLogic;
 using UnityEngine.Events;
 using DG.Tweening;
-using UnityEngine.UI; // Importa DOTween!
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
 
     public float gameTimer = 300f; // 5 minuti
     public float reduceTime = 30f;
-    public float thresholdReduceTime = 30f; // la threshold non sarebbe nel GDD!
-    private bool changeModeFirstTime = false; // per ridurre il tempo solo una volta
+    public float thresholdReduceTime = 30f;
+    private bool changeModeFirstTime = false;
     public TextMeshProUGUI timerText;
     public GameObject victoryPanel;
     public GameObject pausePanel;
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<CharacterHealth> characterHealthList = new();
     private bool gameEnded = false;
     private bool isPaused = false;
-    private bool gameStarted = false; // Timer parte solo dopo il countdown
+    private bool gameStarted = false;
 
     public UnityEvent dieEvent = new();
 
@@ -37,13 +37,12 @@ public class GameManager : MonoBehaviour
     {
         pauseButton.enabled = false;
         PopulatePlayersAndHealth();
-        StartCoroutine(StartCountdown()); // Avvia il countdown all'inizio
+        StartCoroutine(StartCountdown());
         dieEvent.AddListener(() =>
         {
             if (playerObjects.Count > 0 && playerObjects[0] != null)
                 OnCharacterDeathOrDisappear(playerObjects[0]);
         });
-
     }
 
     void Update()
@@ -59,7 +58,9 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            EndGame(DetermineWinnerByHealth());
+            gameTimer = 0;
+            UpdateTimerDisplay();
+            DetermineFinalRanking();
         }
 
         if (RemainingCharacters() == 1)
@@ -124,7 +125,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     void ShowVictoryPanel(CharacterHealth winner)
     {
         Time.timeScale = 0;
@@ -137,25 +137,25 @@ public class GameManager : MonoBehaviour
         var health = character.GetComponent<CharacterHealth>();
         if (health != null) health.HP = 0;
 
-        characterHealthList[0].TakeDamage(1000,new());
+        characterHealthList[0].TakeDamage(1000, new());
         characterHealthList.RemoveAt(0);
 
-        if (!gameEnded && 
-            characterHealthList.Count() <= 4 && 
-            changeModeFirstTime == false && 
+        if (!gameEnded &&
+            characterHealthList.Count() <= 4 &&
+            !changeModeFirstTime &&
             gameTimer > thresholdReduceTime)
-
+        {
             ReduceTimer(reduceTime);
+        }
 
         if (!gameEnded && RemainingCharacters() == 1) EndGame(DetermineLastStanding());
 
-        //if (!gameEnded)
-        //{
-        //    ReduceTimer(30f);
-        //    if (RemainingCharacters() == 1) EndGame(DetermineLastStanding());
-        //}
+        if (!gameEnded)
+        {
+            ReduceTimer(30f);
+            if (RemainingCharacters() == 1) EndGame(DetermineLastStanding());
+        }
     }
-
 
     void ReduceTimer(float amount)
     {
@@ -193,5 +193,41 @@ public class GameManager : MonoBehaviour
     {
         playerObjects.RemoveAll(po => po == null);
         characterHealthList.RemoveAll(chl => chl == null);
+    }
+
+    void DetermineFinalRanking()
+    {
+        var survivingPlayers = characterHealthList
+            .Where(h => h != null && h.HP > 0)
+            .OrderByDescending(h => h.HP)
+            .ToList();
+
+        if (survivingPlayers.Count == 0)
+        {
+            EndGame(null);
+            return;
+        }
+
+        // Prende il massimo valore di HP
+        float maxHP = survivingPlayers.First().HP;
+
+        // Trova tutti i giocatori con il massimo valore di HP
+        var topPlayers = survivingPlayers.Where(h => h.HP == maxHP).ToList();
+
+        // Aggiunge i topPlayers alla classifica
+        foreach (var player in topPlayers)
+        {
+            Ranking.Instance.AddToRanking((int)gameTimer,player.HP, player.gameObject.name);
+        }
+
+        // Se c'è un solo vincitore, lo assegna come vincitore della partita
+        if (topPlayers.Count == 1)
+        {
+            EndGame(topPlayers.First());
+        }
+        else
+        {
+            EndGame(null); // Pareggio
+        }
     }
 }

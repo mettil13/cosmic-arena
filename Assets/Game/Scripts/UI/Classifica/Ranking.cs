@@ -6,7 +6,7 @@ public class Ranking : MonoBehaviour
 {
     public static Ranking Instance { get; private set; }
 
-    [SerializeField] private List<(int dieHour, string name, int position)> rankingByTime = new();
+    [SerializeField] private List<(int dieHour, float hp, string name, int position)> rankingByTime = new();
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private RankingCard card;
 
@@ -34,34 +34,42 @@ public class Ranking : MonoBehaviour
         }
     }
 
-    public void AddToRanking(int dieHour, string name)
+    public void AddToRanking(int dieHour, float hp, string name)
     {
-        rankingByTime.Add((dieHour, name, 0));
+        rankingByTime.Add((dieHour, hp, name, 0));
         SortRankList();
     }
 
     void SortRankList()
     {
         rankingByTime = rankingByTime
-            .OrderBy(player => player.dieHour)
+            .OrderBy(player => player.dieHour)   // Ordina per tempo di morte (prima chi è morto prima)
+            .ThenByDescending(player => player.hp) // Se il tempo è uguale, ordina per HP decrescente
             .ToList();
 
         int currentPosition = 1;
         int tiePosition = 1;
 
+
         for (int i = 0; i < rankingByTime.Count; i++)
         {
-            if (i > 0 && rankingByTime[i].dieHour == rankingByTime[i - 1].dieHour)
+            bool condition = i > 0 &&
+                    rankingByTime[i].dieHour == rankingByTime[i - 1].dieHour &&
+                    rankingByTime[i].hp == rankingByTime[i - 1].hp;
+
+            if (condition)
             {
-                rankingByTime[i] = (rankingByTime[i].dieHour, rankingByTime[i].name, tiePosition);
+                // Se anche gli HP sono uguali, manteniamo la stessa posizione
+                rankingByTime[i] = (rankingByTime[i].dieHour, rankingByTime[i].hp, rankingByTime[i].name, tiePosition);
             }
             else
             {
+                // Aggiorna la posizione
                 tiePosition = currentPosition;
-                rankingByTime[i] = (rankingByTime[i].dieHour, rankingByTime[i].name, currentPosition);
+                rankingByTime[i] = (rankingByTime[i].dieHour, rankingByTime[i].hp, rankingByTime[i].name, currentPosition);
+                currentPosition++;
             }
 
-            currentPosition++;
         }
     }
 }

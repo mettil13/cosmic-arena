@@ -64,7 +64,8 @@ public class CharacterManager : SerializedMonoBehaviour
 
     internal void Die()
     {
-        Ranking.Instance.AddToRanking((int)GameManager.Instance.gameTimer, gameObject.name);
+        Ranking.Instance.AddToRanking((int)GameManager.Instance.gameTimer, characterStats.health , gameObject.name);
+        DynamicCamera.Instance.CurrentTargets.Remove(transform);
         stateMachine.ChangeState(Player_State.Dead);
     }
 

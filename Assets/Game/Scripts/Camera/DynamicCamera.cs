@@ -14,6 +14,8 @@ public class DynamicCamera : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
 
+    public TargetsList CurrentTargets => currentTargets;
+
     [SerializeField] private string playerTag = string.Empty;
 
     private void Awake()
@@ -28,7 +30,7 @@ public class DynamicCamera : MonoBehaviour
 
     private void Update()
     {
-        CleanUpTargetsList(); // Rimuove eventuali riferimenti nulli
+        CleanUpTargetsList(); // Rimuove eventuali riferimenti nulli e aggiorna i target
         UpdatePlayer();
     }
 
@@ -43,14 +45,9 @@ public class DynamicCamera : MonoBehaviour
     void MoveCamera()
     {
         Vector3 centerPoint = GetCenterPoint();
-
-        float requiredHeight = GetGreatestDistance() + padding;
-        requiredHeight = Mathf.Max(requiredHeight, minHeight);
-
+        float requiredHeight = Mathf.Max(GetGreatestDistance() + padding, minHeight);
         Vector3 newPosition = new Vector3(centerPoint.x, requiredHeight, centerPoint.z);
-
         transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
-
         transform.rotation = Quaternion.Euler(90f, 0f, 0f);
     }
 
@@ -74,7 +71,6 @@ public class DynamicCamera : MonoBehaviour
         return bounds.center;
     }
 
-
     float GetGreatestDistance()
     {
         if (currentTargets == null || currentTargets.Targets.Count == 0)
@@ -92,7 +88,6 @@ public class DynamicCamera : MonoBehaviour
         return Mathf.Max(bounds.size.x, bounds.size.z);
     }
 
-
     void UpdatePlayer()
     {
         var gos = GameObject.FindGameObjectsWithTag(playerTag);
@@ -109,20 +104,36 @@ public class DynamicCamera : MonoBehaviour
     public void UpdateTargets()
     {
         Vector3 massCenter = GetCenterPoint();
+        List<Transform> toRemove = new List<Transform>();
 
-        currentTargets.Targets.Clear();
+        foreach (Transform t in currentTargets.Targets)
+        {
+            if (t == null || Vector3.Distance(t.position, massCenter) > maxTargetDistance)
+            {
+                toRemove.Add(t);
+            }
+        }
+
+        foreach (Transform t in toRemove)
+        {
+            currentTargets.Remove(t);
+        }
 
         foreach (Transform t in allPotentialTargets)
         {
-            if (t != null && Vector3.Distance(t.position, massCenter) <= maxTargetDistance)
+            if (t != null && Vector3.Distance(t.position, massCenter) <= maxTargetDistance && !currentTargets.Targets.Contains(t))
             {
                 currentTargets.Add(t);
             }
         }
+
+        currentTargets.Targets.RemoveAll(target => target == null);
+
     }
 
     private void CleanUpTargetsList()
     {
+        UpdateTargets(); // Assicura che la lista dei target sia aggiornata
         allPotentialTargets.RemoveAll(target => target == null);
     }
 }
