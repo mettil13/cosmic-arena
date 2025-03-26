@@ -631,6 +631,7 @@ MonoBehaviour:
   characterMovementAesthetic: {fileID: 3131548115277091032}
   cursor: {fileID: 7887555330523908592}
   characterStats: {fileID: 11400000, guid: 56c501e4b97b4344296bb1796f5f8558, type: 2}
+  characterHealth: {fileID: 5877939188552368545}
   animator: {fileID: 5962664417861976440}
   fadeTime: 0.1
   rigidbody: {fileID: 6398568916899940659}
