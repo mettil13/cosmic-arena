@@ -18,7 +18,7 @@ namespace CharacterLogic
         public override void OnEntry()
         {
             base.OnEntry();
-            timer = new Timer(characterManager.characterStats.stunTime).AddCallBack(Expire);
+            timer = new Timer(duration).AddCallBack(Expire);
             characterManager.characterMovementAesthetic.Controlled = false;
             characterManager.animator.CrossFade("Stun", characterManager.fadeTime);
         }
