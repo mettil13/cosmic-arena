@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Scenes/TemplateArena.unity
     guid: 0fd64c5baf8d2a243ae9b6f571ac42fb
+  - enabled: 1
+    path: Assets/Game/Scenes/PersonalScenes/CreditsScene.unity
+    guid: 29fb8075586d7534b8989093ce132043
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
