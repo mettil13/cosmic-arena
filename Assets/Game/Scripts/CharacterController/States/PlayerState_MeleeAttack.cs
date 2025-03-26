@@ -13,6 +13,7 @@ namespace CharacterLogic
         [SerializeField] float attackAreaX = 0.5f, attackAreaY = 0.5f;
         [SerializeField] float attackOffsetX = 0.5f, attackOffsetY = 0f;
         [SerializeField] float damage = 1;
+        private Vector2 initialDirection = Vector2.zero;
 
         Timer timer;
 
@@ -26,13 +27,14 @@ namespace CharacterLogic
             base.OnEntry();
             cooldown.SetTimerTime(characterManager.characterStats.baseAttackCooldown);
             timer = new Timer(attackDuration).AddCallBack(Stop);
+            initialDirection = new Vector2(Input.LastValidDirection.x, Input.LastValidDirection.y);
         }
 
         public override void OnUpdate(ref float delta) {
             base.OnUpdate(ref delta);
             timer.Update(ref delta);
 
-            Vector3 inputDirection = new Vector3(Input.LastValidDirection.x, 0, Input.LastValidDirection.y);
+            Vector3 inputDirection = new Vector3(initialDirection.x, 0, initialDirection.y);
             Vector3 capsuleCheckHead = characterManager.transform.position + Quaternion.FromToRotation(Vector3.right, inputDirection) * new Vector3(attackOffsetX, 0, attackOffsetY + attackAreaY / 2); 
             Vector3 capsuleCheckTail = characterManager.transform.position + Quaternion.FromToRotation(Vector3.right, inputDirection) * new Vector3(attackOffsetX, 0, attackOffsetY - attackAreaY / 2); 
             Debug.DrawLine(capsuleCheckHead, characterManager.transform.position, Color.yellow, 1);
