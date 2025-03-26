@@ -9,6 +9,11 @@ namespace CharacterLogic
     {
         protected Timer timer;
 
+        public void SetTimerTime(float time)
+        {
+            duration = time;
+        }
+
         enum TimedModifierStackBehaviour
         {
             AddTime,

@@ -22,11 +22,12 @@ namespace CharacterLogic
         [SerializeField] PlayerThrustCooldown cooldown;
 
 
-        CommonLogic.Timer timer;
+        Timer timer;
         public override void OnEntry()
         {
             base.OnEntry();
-            AddForceInInputDirection(firstImpluse, firstImpulseMode);
+            cooldown.SetTimerTime(characterManager.characterStats.cooldownMovement);
+            AddForceInInputDirection(/*firstImpluse*/characterManager.characterStats.movementForce, firstImpulseMode);
             timer = new Timer(impulseDuration).AddCallBack(Stop);
             characterManager.characterMovementAesthetic.Controlled = false;
         }
@@ -94,8 +95,6 @@ namespace CharacterLogic
             timer.Stop();
             if (hasCooldown) stateMachine.AddModifier(cooldown);
         }
-
-
     }
 
 }

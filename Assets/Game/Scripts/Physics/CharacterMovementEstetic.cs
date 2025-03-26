@@ -48,7 +48,7 @@ namespace physics
             body.angularVelocity = Vector3.zero;
             Vector3 random = Random.insideUnitSphere * intensity / 1000;
             body.AddTorque(random);
-            Debug.LogError("random velocity : " + random + " intensity : " + intensity);
+            //Debug.LogError("random velocity : " + random + " intensity : " + intensity);
         }
         public void InvertTorque()
         {

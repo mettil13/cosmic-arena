@@ -628,9 +628,9 @@ MonoBehaviour:
       Entry: 8
       Data: 
   characterInputAdapter: {fileID: 6313938682468925596}
-  characterPhysics: {fileID: 0}
   characterMovementAesthetic: {fileID: 3131548115277091032}
   cursor: {fileID: 7887555330523908592}
+  characterStats: {fileID: 11400000, guid: 56c501e4b97b4344296bb1796f5f8558, type: 2}
   rigidbody: {fileID: 6398568916899940659}
 --- !u!114 &6313938682468925596
 MonoBehaviour:

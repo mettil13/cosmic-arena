@@ -35,11 +35,11 @@ public class ScriptableReader : MonoBehaviour
                                 break;
 
                             case 2:
-                                newCharacter.movementForce = Convert.ToInt32(p);
+                                newCharacter.movementForce = float.Parse(p);
                                 break;
 
                             case 3:
-                                newCharacter.cooldownMovement = Convert.ToInt32(p);
+                                newCharacter.cooldownMovement = float.Parse(p);
                                 break;
 
                             case 4:

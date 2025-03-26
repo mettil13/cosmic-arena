@@ -14,6 +14,7 @@ public class CharacterManager : SerializedMonoBehaviour
     [SerializeField] public Dictionary<GameObject, float> modifiers;
     [SerializeField] public CharacterMovementEstetic characterMovementAesthetic;
     [SerializeField] public Transform cursor;
+    [SerializeField] public CharacterSO characterStats;
 
     public new Rigidbody rigidbody;
 
