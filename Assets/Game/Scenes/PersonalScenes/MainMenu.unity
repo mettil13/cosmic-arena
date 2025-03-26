@@ -7139,6 +7139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 1795493316}
   mainMenu: {fileID: 766782278}
+  playerLobbyUI: {fileID: 367710960}
 --- !u!1 &1727766547
 GameObject:
   m_ObjectHideFlags: 0

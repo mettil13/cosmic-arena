@@ -5,9 +5,14 @@ public class MainMenuManager : MonoBehaviour
     //Object della UI
     public GameObject settingsMenu, mainMenu;
 
+    [SerializeField] PlayerLobbyUI playerLobbyUI;
+
     public void Awake()
     {
         settingsMenu.SetActive(false);
+
+        playerLobbyUI.SetEvent();
+
     }
     public void ActivateSettingsMenu()
     {

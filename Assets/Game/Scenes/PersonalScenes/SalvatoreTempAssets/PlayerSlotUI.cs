@@ -28,11 +28,11 @@ public class PlayerSlotUI : MonoBehaviour
 
         navigateAction = playerInput.actions["Navigate"];
         navigateAction.Enable();
-        navigateAction.performed += context => OnNavigateAction(context);
+        navigateAction.performed += OnNavigateAction;
 
         readyAction = playerInput.actions["Submit"];
         readyAction.Enable();
-        readyAction.performed += context => OnReadyAction(context);
+        readyAction.performed += OnReadyAction;
     }
 
     void OnNavigateAction(InputAction.CallbackContext context)
@@ -91,12 +91,17 @@ public class PlayerSlotUI : MonoBehaviour
 
     public void DeleteSlot()
     {
-        navigateAction.performed -= context => OnNavigateAction(context);
-        readyAction.performed -= context => OnReadyAction(context);
+        navigateAction.performed -= OnNavigateAction;
+        readyAction.performed -= OnReadyAction;
         navigateAction.Disable();
         readyAction.Disable();
         navigateAction = null;
         readyAction = null;
         Destroy(this.gameObject);
+    }
+
+    public void OnDestroy() {
+        navigateAction.performed -= OnNavigateAction;
+        readyAction.performed -= OnReadyAction;
     }
 }

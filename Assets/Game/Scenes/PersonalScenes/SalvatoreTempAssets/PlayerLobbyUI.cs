@@ -11,10 +11,11 @@ public class PlayerLobbyUI : MonoBehaviour
     [SerializeField] List<PlayerSlotUI> slotList = new List<PlayerSlotUI>();
     public CharactersListSO charactersDatas;
 
-    private void Awake() {
+    public void SetEvent() {
         DevicesManager.instance.OnPlayerJoinedGame += PlayerRegister;
         DevicesManager.instance.OnPlayerLeftGame += PlayerUnregister;
     }
+
     private void PlayerRegister(PlayerInput playerInput) {
         PlayerSlotUI newSlotUI = Instantiate(slotTemplate, this.transform);
         newSlotUI.playerInput = playerInput;
