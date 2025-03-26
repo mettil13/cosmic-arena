@@ -9,10 +9,16 @@ namespace CharacterLogic
     {
         Timer timer;
         [SerializeField] float duration;
+
+        public override void Init(CharacterManager characterManager)
+        {
+            base.Init(characterManager);
+            duration = characterManager.characterStats.stunTime;
+        }
         public override void OnEntry()
         {
             base.OnEntry();
-            timer = new Timer(duration).AddCallBack(Expire);
+            timer = new Timer(characterManager.characterStats.stunTime).AddCallBack(Expire);
             characterManager.characterMovementAesthetic.Controlled = false;
         }
 

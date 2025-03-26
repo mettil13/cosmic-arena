@@ -40,7 +40,7 @@ namespace CharacterLogic
         protected StateMachine<Player_State,Player_Status> stateMachine => characterManager.stateMachine;
 
 
-        public void Init(CharacterManager characterManager)
+        public virtual void Init(CharacterManager characterManager)
         {
             this.characterManager = characterManager;
         }

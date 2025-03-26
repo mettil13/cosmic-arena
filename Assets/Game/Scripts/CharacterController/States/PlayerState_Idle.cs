@@ -4,6 +4,7 @@ namespace CharacterLogic
     [CreateAssetMenu(fileName = "PlayerState_Idle", menuName = "Scriptable Objects/PlayerState/Idle")]
     public class PlayerState_Idle : APlayerState
     {
+
         public override void OnEntry()
         {
             base.OnEntry();

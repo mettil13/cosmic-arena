@@ -10,7 +10,6 @@ namespace StateMachine
         public abstract void OnLateUpdate();
         public abstract void OnSecondUpdate(ref float delta);
         public abstract void OnUpdate(ref float delta);
-
         public abstract void OnFixedUpdate();
 
     }

@@ -23,11 +23,17 @@ namespace CharacterLogic
 
 
         Timer timer;
+
+        public override void Init(CharacterManager characterManager)
+        {
+            base.Init(characterManager);
+            cooldown.SetTimerTime(characterManager.characterStats.cooldownMovement);
+            firstImpluse = characterManager.characterStats.movementForce;
+        }
         public override void OnEntry()
         {
             base.OnEntry();
-            cooldown.SetTimerTime(characterManager.characterStats.cooldownMovement);
-            AddForceInInputDirection(/*firstImpluse*/characterManager.characterStats.movementForce, firstImpulseMode);
+            AddForceInInputDirection(firstImpluse, firstImpulseMode);
             timer = new Timer(impulseDuration).AddCallBack(Stop);
             characterManager.characterMovementAesthetic.Controlled = false;
         }

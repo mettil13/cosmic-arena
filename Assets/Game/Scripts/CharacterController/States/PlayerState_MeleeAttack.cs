@@ -18,6 +18,8 @@ namespace CharacterLogic
         public override void OnEntry()
         {
             base.OnEntry();
+            damage = characterManager.characterStats.baseAttackDamage;
+            cooldown.SetTimerTime(characterManager.characterStats.baseAttackCooldown);
             timer = new Timer(attackDuration).AddCallBack(Stop);
         }
 
