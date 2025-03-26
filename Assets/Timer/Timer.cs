@@ -37,17 +37,17 @@ namespace CommonLogic
         public void Update(ref float dt)
         {
             if (!isRunning) return;
-            if (elapsedTime == 0) OnStart.Invoke();
+            if (elapsedTime == 0) OnStart?.Invoke();
             elapsedTime += dt;
             if (elapsedTime > duration) 
             { 
-                OnEnd.Invoke();
+                OnEnd?.Invoke();
                 isRunning = false;
             }
         }
 
         public void EndTimer() {
-            OnEnd.Invoke();
+            OnEnd?.Invoke();
             isRunning = false;
         }
 
