@@ -208,11 +208,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // Prende il massimo valore di HP
-        float maxHP = survivingPlayers.First().HP;
-
         // Trova tutti i giocatori con il massimo valore di HP
-        var topPlayers = survivingPlayers.Where(h => h.HP == maxHP).ToList();
+        var topPlayers = survivingPlayers.Where(h => h.HP > 0).ToList();
 
         // Aggiunge i topPlayers alla classifica
         foreach (var player in topPlayers)

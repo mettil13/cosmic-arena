@@ -61,6 +61,7 @@ public class Ranking : MonoBehaviour
             {
                 // Se anche gli HP sono uguali, manteniamo la stessa posizione
                 rankingByTime[i] = (rankingByTime[i].dieHour, rankingByTime[i].hp, rankingByTime[i].name, tiePosition);
+                tiePosition++;
             }
             else
             {
