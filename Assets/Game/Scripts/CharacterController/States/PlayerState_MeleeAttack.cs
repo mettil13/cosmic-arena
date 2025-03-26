@@ -25,9 +25,9 @@ namespace CharacterLogic
             base.OnUpdate(ref delta);
             timer.Update(ref delta);
 
-            Vector3 inputDirection = new Vector3(-Input.LastValidDirection.x, Input.LastValidDirection.y, 0);
-            Vector3 capsuleCheckHead = characterManager.transform.position + Quaternion.FromToRotation(Vector3.right, inputDirection) * new Vector3(attackOffsetX, attackOffsetY + attackAreaY / 2, 0); 
-            Vector3 capsuleCheckTail = characterManager.transform.position + Quaternion.FromToRotation(Vector3.right, inputDirection) * new Vector3(attackOffsetX, attackOffsetY - attackAreaY / 2, 0); 
+            Vector3 inputDirection = new Vector3(Input.LastValidDirection.x, 0, Input.LastValidDirection.y);
+            Vector3 capsuleCheckHead = characterManager.transform.position + Quaternion.FromToRotation(Vector3.right, inputDirection) * new Vector3(attackOffsetX, 0, attackOffsetY + attackAreaY / 2); 
+            Vector3 capsuleCheckTail = characterManager.transform.position + Quaternion.FromToRotation(Vector3.right, inputDirection) * new Vector3(attackOffsetX, 0, attackOffsetY - attackAreaY / 2); 
             Debug.DrawLine(capsuleCheckHead, characterManager.transform.position, Color.yellow, 1);
             Debug.DrawLine(capsuleCheckTail, characterManager.transform.position, Color.yellow, 1);
             Debug.DrawLine(capsuleCheckHead, capsuleCheckTail, Color.yellow, 1);
@@ -38,10 +38,11 @@ namespace CharacterLogic
                 //Debug.Log(overlappingColliders[0].name);
                 CharacterManager character = overlappingColliders[0].GetComponent<CharacterManager>();
                 CharacterHealth characterHealth = overlappingColliders[0].GetComponent<CharacterHealth>();
-                if(characterHealth != null) {
-                    characterHealth.TakeDamage(damage, characterManager.gameObject);
-                }
-                if(character != null) {
+                if(character != null && character != characterManager) {
+                    if(characterHealth != null) {
+                        characterHealth.TakeDamage(damage, characterManager.gameObject);
+                    }
+
                     character.stateMachine.ChangeState(Player_State.Stunned);
                 }
                 Stop();
