@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 1995637203436162018, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
       propertyPath: characterStats
       value: 
-      objectReference: {fileID: 11400000, guid: ff699459a57e27b469e8a3475c7fc568, type: 2}
+      objectReference: {fileID: 11400000, guid: 473ff4d46dd7ed047a66083458af4bf5, type: 2}
     - target: {fileID: 1995637203436162018, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
       propertyPath: serializationData.Prefab
       value: 

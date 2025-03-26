@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6647d9539de25345bbeb13f28592e7b, type: 3}
-  m_Name: ZapBot
+  m_Name: 1_Mr Marvelous
   m_EditorClassIdentifier: 
-  characterName: ZapBot
-  health: 100
+  characterName: Mr Marvelous
+  health: 125
   movementForce: 10
-  cooldownMovement: 1
-  baseAttackDamage: 5
-  baseAttackCooldown: 0.8
+  cooldownMovement: 1.5
+  baseAttackDamage: 7
+  baseAttackCooldown: 1.5
   stunTime: 0.5

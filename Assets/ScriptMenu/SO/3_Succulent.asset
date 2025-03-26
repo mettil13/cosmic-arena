@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6647d9539de25345bbeb13f28592e7b, type: 3}
-  m_Name: Succulent
+  m_Name: 3_Succulent
   m_EditorClassIdentifier: 
   characterName: Succulent
   health: 75
-  movementForce: 7
-  cooldownMovement: 3
+  movementForce: 14
+  cooldownMovement: 1.5
   baseAttackDamage: 7
   baseAttackCooldown: 1
   stunTime: 0.5

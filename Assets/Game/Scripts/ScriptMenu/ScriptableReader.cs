@@ -35,11 +35,13 @@ public class ScriptableReader : MonoBehaviour
                                 break;
 
                             case 2:
-                                newCharacter.movementForce = float.Parse(p);
+                                string f = p.Replace(".", ",");
+                                newCharacter.movementForce = float.Parse(f);
                                 break;
 
                             case 3:
-                                newCharacter.cooldownMovement = float.Parse(p);
+                                string a = p.Replace(".", ",");
+                                newCharacter.cooldownMovement = float.Parse(a);
                                 break;
 
                             case 4:
@@ -58,7 +60,7 @@ public class ScriptableReader : MonoBehaviour
                         }
                         j++;
                     }
-                    newCharacter.name = newCharacter.characterName;
+                    newCharacter.name = i + "_" + newCharacter.characterName;
                     Debug.Log(newCharacter.name);
                     AssetDatabase.CreateAsset(newCharacter, "Assets/ScriptMenu/SO/"+ newCharacter.name + ".asset");
                 }
