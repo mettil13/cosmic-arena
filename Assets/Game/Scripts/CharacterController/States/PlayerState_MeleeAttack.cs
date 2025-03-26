@@ -15,10 +15,15 @@ namespace CharacterLogic
         [SerializeField] float damage = 1;
 
         Timer timer;
+
+        public override void Init(CharacterManager characterManager)
+        {
+            base.Init(characterManager);
+            damage = characterManager.characterStats.baseAttackDamage;
+        }
         public override void OnEntry()
         {
             base.OnEntry();
-            damage = characterManager.characterStats.baseAttackDamage;
             cooldown.SetTimerTime(characterManager.characterStats.baseAttackCooldown);
             timer = new Timer(attackDuration).AddCallBack(Stop);
         }
