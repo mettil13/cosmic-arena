@@ -58,7 +58,7 @@ public class ScriptableReader : MonoBehaviour
                         }
                         j++;
                     }
-                    newCharacter.name = "Character" + i;
+                    newCharacter.name = newCharacter.characterName;
                     Debug.Log(newCharacter.name);
                     AssetDatabase.CreateAsset(newCharacter, "Assets/ScriptMenu/SO/"+ newCharacter.name + ".asset");
                 }
