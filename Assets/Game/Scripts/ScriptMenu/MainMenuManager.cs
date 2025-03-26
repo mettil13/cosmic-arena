@@ -5,6 +5,7 @@ public class MainMenuManager : MonoBehaviour
 {
     //Object della UI
     public GameObject settingsMenu, mainMenu;
+    public AudioClip buttonSFX;
 
     [SerializeField] PlayerLobbyUI playerLobbyUI;
 
@@ -35,5 +36,10 @@ public class MainMenuManager : MonoBehaviour
     public void CreditsScene()
     {
         SceneManager.LoadScene("CreditsScene");
+    }
+
+    public void PlayButtonSFXSound()
+    {
+        AudioManager.Instance.PlaySFX(buttonSFX);
     }
 }
