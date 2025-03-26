@@ -9,6 +9,7 @@ namespace CharacterLogic
         {
             base.OnEntry();
             characterManager.characterMovementAesthetic.Controlled = true;
+            characterManager.animator.CrossFade("Idle", characterManager.fadeTime);
         }
 
         public override void OnUpdate(ref float delta)

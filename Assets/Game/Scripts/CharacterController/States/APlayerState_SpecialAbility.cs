@@ -8,6 +8,7 @@ namespace CharacterLogic
 
         public override void OnEntry() {
             base.OnEntry();
+            characterManager.animator.CrossFade("SpecialAttack", characterManager.fadeTime);
         }
 
         public override void OnExit()

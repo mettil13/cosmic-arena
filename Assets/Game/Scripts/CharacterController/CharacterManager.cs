@@ -16,6 +16,9 @@ public class CharacterManager : SerializedMonoBehaviour
     [SerializeField] public Transform cursor;
     [SerializeField] public CharacterSO characterStats;
 
+    [SerializeField] public Animator animator;
+    [SerializeField] public float fadeTime;
+
     public new Rigidbody rigidbody;
 
     public int playerNumber;

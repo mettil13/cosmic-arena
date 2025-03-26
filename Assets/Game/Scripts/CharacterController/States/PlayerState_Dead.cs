@@ -14,6 +14,7 @@ namespace CharacterLogic
             base.OnEntry();
             timer = new Timer(deathDuration).AddCallBack(DestroySelf);
             characterManager.stateMachine.AddStatusModifier("None", 0);
+            characterManager.animator.CrossFade("Death", characterManager.fadeTime);
         }
 
         public override void OnUpdate(ref float delta) {

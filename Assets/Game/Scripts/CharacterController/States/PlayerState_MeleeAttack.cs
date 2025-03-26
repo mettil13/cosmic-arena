@@ -27,6 +27,7 @@ namespace CharacterLogic
             base.OnEntry();
             cooldown.SetTimerTime(characterManager.characterStats.baseAttackCooldown);
             timer = new Timer(attackDuration).AddCallBack(Stop);
+            characterManager.animator.CrossFade("Attack", characterManager.fadeTime);
             initialDirection = new Vector2(Input.LastValidDirection.x, Input.LastValidDirection.y);
         }
 

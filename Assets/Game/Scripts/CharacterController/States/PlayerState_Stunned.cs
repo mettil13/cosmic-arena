@@ -20,6 +20,7 @@ namespace CharacterLogic
             base.OnEntry();
             timer = new Timer(characterManager.characterStats.stunTime).AddCallBack(Expire);
             characterManager.characterMovementAesthetic.Controlled = false;
+            characterManager.animator.CrossFade("Stun", characterManager.fadeTime);
         }
 
         public override void OnUpdate(ref float delta) {
