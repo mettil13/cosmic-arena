@@ -384,3 +384,4 @@ MonoBehaviour:
   characterDisplay: {fileID: 7586661367786479774}
   playerName: {fileID: 6676624067719500205}
   isReadyUI: {fileID: 4831214537673132299}
+  selectCharacterSound: {fileID: 8300000, guid: a6cf1e353a37a3f4e9b8675bea958170, type: 3}

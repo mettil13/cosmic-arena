@@ -21,6 +21,8 @@ public class PlayerSlotUI : MonoBehaviour
     InputAction navigateAction;
     InputAction readyAction;
 
+    [SerializeField] AudioClip selectCharacterSound;
+
     public void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -67,6 +69,9 @@ public class PlayerSlotUI : MonoBehaviour
         isReady = !isReady;
         isReadyUI.SetActive(isReady);
         if (isReady) {
+
+            AudioManager.Instance.PlaySFX(selectCharacterSound);
+
             navigateAction?.Disable();
             playerLobbyUI.isReadyCheck();
         } else
