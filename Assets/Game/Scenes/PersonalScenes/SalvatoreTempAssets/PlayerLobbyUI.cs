@@ -55,4 +55,9 @@ public class PlayerLobbyUI : MonoBehaviour
         Debug.Log("CARICAMENTO SCENA");
         SceneManager.LoadScene("TemplateArena");
     }
+
+    private void OnDestroy() {
+        DevicesManager.instance.OnPlayerJoinedGame -= PlayerRegister;
+        DevicesManager.instance.OnPlayerLeftGame -= PlayerUnregister;
+    }
 }
