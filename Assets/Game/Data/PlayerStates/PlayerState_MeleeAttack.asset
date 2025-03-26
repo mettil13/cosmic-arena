@@ -17,7 +17,8 @@ MonoBehaviour:
     duration: 0
     removedStatus: 32
   attackDuration: 0.3
-  attackAreaX: 0.5
-  attackAreaY: 0.6
-  attackOffsetX: 1.5
+  attackAreaX: 1.5
+  attackAreaY: 2
+  attackOffsetX: 5
   attackOffsetY: 0
+  damage: 1
