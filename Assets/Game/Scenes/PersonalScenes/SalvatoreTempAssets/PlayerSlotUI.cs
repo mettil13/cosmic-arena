@@ -11,6 +11,8 @@ public class PlayerSlotUI : MonoBehaviour
     public PlayerLobbyUI playerLobbyUI;
     private RectTransform rectTransform;
 
+    [SerializeField] GameObject gamepad, mouse;
+
     private int chosenCharacterIndex = 0;
     public bool isReady = false;
 
@@ -35,6 +37,13 @@ public class PlayerSlotUI : MonoBehaviour
         readyAction = playerInput.actions["Submit"];
         readyAction.Enable();
         readyAction.performed += OnReadyAction;
+
+        InputDevice inputDevice = playerInput.devices[0];
+        if (inputDevice == null) return;
+        if (inputDevice is Mouse)
+            mouse.SetActive(true);
+        else if (inputDevice is Gamepad)
+            gamepad.SetActive(true);
     }
 
     void OnNavigateAction(InputAction.CallbackContext context)
