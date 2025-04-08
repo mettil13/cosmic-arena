@@ -42,6 +42,16 @@ public class DynamicCamera : MonoBehaviour
         MoveCamera();
     }
 
+    public void Init()
+    {
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Player");
+        CurrentTargets.Clear();
+        foreach (GameObject target in targets)
+        {
+            currentTargets.Add(target.transform);
+        }
+    }
+
     void MoveCamera()
     {
         Vector3 centerPoint = GetCenterPoint();

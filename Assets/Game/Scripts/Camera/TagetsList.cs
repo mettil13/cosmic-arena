@@ -12,6 +12,11 @@ public class TargetsList : ScriptableObject
         private set { targets = value; }
     }
 
+    public void Clear()
+    {
+        targets.Clear();
+    }
+
     public void Add(Transform t)
     {
         if (t != null && !targets.Contains(t))

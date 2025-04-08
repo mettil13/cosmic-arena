@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         pauseButton.enabled = false;
         PopulatePlayersAndHealth();
         StartCoroutine(StartCountdown());
+        DynamicCamera.Instance.Init();
         dieEvent.AddListener(() =>
         {
             if (playerObjects.Count > 0 && playerObjects[0] != null)
