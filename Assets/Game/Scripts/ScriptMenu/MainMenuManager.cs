@@ -11,6 +11,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void Awake()
     {
+        Time.timeScale = 1;
         settingsMenu.SetActive(false);
 
         playerLobbyUI.SetEvent();

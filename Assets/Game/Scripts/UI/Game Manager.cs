@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-    public void ExitToScene() => SceneManager.LoadScene(sceneToLoad);
+    public void ExitToScene(string sceneToLoad) => SceneManager.LoadScene(sceneToLoad);
 
     void PopulatePlayersAndHealth()
     {
