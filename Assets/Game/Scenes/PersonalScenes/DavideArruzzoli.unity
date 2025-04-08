@@ -1364,7 +1364,7 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 0, y: 0, z: -5}
+      - m_Value: {x: 5, y: 0, z: 20}
         m_Name: TargetDistanceVector
         m_Overridden: 1
     m_Vector4f:

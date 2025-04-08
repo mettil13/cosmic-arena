@@ -150,7 +150,28 @@ namespace GOAP
 
         private void Update()
         {
-            if(currentAction == null)
+
+
+            if (actionPlan != null && currentAction != null)
+            {
+                currentAction.Update(Time.deltaTime);
+
+                if (currentAction.Complete)
+                {
+                    Debug.Log($"{currentAction.Name} complete");
+                    currentAction.Stop();
+
+                    if (actionPlan.Actions.Count == 0)
+                    {
+                        Debug.Log("PlanComplete");
+                        lastGoal = currentGoal;
+                        currentGoal = null;
+                    }
+                }
+            }
+
+
+            if (currentAction == null)
             {
                 Debug.Log("Calculating any potential plan");
                 CalculatePlan();
@@ -167,23 +188,7 @@ namespace GOAP
                 }
             }
 
-            if(actionPlan != null && currentAction != null)
-            {
-                currentAction.Update(Time.deltaTime);
 
-                if (currentAction.Complete)
-                {
-                    Debug.Log($"{currentAction.Name} complete");
-                    currentAction.Stop();
-
-                    if(actionPlan.Actions.Count == 0)
-                    {
-                        Debug.Log("PlanComplete");
-                        lastGoal = currentGoal;
-                        currentGoal = null;
-                    }
-                }
-            }
         }
 
         private void CalculatePlan()

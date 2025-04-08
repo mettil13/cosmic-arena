@@ -47,9 +47,18 @@
             Vector3 randomDirecition = Random.insideUnitSphere;
             characterManager.characterInputAdapter.Thrust = 1;
             characterManager.characterInputAdapter.Direction = randomDirecition;
-
         }
 
+        public void Update(float deltaT)
+        {
+            Complete = true;
+        }
+
+        public void Stop()
+        {
+            characterManager.characterInputAdapter.Thrust = 0;
+            characterManager.characterInputAdapter.Direction = Vector2.zero;
+        }
 
     }
 
@@ -118,9 +127,19 @@
 
             Vector3 dir = playerLocationBelief.Location - characterManager.transform.position;
             characterManager.characterInputAdapter.Direction = new Vector2(dir.x, dir.z);
+        }
 
 
+        public void Update(float deltaT)
+        {
+            Complete = true;
+        }
 
+
+        public void Stop()
+        {
+            characterManager.characterInputAdapter.Attack = 0;
+            characterManager.characterInputAdapter.Direction = Vector2.zero;
         }
 
 
