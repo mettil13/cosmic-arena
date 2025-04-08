@@ -47,7 +47,15 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) dieEvent.Invoke();
+        if (Input.GetKeyDown(KeyCode.K)) dieEvent.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+                ResumeGame();
+            else
+                PauseGame();
+        }
 
         if (!gameStarted || gameEnded || isPaused) return;
 
@@ -168,12 +176,14 @@ public class GameManager : MonoBehaviour
     {
         isPaused = true;
         pausePanel?.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void ResumeGame()
     {
         isPaused = false;
         pausePanel?.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
