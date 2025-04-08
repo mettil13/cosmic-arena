@@ -40,7 +40,7 @@ public class PlayerSlotUI : MonoBehaviour
 
         InputDevice inputDevice = playerInput.devices[0];
         if (inputDevice == null) return;
-        if (inputDevice is Mouse)
+        if (inputDevice is Keyboard)
             mouse.SetActive(true);
         else if (inputDevice is Gamepad)
             gamepad.SetActive(true);
