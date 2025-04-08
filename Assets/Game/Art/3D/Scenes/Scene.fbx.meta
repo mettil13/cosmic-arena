@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: df500b177aa029d47a55e58c3f741931
+guid: 1266c881dad71f840b5fda02c1653138
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GriGioBase
+    second: {fileID: 2100000, guid: 0389a1b70ba1e3548af80c31ad3a5db2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GriGioBordoInferiore
+    second: {fileID: 2100000, guid: be5cf935b19ad9341a1dfcb04dcfbf65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GriGioOutline
+    second: {fileID: 2100000, guid: eaf5d9e937482664cb3994c2483bd850, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
