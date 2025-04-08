@@ -11,12 +11,21 @@ public class PlayerLobbyUI : MonoBehaviour
     [SerializeField] List<PlayerSlotUI> slotList = new List<PlayerSlotUI>();
     public CharactersListSO charactersDatas;
 
+    private void Start() {
+        foreach (PlayerInput playerInput in DevicesManager.instance.playerArray) {
+            if (playerInput == null) continue;
+            PlayerRegister(playerInput);
+        }
+    }
     public void SetEvent() {
         DevicesManager.instance.OnPlayerJoinedGame += PlayerRegister;
         DevicesManager.instance.OnPlayerLeftGame += PlayerUnregister;
     }
 
     private void PlayerRegister(PlayerInput playerInput) {
+        foreach (PlayerSlotUI slot in slotList) {
+            if (slot.playerInput == playerInput) return;
+        }
         PlayerSlotUI newSlotUI = Instantiate(slotTemplate, this.transform);
         newSlotUI.playerInput = playerInput;
         newSlotUI.playerManager = playerInput.GetComponent<PlayerManager>();
