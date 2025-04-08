@@ -36,7 +36,7 @@ public class CharacterManager : SerializedMonoBehaviour
             newState.Init(this);
         }
         stateMachine.states = newStates;
-        characterHealth.HP = characterStats.health;
+        characterHealth.InitHp(characterStats.health);
 
         //GameManager.Instance.OnCharacterJoin(gameObject);
     }

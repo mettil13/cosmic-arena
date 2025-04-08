@@ -108,8 +108,10 @@ public class GameManager : MonoBehaviour
         UpdateTimerDisplay();
     }
 
-    int RemainingCharacters() =>
-        characterHealthList.Count(h => h != null && h.HP > 0);
+    int RemainingCharacters() {
+        return characterHealthList.Count(h => h != null && h.HP > 0);
+    }
+
 
     CharacterHealth DetermineWinnerByHealth() =>
         characterHealthList.Where(h => h != null && h.HP > 0)
@@ -147,8 +149,7 @@ public class GameManager : MonoBehaviour
         var health = character.GetComponent<CharacterHealth>();
         if (health != null) health.HP = 0;
 
-        characterHealthList[0].TakeDamage(1000, new());
-        characterHealthList.RemoveAt(0);
+        characterHealthList.Remove(health);
 
         if (!gameEnded &&
             characterHealthList.Count() <= 4 &&

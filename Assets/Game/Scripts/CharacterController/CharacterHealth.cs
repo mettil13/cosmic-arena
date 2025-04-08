@@ -37,4 +37,9 @@ public class CharacterHealth : MonoBehaviour, IDamageable
             characterManager.Die();
         }
     }
+
+    public void InitHp(int maxHP) {
+        this.maxHP = maxHP;
+        hp = maxHP;
+    }
 }
