@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using System.Linq;
 
 namespace GOAP
@@ -31,12 +32,17 @@ namespace GOAP
                     Stack<AgentAction> actionStack = new();
                     while(goalNode.Leaves.Count > 0)
                     {
-                        var cheapestLeafNode = goalNode.Leaves.OrderBy(leaf => leaf.Cost);
+                        var cheapestLeaf = goalNode.Leaves.OrderBy(leaf => leaf.Cost).First();
+                        goalNode = cheapestLeaf;
+                        actionStack.Push(cheapestLeaf.Action);
                     }
+                    return new ActionPlan(goal, actionStack, goalNode.Cost);
                 }
             }
 
+            Debug.Log("Plan not found");
             return null;
+
         }
 
         private bool FindPath(Node parent, HashSet<AgentAction> actions)

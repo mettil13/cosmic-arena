@@ -1,5 +1,6 @@
 ﻿namespace GOAP
 {
+    using CharacterLogic;
     using CommonLogic;
     using UnityEngine;
 
@@ -43,12 +44,10 @@
 
         public void Start()
         {
-            for(int i = 0; i < 5; i++)
-            {
-                Vector3 randomDirecition = (Random.insideUnitCircle * wanderRadius);
+            Vector3 randomDirecition = Random.insideUnitSphere;
+            characterManager.characterInputAdapter.Thrust = 1;
+            characterManager.characterInputAdapter.Direction = randomDirecition;
 
-                
-            }
         }
 
 
@@ -69,12 +68,61 @@
             timer.OnEnd += () => Complete = true;
         }
 
-        public void Start()
+        public void Update(float deltaT) => timer.Update(ref deltaT);
+
+    }
+
+    public class WaitForCooldown : IActionStrategy
+    {
+        public bool CanPerform => true;
+
+        public bool Complete { get; private set; }
+
+        CharacterManager characterManager;
+        Player_Status statusToWaitFor;
+
+        public WaitForCooldown(CharacterManager characterManager, Player_Status statusToWaitFor)
         {
-            
+            Complete = false;
+            this.characterManager = characterManager;
+            this.statusToWaitFor = statusToWaitFor;
         }
 
-        public void Update(float deltaT) => timer.Update(ref deltaT);
+        public void Update(float deltaT)
+        {
+            if (characterManager.stateMachine.Status.HasFlag(statusToWaitFor)) 
+                Complete = true;
+        }
+
+    }
+
+    public class AttackTargetStrategy : IActionStrategy
+    {
+        public bool CanPerform => true;
+
+        public bool Complete { get; private set; }
+
+        readonly CharacterManager characterManager;
+        Belief playerLocationBelief;
+
+
+        public AttackTargetStrategy(CharacterManager characterManager, Belief targetLocationBelief)
+        {
+            this.characterManager = characterManager;
+            this.playerLocationBelief = targetLocationBelief;
+        }
+
+        public void Start()
+        {
+            characterManager.characterInputAdapter.Attack = 1;
+
+            Vector3 dir = playerLocationBelief.Location - characterManager.transform.position;
+            characterManager.characterInputAdapter.Direction = new Vector2(dir.x, dir.z);
+
+
+
+        }
+
 
     }
 }

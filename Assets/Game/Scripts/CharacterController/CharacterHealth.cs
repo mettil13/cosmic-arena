@@ -7,7 +7,7 @@ public class CharacterHealth : MonoBehaviour, IDamageable
 {
     [SerializeField]private float hp;
     public UnityEvent<float> HPChanged = new UnityEvent<float>();
-    [SerializeField]private float maxHP;
+    [SerializeField] public float maxHP { get; private set; }
     CharacterManager characterManager;
     public float HP 
     {

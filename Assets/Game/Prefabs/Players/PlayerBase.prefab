@@ -441,7 +441,6 @@ MonoBehaviour:
   HPChanged:
     m_PersistentCalls:
       m_Calls: []
-  maxHP: 10
 --- !u!114 &1995637203436162018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,6 +462,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 09b6224a486dc904899e2d8c4fa2b9cb, type: 2}
     - {fileID: 11400000, guid: 05d8852f8998ed14eb5ea2d6c7b1bc8b, type: 2}
     - {fileID: 11400000, guid: 9a089cbf07ed09343bac9b79a7c04bc6, type: 2}
+    - {fileID: 11400000, guid: cd89fe9cdff63ef419112b7687e3773b, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -491,7 +491,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 7
       Data: 
@@ -549,6 +549,18 @@ MonoBehaviour:
     - Name: $v
       Entry: 10
       Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
