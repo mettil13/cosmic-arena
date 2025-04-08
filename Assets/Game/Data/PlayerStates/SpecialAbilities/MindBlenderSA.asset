@@ -14,12 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown:
     stackBehaviour: 0
-    duration: 0
-    removedStatus: 16
-  cooldown:
-    stackBehaviour: 0
-    duration: 15
+    duration: 1
     removedStatus: 16
   radius: 20
-  prefabVFX: {fileID: 0}
-  copyMindBlenderSA: {fileID: 0}
+  copyMindBlenderSA: {fileID: 11400000, guid: 4bce4b380bed27245978d5c9459f60ae, type: 2}

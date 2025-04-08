@@ -11,6 +11,9 @@ namespace CharacterLogic
 
         [SerializeField] Player_Status removedStatus = Player_Status.CanSpecialAbility;
 
+        public PlayerSpecialAbilityCooldown(float duration) : base(duration) {
+        }
+
         public override void OnEntry(StateMachine<Player_State, Player_Status> stateMachine)
         {
             base.OnEntry(stateMachine);

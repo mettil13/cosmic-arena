@@ -14,12 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown:
     stackBehaviour: 0
-    duration: 0
+    duration: 1
     removedStatus: 16
-  cooldown:
-    stackBehaviour: 0
-    duration: 0
-    removedStatus: 16
-  prefabVFX: {fileID: 0}
+  prefabVFX: {fileID: 6189113147540642340, guid: ba81e42f670ac8f40b156f50387b8d7f, type: 3}
   damage: 9
   radius: 3

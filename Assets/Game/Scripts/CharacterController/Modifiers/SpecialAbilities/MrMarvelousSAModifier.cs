@@ -8,7 +8,7 @@ public class MrMarvelousSAModifier : APlayerTimedModifier {
     private float radius;
     private List<CharacterManager> lastHitted = new List<CharacterManager>();
     private GameObject prefabVFX, VFX;
-    public MrMarvelousSAModifier(CharacterManager characterManager, float radius, GameObject prefabVFX) {
+    public MrMarvelousSAModifier(float duration, CharacterManager characterManager, float radius, GameObject prefabVFX) : base(duration){
         this.characterManager = characterManager;
         this.radius = radius;
         this.prefabVFX = prefabVFX;
@@ -27,7 +27,7 @@ public class MrMarvelousSAModifier : APlayerTimedModifier {
                 hitted.Add(hittedCharacterManager);
 
                 Vector2 direction = new Vector2(hit.transform.position.x - characterManager.transform.position.x, hit.transform.position.z - characterManager.transform.position.z).normalized;
-                hittedCharacterManager.stateMachine.AddModifier(new CharmedModifier(hittedCharacterManager, direction));
+                hittedCharacterManager.stateMachine.AddModifier(new CharmedModifier(1, hittedCharacterManager, direction));
             }
         }
         foreach(CharacterManager characterManager in lastHitted) {

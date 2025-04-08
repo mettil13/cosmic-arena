@@ -11,7 +11,7 @@ public class DamageModifier : APlayerTimedModifier {
 
     public override string Name => "Damage";
 
-    public DamageModifier(CharacterManager characterManager, float damage) {
+    public DamageModifier(float duration, CharacterManager characterManager, float damage) : base(duration) {
         this.characterManager = characterManager;
         this.damage = damage;
     }

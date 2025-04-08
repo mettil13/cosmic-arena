@@ -76,7 +76,7 @@ Shader "Unlit/Fresnel"
                 float fresnel;
                 SG_Fresnel(i.normal, i.wPos, _FresnelPower, fresnel);
 
-                return lerp(_SecondaryColor, _PrimaryColor, fresnel);
+                return lerp(_SecondaryColor * 2, _PrimaryColor * 2, fresnel);
             }
             ENDHLSL
         }

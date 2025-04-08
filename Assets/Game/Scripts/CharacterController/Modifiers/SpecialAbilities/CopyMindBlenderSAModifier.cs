@@ -12,7 +12,7 @@ public class CopyMindBlenderSAModifier : APlayerTimedModifier {
 
     public override string Name => "Teleport";
 
-    public CopyMindBlenderSAModifier(CharacterManager characterManager, float radius, float damage, GameObject prefabVFX) {
+    public CopyMindBlenderSAModifier(float duration, CharacterManager characterManager, float radius, float damage, GameObject prefabVFX) : base(duration){
         this.characterManager = characterManager;
         this.prefabVFX = prefabVFX;
         this.damage = damage;
@@ -48,7 +48,7 @@ public class CopyMindBlenderSAModifier : APlayerTimedModifier {
 
         if((characterManager.transform.position - enemyHitted.transform.position).magnitude < 0.1) {
 
-            enemyHitted.stateMachine.AddModifier(new DamageModifier(enemyHitted, damage));
+            enemyHitted.stateMachine.AddModifier(new DamageModifier(1, enemyHitted, damage));
             timer.EndTimer();
 
         }

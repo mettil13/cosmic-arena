@@ -10,7 +10,7 @@ public class SucculentSAModifier : APlayerTimedModifier {
     private float minDistance;
     private GameObject prefabVFX, VFX;
     private CharacterManager enemyHitted;
-    public SucculentSAModifier(CharacterManager characterManager, float damage, GameObject prefabVFX) {
+    public SucculentSAModifier(float duration, CharacterManager characterManager, float damage, GameObject prefabVFX) : base(duration){
         this.characterManager = characterManager;
         this.damage = damage;
         this.prefabVFX = prefabVFX;
@@ -36,7 +36,7 @@ public class SucculentSAModifier : APlayerTimedModifier {
 
         if (enemyHitted == null) return;
         
-        enemyHitted.stateMachine.AddModifier(new DamageModifier(enemyHitted, damage));
+        enemyHitted.stateMachine.AddModifier(new DamageModifier(1, enemyHitted, damage));
 
         VFX = Object.Instantiate(prefabVFX, characterManager.transform.position, Quaternion.identity);
     }

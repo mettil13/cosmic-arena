@@ -8,7 +8,7 @@ public class CharmedModifier : APlayerTimedModifier {
 
     public override string Name => "Charmed";
 
-    public CharmedModifier(CharacterManager characterManager, Vector2 direction) {
+    public CharmedModifier(float duration, CharacterManager characterManager, Vector2 direction) : base(duration){
         this.characterManager = characterManager;
         this.direction = direction;
     }

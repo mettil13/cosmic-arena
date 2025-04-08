@@ -14,11 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown:
     stackBehaviour: 0
-    duration: 0
-    removedStatus: 16
-  cooldown:
-    stackBehaviour: 0
-    duration: 5
+    duration: 1
     removedStatus: 16
   radius: 5
   prefabVFX: {fileID: 0}

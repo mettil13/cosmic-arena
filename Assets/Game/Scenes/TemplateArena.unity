@@ -869,8 +869,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6313938682468925596, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6398568916899940659, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
       propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855777202140732439, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -91,7 +91,7 @@ public class CharacterInputAdapter : MonoBehaviour
     }
     public void OnSpecialAbility(InputAction.CallbackContext context)
     {
-        attack = context.action.ReadValue<float>();
+        specialAbility = context.action.ReadValue<float>();
     }
 
 

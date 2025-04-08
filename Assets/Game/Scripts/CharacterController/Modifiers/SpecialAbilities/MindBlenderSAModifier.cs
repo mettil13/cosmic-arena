@@ -1,5 +1,4 @@
 using CharacterLogic;
-using NUnit.Framework;
 using StateMachine;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +6,12 @@ using UnityEngine;
 public class MindBlenderSAModifier : APlayerTimedModifier {
     private CharacterManager characterManager;
     private CopyMindBlenderSA copyMindBlenderSA;
-    private GameObject VFX;
 
     public override string Name => "MindBlenderSAModifier";
 
-    public MindBlenderSAModifier(CharacterManager characterManager, GameObject prefabVFX, CopyMindBlenderSA copyMindBlenderSA) {
+    public MindBlenderSAModifier(float duration, CharacterManager characterManager, CopyMindBlenderSA copyMindBlenderSA) : base(duration){
         this.characterManager = characterManager;
-        this.VFX = prefabVFX;
+        this.copyMindBlenderSA = copyMindBlenderSA;
     }
     public override void OnEntry(StateMachine<Player_State, Player_Status> stateMachine) {
         base.OnEntry(stateMachine);

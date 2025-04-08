@@ -23,6 +23,10 @@ namespace CharacterLogic
         [SerializeField] TimedModifierStackBehaviour stackBehaviour;
         [SerializeField] float duration;
 
+        protected APlayerTimedModifier(float duration) {
+            this.duration = duration;
+        }
+
         public float Duration { get => duration; }
 
         public override void OnEntry(StateMachine<Player_State, Player_Status> stateMachine)

@@ -14,12 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown:
     stackBehaviour: 0
-    duration: 0
+    duration: 1
     removedStatus: 16
-  cooldown:
-    stackBehaviour: 0
-    duration: 2
-    removedStatus: 16
-  distance: 6
-  prefabVFXenter: {fileID: 0}
-  prefabVFXexit: {fileID: 0}
+  distance: 30
+  prefabVFXenter: {fileID: 7900928715344657251, guid: 7b331d59090f36244a4b3993390e5b87, type: 3}
