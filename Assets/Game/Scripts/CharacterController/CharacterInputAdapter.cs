@@ -94,5 +94,10 @@ public class CharacterInputAdapter : MonoBehaviour
         specialAbility = context.action.ReadValue<float>();
     }
 
-
+    public void OnPauseInput(InputAction.CallbackContext context)
+    {
+        
+        //Debug.LogError(context.ReadValueAsButton());
+        if (context.performed) GameManager.Instance.ChangePause();
+    }
 }

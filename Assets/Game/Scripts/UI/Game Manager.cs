@@ -49,14 +49,6 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K)) dieEvent.Invoke();
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-                ResumeGame();
-            else
-                PauseGame();
-        }
-
         if (!gameStarted || gameEnded || isPaused) return;
 
         if (gameTimer > 0)
@@ -188,6 +180,15 @@ public class GameManager : MonoBehaviour
         changeModeFirstTime = true;
         gameTimer = Mathf.Max(0, gameTimer - amount);
         UpdateTimerDisplay();
+    }
+
+    public void ChangePause()
+    {
+        Debug.Log("is paused : " + isPaused);
+        if (isPaused)
+            ResumeGame();
+        else
+            PauseGame();
     }
 
     public void PauseGame()
