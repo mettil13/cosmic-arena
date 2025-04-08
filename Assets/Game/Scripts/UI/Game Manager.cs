@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
 
         if (RemainingCharacters() <= 1)
         {
+            DetermineFinalRanking();
             EndGame(DetermineLastStanding());
         }
 
@@ -127,7 +128,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndGame_CR(CharacterHealth winner)
     {
-        //Debug.Log("Game ended, character health list count : " + characterHealthList.Count);
 
         gameEnded = true;
 
@@ -233,8 +233,6 @@ public class GameManager : MonoBehaviour
             .Where(h => h != null && h.HP > 0)
             .OrderByDescending(h => h.HP)
             .ToList();
-
-        Debug.Log("DetermineFinalRanking " + survivingPlayers.Count);
 
         if (survivingPlayers.Count == 0)
         {
