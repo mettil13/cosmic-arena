@@ -5,28 +5,30 @@ using UnityEngine;
 
 public class MindBlenderSAModifier : APlayerTimedModifier {
     private CharacterManager characterManager;
-    private CopyMindBlenderSA copyMindBlenderSA;
+    private MindBlenderCopy mindBlenderCopy;
+    private float damage, radius, copyDuration;
+    private int copiesSpawned, maxNumberOfCopies;
 
     public override string Name => "MindBlenderSAModifier";
 
-    public MindBlenderSAModifier(float duration, CharacterManager characterManager, CopyMindBlenderSA copyMindBlenderSA) : base(duration){
+    public MindBlenderSAModifier(float duration, CharacterManager characterManager, MindBlenderCopy mindBlenderCopy, float damage, float radius, float copyDuration, int maxNumberOfCopies) : base(duration){
         this.characterManager = characterManager;
-        this.copyMindBlenderSA = copyMindBlenderSA;
+        this.mindBlenderCopy = mindBlenderCopy;
+        this.damage = damage;
+        this.radius = radius;
+        this.copyDuration = copyDuration;
+        this.maxNumberOfCopies = maxNumberOfCopies;
     }
     public override void OnEntry(StateMachine<Player_State, Player_Status> stateMachine) {
-        base.OnEntry(stateMachine);
-        List<CharacterManager> copies = new List<CharacterManager> { };
-        int maxNumberOfCopies = 4;
-        int copiesSpawned = 0;
-        if (timer.ElapsedTime % 0.5 < 0.1) {
-            if(copiesSpawned < maxNumberOfCopies) {
-                copies.Add(Object.Instantiate(characterManager, characterManager.transform.position, characterManager.transform.rotation));
-                copiesSpawned++;
-            }
-        }
-        foreach(CharacterManager copy in copies) {            
-            copy.stateMachine.states[Player_State.SpecialAbility] = copyMindBlenderSA;
-            copy.stateMachine.ChangeState(Player_State.SpecialAbility);
+        base.OnEntry(stateMachine);        
+    }
+    public override void OnFixedUpdate() {
+        base.OnFixedUpdate();
+        Debug.Log(timer.ElapsedTime);
+        if (timer.ElapsedTime > copiesSpawned && copiesSpawned < maxNumberOfCopies) {
+            MindBlenderCopy instancedMindBlender = Object.Instantiate(mindBlenderCopy, characterManager.transform.position, characterManager.transform.rotation);
+            instancedMindBlender.SetupCopy(characterManager, damage, radius, copyDuration);
+            copiesSpawned++;
         }
     }
 

@@ -34,6 +34,8 @@ public class PlayerManager : MonoBehaviour
 
         Debug.Log("SpawnCharacter");
         playerCharacter = Instantiate(characterPrefab, spawnPoint);
+        playerCharacter.stateMachine.states = characterPrefab.stateMachine.states;
+        playerCharacter.Init();
         DevicesManager.instance.characterList.Add(playerCharacter);
         playerCharacter.manager = this;
         playerCharacter.characterInputAdapter = this.GetComponent<CharacterInputAdapter>();

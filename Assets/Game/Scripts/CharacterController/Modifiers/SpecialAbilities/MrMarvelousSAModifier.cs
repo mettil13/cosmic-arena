@@ -17,20 +17,20 @@ public class MrMarvelousSAModifier : APlayerTimedModifier {
 
     public override void OnEntry(StateMachine<Player_State, Player_Status> stateMachine) {
         base.OnEntry(stateMachine);
-        VFX = Object.Instantiate(prefabVFX, characterManager.transform.position, Quaternion.identity);
+        VFX = Object.Instantiate(prefabVFX, characterManager.transform.position, prefabVFX.transform.rotation);
     }
     public override void OnFixedUpdate() {
         base.OnFixedUpdate();
         List<CharacterManager> hitted = new List<CharacterManager>();
-        foreach(Collider hit in Physics.OverlapSphere(characterManager.transform.position, radius, characterManager.gameObject.layer)) {
-            if(hit.TryGetComponent(out CharacterManager hittedCharacterManager) && characterManager != hittedCharacterManager) {
+        foreach (Collider hit in Physics.OverlapSphere(characterManager.transform.position, radius, characterManager.gameObject.layer)) {
+            if (hit.TryGetComponent(out CharacterManager hittedCharacterManager) && characterManager != hittedCharacterManager) {
                 hitted.Add(hittedCharacterManager);
 
                 Vector2 direction = new Vector2(hit.transform.position.x - characterManager.transform.position.x, hit.transform.position.z - characterManager.transform.position.z).normalized;
                 hittedCharacterManager.stateMachine.AddModifier(new CharmedModifier(1, hittedCharacterManager, direction));
             }
         }
-        foreach(CharacterManager characterManager in lastHitted) {
+        foreach (CharacterManager characterManager in lastHitted) {
             if (!hitted.Contains(characterManager)) {
                 characterManager.stateMachine.RemoveModifier("Charm");
             }

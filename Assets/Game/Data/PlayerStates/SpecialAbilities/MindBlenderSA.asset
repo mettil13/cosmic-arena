@@ -18,3 +18,4 @@ MonoBehaviour:
     removedStatus: 16
   radius: 20
   copyMindBlenderSA: {fileID: 11400000, guid: 4bce4b380bed27245978d5c9459f60ae, type: 2}
+  material: {fileID: 2100000, guid: 2dc6fcc0bf610b64faa35d43007dd392, type: 2}

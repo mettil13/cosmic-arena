@@ -22,12 +22,26 @@ PrefabInstance:
       objectReference: {fileID: 1995637203436162018, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
     - target: {fileID: 1995637203436162018, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995637203436162018, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
+      propertyPath: 'serializationData.PrefabModifications.Array.data[0]'
+      value: '"path":"stateMachine.states","add_keys":{"$id":0,"$type":"System.Object[],
+        mscorlib","$rlength":1,"$rcontent":[{"$id":1,"$type":"CharacterLogic.Player_State,
+        Assembly-CSharp",4}]},"remove_keys":null'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995637203436162018, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
+      propertyPath: 'serializationData.PrefabModifications.Array.data[1]'
+      value: '"path":"stateMachine.states.{4es}","value":$eref:0'
       objectReference: {fileID: 0}
     - target: {fileID: 1995637203436162018, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1995637203436162018, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
+      propertyPath: 'serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b343573051e3fe4a97ed494c1928fd7, type: 2}
     - target: {fileID: 3499406317978869831, guid: 20e6cba485abbf6448c2a435a0f16ee2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

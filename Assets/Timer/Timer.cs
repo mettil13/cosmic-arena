@@ -45,6 +45,15 @@ namespace CommonLogic
                 isRunning = false;
             }
         }
+        public void Update( float dt) {
+            if (!isRunning) return;
+            if (elapsedTime == 0) OnStart?.Invoke();
+            elapsedTime += dt;
+            if (elapsedTime > duration) {
+                OnEnd?.Invoke();
+                isRunning = false;
+            }
+        }
 
         public void EndTimer() {
             OnEnd?.Invoke();
