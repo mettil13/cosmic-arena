@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
             DetermineFinalRanking();
         }
 
-        if (RemainingCharacters() == 1)
+        if (RemainingCharacters() <= 1)
         {
             EndGame(DetermineLastStanding());
         }
@@ -121,6 +121,8 @@ public class GameManager : MonoBehaviour
 
     void EndGame(CharacterHealth winner)
     {
+        //Debug.Log("Game ended, character health list count : " + characterHealthList.Count);
+
         gameEnded = true;
         ShowVictoryPanel(winner);
 
@@ -156,14 +158,22 @@ public class GameManager : MonoBehaviour
             ReduceTimer(reduceTime);
         }
 
-        if (!gameEnded && RemainingCharacters() == 1) EndGame(DetermineLastStanding());
-
         if (!gameEnded)
         {
-            ReduceTimer(30f);
-            if (RemainingCharacters() == 1) EndGame(DetermineLastStanding());
+            if (RemainingCharacters() <= 1) EndGame(DetermineLastStanding());
+            else ReduceTimer(30f);
         }
     }
+    
+    //public void OnCharacterJoin(GameObject character)
+    //{
+    //    if (character == null) return;
+    //    var characterHealth = character.GetComponent<CharacterHealth>();
+    //    if (characterHealth.HP <= 0)
+    //        return;
+
+    //    characterHealthList.Add(characterHealth);
+    //}
 
     void ReduceTimer(float amount)
     {
