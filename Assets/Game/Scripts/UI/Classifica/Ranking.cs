@@ -53,6 +53,7 @@ public class Ranking : MonoBehaviour
 
         for (int i = 0; i < rankingByTime.Count; i++)
         {
+            Debug.Log("RANKING: " + rankingByTime[i]);
             bool condition = i > 0 &&
                     rankingByTime[i].dieHour == rankingByTime[i - 1].dieHour &&
                     rankingByTime[i].hp == rankingByTime[i - 1].hp;
