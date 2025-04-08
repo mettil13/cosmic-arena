@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d268b37f5ce28f24d8a08c0e89beae88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactersDatas: {fileID: 11400000, guid: 8bf71c1573cf58147b6b32ee9bb8bf82, type: 2}
   playerArray:
   - {fileID: 0}
   - {fileID: 0}
@@ -89,7 +88,7 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 44d51688-04f7-4182-937b-33d4cf81ecb4
-      m_Path: <Keyboard>/escape
+      m_Path: <Keyboard>/delete
       m_Interactions: 
       m_Processors: 
       m_Groups: 
