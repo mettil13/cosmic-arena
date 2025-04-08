@@ -26,7 +26,7 @@ public class CharacterManager : SerializedMonoBehaviour
     public PlayerManager manager;
 
 
-    private void Awake()
+    public void Init()
     {
         Dictionary<Player_State, IState> newStates = new Dictionary<Player_State, IState>();
         foreach (var statePair in stateMachine.states)
@@ -40,14 +40,10 @@ public class CharacterManager : SerializedMonoBehaviour
         GameManager.Instance?.AddToCharacterHealthList(characterHealth);
         DynamicCamera.Instance?.AddTarget(gameObject);
         //GameManager.Instance.OnCharacterJoin(gameObject);
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
 
         stateMachine.Init();
     }
+
 
     // Update is called once per frame
     void Update()
