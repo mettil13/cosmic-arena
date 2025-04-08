@@ -21,6 +21,7 @@ public class DynamicCamera : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Init();
     }
 
     private void Start()
@@ -44,12 +45,18 @@ public class DynamicCamera : MonoBehaviour
 
     public void Init()
     {
-        GameObject[] targets = GameObject.FindGameObjectsWithTag("Player");
+        //GameObject[] targets = GameObject.FindGameObjectsWithTag("Player");
         CurrentTargets.Clear();
-        foreach (GameObject target in targets)
-        {
-            currentTargets.Add(target.transform);
-        }
+        //foreach (GameObject target in targets)
+        //{
+        //    currentTargets.Add(target.transform);
+        //}
+    }
+
+    public void AddTarget(GameObject player)
+    {
+        currentTargets.Add(player.transform);
+        //allPotentialTargets.Add(player.transform);
     }
 
     void MoveCamera()
