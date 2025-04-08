@@ -48,7 +48,7 @@ public class AudioManager : MonoBehaviour {
 
     #region LifeCycle
     private void Start() {
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(transform.parent);
         //FillAudioSources();
         //SetDefaultVolumes();
     }
