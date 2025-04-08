@@ -37,7 +37,8 @@ public class CharacterManager : SerializedMonoBehaviour
         }
         stateMachine.states = newStates;
         characterHealth.InitHp(characterStats.health);
-
+        GameManager.Instance?.AddToCharacterHealthList(characterHealth);
+        DynamicCamera.Instance?.AddTarget(gameObject);
         //GameManager.Instance.OnCharacterJoin(gameObject);
     }
 

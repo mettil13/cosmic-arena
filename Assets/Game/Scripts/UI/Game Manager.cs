@@ -36,9 +36,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         pauseButton.enabled = false;
-        PopulatePlayersAndHealth();
+        //PopulatePlayersAndHealth();
         StartCoroutine(StartCountdown());
-        DynamicCamera.Instance.Init();
         dieEvent.AddListener(() =>
         {
             if (playerObjects.Count > 0 && playerObjects[0] != null)
@@ -74,6 +73,7 @@ public class GameManager : MonoBehaviour
 
         if (RemainingCharacters() <= 1)
         {
+            DetermineFinalRanking();
             EndGame(DetermineLastStanding());
         }
 
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     {
         timerText.gameObject.SetActive(true);
 
-        string[] countdownTexts = { "3", "2", "1", "Via!" };
+        string[] countdownTexts = { "3", "2", "1", "Go!" };
 
         foreach (string text in countdownTexts)
         {
@@ -122,11 +122,17 @@ public class GameManager : MonoBehaviour
     CharacterHealth DetermineLastStanding() =>
         characterHealthList.FirstOrDefault(h => h != null && h.HP > 0);
 
-    void EndGame(CharacterHealth winner)
+    void EndGame(CharacterHealth winner) {
+        StartCoroutine(EndGame_CR(winner));
+    }
+
+    IEnumerator EndGame_CR(CharacterHealth winner)
     {
-        //Debug.Log("Game ended, character health list count : " + characterHealthList.Count);
 
         gameEnded = true;
+
+        yield return new WaitForSeconds(0.1f);
+
         ShowVictoryPanel(winner);
 
         RefreshLists();
@@ -209,6 +215,10 @@ public class GameManager : MonoBehaviour
                               .Select(obj => obj.GetComponent<CharacterHealth>())
                               .Where(h => h != null)
                               .ToList();
+    }
+
+    public void AddToCharacterHealthList(CharacterHealth characterHealth) {
+        characterHealthList.Add(characterHealth);
     }
 
     void RefreshLists()
